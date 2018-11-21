@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src='jquery-2.1.4.min.js'></script>
+	<style type="text/css">
+   *{margin: 0;padding: 0;}
+   .a1{width: 100%;height: 50px;background-color:#459DF6;text-align: center;}
+   .a2{width: 100%;height:0px;background-color:#3970A6;}
+   li{list-style: none;color:white;font-weight: bolder;}
+   ol{display: inline-block;height:50px;text-align:center;line-height:50px;}
+   ol>li{float: left;width: 170px;}
+   ul{height: 340px;display: none;}
+	</style>
+</head>
+<body>
+	  <div class="a1">
+	  	   <ol>
+	  	   	   <li>首页
+                    <ul>
+                    </ul>
+	  	   	   </li>
+	  	   	   <li>关于我们
+	  	   	    <ul>
+	  	   	    	<li>团队服务</li>
+	  	   	    	<li>服务QQ群</li>
+	  	   	    	<li>个人业务</li>
+	  	   	    </ul>
+	  	   	   </li>
+	  	   	   <li>软件下载
+	  	   	     <ul>
+	  	   	     	<li>WEB编译工具</li>
+	  	   	     	<li>桌面整理工具</li>
+	  	   	     </ul>
+	  	   	   </li>
+	  	   	   <li>招贤纳士
+	  	   	    <ul>
+	  	   	    	<li>WEB前端工程师</li>
+	  	   	    	<li>JAVAWEB工程师</li>
+	  	   	    	<li>APP开发工程师</li>
+	  	   	    	<li>数据库工程师</li>
+	  	   	    	<li>软件构架师</li>
+	  	   	    	<li>技术客服</li>
+	  	   	    </ul>
+	  	   	   </li>
+	  	   	   <li>给我留言
+	  	   	   <ul>
+	  	   	   	  <li>站内留言</li>
+	  	   	   	  <li>站长留言</li>
+	  	   	   </ul>
+	  	   	   </li>
+	  	   </ol>
+	  </div>
+	 <div class="a2"></div>
+</body>
+<script type="text/javascript">
+	 $(".a1").hover(function(){
+	 	  $(this).find("ul").stop().slideDown();
+	 	  $('.a2').stop().animate({height:"350px"});
+	 },function(){
+	 	    $(this).find("ul").stop().slideUp();
+	 	    $('.a2').stop().animate({height:"0px"});
+	 })
+
+$("ol>li").hover(function(){
+	 $(this).css("background","rgba(0,0,0,0.1)")
+},function(){
+	$(this).css("background","")
+})
+
+</script>
+</html>

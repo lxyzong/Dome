@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="jquery-3.1.1.js"></script>
+	</head>
+
+	<body>
+	</body>
+	<script>
+		$.ajax({
+			url: 'http://manual.51yip.com/test1.php',
+			data: {
+				name: "jsonp"
+			},
+			dataType: "jsonp",
+			jsonp: "callback",
+			jsonpCallback: "getdata",
+			success: function(res) {
+				console.log(res)
+			}
+		})
+
+		//			var JSONP=document.createElement("script");
+		// 			JSONP.type="text/javascript"; 		     
+		// 			JSONP.src="http://manual.51yip.com/test1.php?name=jsonp&callback=getdata1";
+		// 			document.getElementsByTagName("head")[0].appendChild(JSONP);
+		// 			function  getdata1(data){
+		//				console.log(data);
+		//			}
+
+		function combo(msg) {    
+			var arr = msg.split("-");
+			console.log(arr);    
+			for(var i = 1; i < arr.length; i++) {     
+				arr[i] = arr[i].charAt(0).toUpperCase() + arr[i]
+					.substr(1, arr[i].length - 1);    
+			}    
+			msg = arr.join("");    
+			return msg;
+		}
+		combo("get-element-by-id")
+	</script>
+
+<!--7954.23
+
+8534.23
+
+7195.1-->
+</html>

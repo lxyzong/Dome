@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .wrap{
+            width: 400px;
+            /*过渡属性*/
+            transition:4s 1s;
+
+        }
+        .wrap:hover{
+            transform: translate(1000px) rotate(-30deg);
+        }
+        .wrap:hover .foot_a{
+            transform: rotate(3600deg);
+        }
+        .wrap:hover .foot_b{
+            transform: rotate(3600deg);
+        }
+
+
+        .foot_a,.foot_b{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            position: relative;
+            background:url(cl.jpg) no-repeat center;
+            background-size: 100%;
+            /*过渡属性*/
+            transition: 5s;
+        }
+        .foot_a{
+            left:60px;
+            top:-70px;
+
+        }
+        .foot_b{
+            left:242px;
+            top:-148px
+        }
+    </style>
+</head>
+<body>
+   <div class="wrap">
+       <div>
+           <img src="qic.jpg" alt="">
+       </div>
+         <div class="foot_a"></div>
+         <div class="foot_b"></div>
+   </div>
+</body>
+</html>

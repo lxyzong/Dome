@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/vue-router.min.js"></script>
+		<script src="../js/vue-resource.js"></script>	
+	</head>
+	
+	<body>
+		 <div id="box">
+		 	 <ul>
+		 	 	<li><router-link to="/one">one</router-link></li>
+		 	 	<li><router-link to="/two">two</router-link></li>
+		 	 </ul>
+		 	 <router-view></router-view>
+		 </div>
+		 <template id="two">
+		 	<div>
+		 		 <ul>
+			 	 	<li><router-link to="/one/yi">one-a</router-link></li>
+			 	 	<li><router-link to="/one/er">one-b</router-link></li>
+			 	 </ul>
+			 	 <router-view></router-view>
+		 	</div>
+		 </template>
+		 <template id="yi">
+		 	<div>
+		 		 <ul>
+			 	 	<li v-for="i in arr.into">{{i.p}}{{i.p1}}</li>
+			 	 </ul>
+		 	</div>
+		 </template>
+         <template id="er">
+		 	<div>
+		 		 <ul>
+			 	 	<li v-for="i in data.into">{{i.p1}}:{{i.p2}}</li>
+			 	 </ul>
+		 	</div>
+		 </template>
+	</body>
+	<script type="text/javascript">
+      var One={
+      	template:"<h1>this is one page</h1>"
+      }
+      var Two={
+      	template:"#two"
+      }
+      var yi={
+      	template:"#yi",
+      	  data(){
+      		return {
+	                 arr:{}
+	      		}
+	      },
+	      created(){
+	      	this.$http.get("http://127.0.0.1:5665/1").then(function(res){
+                       this.arr=JSON.parse(res.data)
+	      	})
+	      }
+      }
+      var er={
+      	template:"#er",
+      	data(){
+      		return {
+	                 data:{}
+	      		}
+	      },
+	      created(){
+	      	this.$http.get("http://127.0.0.1:5665/2").then(function(res){
+                       this.data=JSON.parse(res.data)
+	      	})
+	      }
+      }
+      const routes=[
+               {path:"/one",component:One},
+               {path:"/two",
+               component:Two,
+		      	children:[
+		                 {path:"/one/yi",component:yi},
+		                 {path:"/one/er",component:er}
+		      	    ]
+            }
+       ]
+      const router=new VueRouter({
+      	routes
+      })     
+      new Vue({
+      	el:"#box",
+      	router
+      })
+  
+	</script>
+</html>

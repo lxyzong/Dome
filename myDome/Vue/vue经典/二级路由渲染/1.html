@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/vue-router.min.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			 <ul>
+			 	<li> <router-link to="/one">one</router-link></li>
+			 	<li> <router-link to="/two">two</router-link></li>
+			 </ul>
+			 <router-view></router-view>
+		</div>
+		<template id="one">
+			<div>
+				<h1>this is one page</h1>
+				<ul>
+					<li> <router-link to="/one/yi">one-yi</router-link></li>
+					<li> <router-link to="/one/er">one-er</router-link></li>
+				</ul>
+				<router-view></router-view>
+			</div>
+		</template>
+		<template id="two">
+			<div>
+				<h1>this is two page</h1>
+				<ul>
+					<li v-for="item in data.into">{{item.p1}}{{item.p2}}</li>
+				</ul>
+			</div>
+		</template>
+		<template id="oneYi">
+			<div>
+				<h1>this is oneYi page</h1>
+				<ul>
+					<li v-for="item in arr.into">{{item.p}}{{item.p1}}</li>
+				</ul>
+			</div>
+		</template>
+		<template id="oneEr">
+			<h1>this is oneEr page</h1>
+		</template>
+	</body>
+	<script src="../js/vue-resource.js"></script>
+	<script>
+		
+		var one={
+			template:"#one"
+		}
+		var two={
+			template:"#two",
+			data(){
+				return {
+					data:{}
+				}
+			},
+			created(){
+				this.$http.get("http://127.0.0.1:7887/2").then(function(res){
+					this.data=JSON.parse(res.data)
+				})
+			}
+		}
+		var oneYi={
+			template:"#oneYi",
+			data(){
+				return {
+					arr:{}
+				}
+			},
+			created(){
+				this.$http.get("http://127.0.0.1:7887/1").then(function(res){
+					this.arr=JSON.parse(res.data)
+				})
+			}
+		}
+		var oneEr={
+			template:"#oneEr"
+		}
+		const routes=[
+		  {path:'/one',component:one,
+		   children:[
+		    {path:"/one/yi",component:oneYi},
+		    {path:"/one/er",component:oneEr}
+		   ]
+		  },
+		  {path:'/two',component:two}
+		]
+		const router=new VueRouter({
+			routes
+		})
+		new Vue({
+			el:"#box",
+			router
+		})
+	</script>
+</html>

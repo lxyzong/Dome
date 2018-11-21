@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">  
+			<div>
+				<label>男<input type="radio" v-model="sex" value="男"/></label>  
+			   	<label>女<input type="radio" v-model="sex" value="女"/></label>  
+			    <span>已选：{{sex}}</span>
+			</div>
+			<div>
+				<label>苹果<input type="checkbox" v-model="shuigou" value="苹果"/></label>  
+			    <label>香蕉<input type="checkbox" v-model="shuigou" value="香蕉"/></label>  
+			    <label>榴莲<input type="checkbox" v-model="shuigou" value="榴莲"/></label>  
+			    <span>已选：{{shuigou.join('|')}}</span>  
+			</div>
+			<div>
+				<select v-model="selected">  
+			        <option v-for="item in items" v-bind:value="item.value">{{item.text}}</option>  
+			    </select>  
+			    <span>已选:{{selected}}</span>  
+			</div>
+			<div>
+			    <textarea  rows="3" maxlength="20" @input="descInput" v-model="desc"></textarea>
+			    <p>还可以输入：<span>{{remnant}}</span>/20</p>
+			</div>
+		</div>
+		<script>  
+		    var app=new Vue({  
+		        el:'#app',  
+		        data:{  
+		            sex:'',
+		            shuigou: []  ,
+		            items:[{text:'跑步',value:'跑步'},{text:'游泳',value:'游泳'},{text:'篮球',value:'篮球'}],  
+		            selected:'',
+		            remnant:0,
+		            desc:""
+		        } ,
+		        methods:{
+		        	 descInput() {
+			                var txtVal = this.desc.length;  //desc 是设置v-model的值
+			                this.remnant = txtVal;
+			        }
+		        }
+		    });  
+		</script>  
+	</body>
+</html>

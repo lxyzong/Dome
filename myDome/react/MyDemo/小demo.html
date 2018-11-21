@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript" src="../js/react.min.js"></script>
+	<script type="text/javascript" src="../js/react-dom.min.js"></script>
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+	<style>
+		body {
+			font-size: 14px;
+			font-family: "Lantinghei SC Extralight",Arial;
+		}
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		a {
+			text-decoration: none;
+		}
+		img {
+			vertical-align: top;
+		}
+		.wrap {
+			width: 760px;
+			height: 260px;
+			margin: 100px auto;
+			padding: 145px 120px 95px;
+		}
+		.section {
+			width: 760px;
+			height: 260px;
+			-moz-box-shadow: 0px 0px 4px rgba(0,0,0,.2); 
+			box-shadow: 0px 0px 4px rgba(0,0,0,.2);
+		}
+		.choose {
+			width: 760px;
+			height: 50px;
+			margin: 0 auto;
+			line-height: 50px;
+			text-indent: 21px;
+		}
+		.type {
+			width: 100%;
+			height: 210px;
+			padding: 17px 0 16px 28px;
+		}
+		.type li {
+			height: 44px;
+			color: #8a8a8a;
+			line-height: 44px;
+		}
+		.type a {
+			margin: 0 12px 0 11px;
+			color: #000;
+		}
+		.choose mark {
+			position: relative;
+			display: inline-block;
+			height: 24px;
+			line-height: 24px;
+			border: 1px solid #28a5c4;
+			color: #28a5c4;
+			margin: 12px 5px 0;
+			background: none;
+			padding: 0 30px 0 6px;
+			text-indent: 0;
+		}
+		.choose mark a {
+			position: absolute;
+			top: 3px;
+			right: 2px;
+			display: inline-block;
+			width: 18px;
+			height: 18px;
+			background: #28a5c4;
+			color: #fff;
+			line-height: 18px;
+			font-size: 16px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script type="text/babel" >
+	 var link=true;
+	 var Hellow=React.createClass({
+	    cli1:function(val,index){
+	    	show("mark1",val)
+	    },
+	    cli2:function(val,index){  	
+	    	show("mark2",val)
+	    },
+	    cli3:function(val,index){  	
+	    	show("mark3",val)
+	    },
+	    cli4:function(val,index){  	
+	    	show("mark4",val)
+	    },
+	 	render:  function() {
+	 	   const arr=[
+		 	   ["苹果","小米","锤子","魅族","华为","三星","OPPO","vivo","乐视","360"],
+		 	   ["3.0英寸以下","3.0-3.9英寸","4.0-4.5英寸","4.6-4.9英寸","5.0-5.5英寸","6.0英寸以上"],
+		 	   ["安卓 ( Android )","苹果 ( IOS )","微软 ( WindowsPhone )","无","其他"],
+		 	   ["联通3G","双卡单4G","双卡双4G","联通4G","电信4G","移动4G"],
+	 	   ];
+	 	   const cartList0 = arr[0].map((item, index) =>              
+                      <a key={index} href="javascript:;" 
+                 onClick={() => this.cli1(item,index)}>{item}</a>
+                   );
+	 	    const cartList1 = arr[1].map((item, index) =>              
+                 <a key={index} href="javascript:;" 
+                 onClick={() => this.cli2(item,index)}>{item}</a>
+                   );
+	 	   const cartList2 = arr[2].map((item, index) =>              
+                 <a key={index} href="javascript:;" 
+                 onClick={() => this.cli3(item,index)}>{item}</a>
+                   );
+	 	   
+	 	    const cartList3 = arr[3].map((item, index) =>              
+                 <a key={index} href="javascript:;" 
+                 onClick={() => this.cli4(item,index)}>{item}</a>
+            );
+                   
+             return (<div className="wrap">
+				<section className="section">
+					<nav className="choose">
+						你的选择: 
+					</nav>
+					<ul className="type">
+						<li>
+							品牌：
+							{cartList0}
+						</li>
+						<li onClick={this.rem}>
+							尺寸：
+							{cartList1}
+						</li>
+						<li>
+							系统：
+							{cartList2}
+						</li>
+						<li>
+							网络：
+							{cartList3}
+						</li>
+					</ul>
+				</section>
+			</div>) 
+	 	}
+	 });
+	 ReactDOM.render(
+       <Hellow />,
+       document.getElementById("box")
+	 )
+  function show(clas,val){
+  	        link=true;
+	    	var choose = document.getElementsByClassName('choose')[0];
+	    	var mark = document.createElement("mark");
+	    	mark.setAttribute("class",clas)
+	    	mark.style.color = '#28a5c4';
+		     var ind=document.querySelectorAll("."+clas);
+		     for(var i=0;i<=ind.length;i++){
+		     if(ind.length==0){
+		     	link=false;
+		     	mark.innerHTML=val+'<a href = "javascript:;" class="a">x</a>';
+		        choose.appendChild(mark);
+		        add()
+		     }else{
+				ind[i].innerHTML=val+'<a href = "javascript:;"  class="a">x</a>';
+				add()
+		     }
+		   } 
+
+     }
+   function  add(){
+	   var a=document.querySelectorAll(".a");
+	    for(var i=0;i<a.length;i++){
+			 a[i].onclick=function(){
+			this.parentNode.remove("mark")
+		 }
+	  }
+   }
+</script>
+</html>

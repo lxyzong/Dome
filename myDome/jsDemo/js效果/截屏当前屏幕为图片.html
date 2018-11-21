@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta name="layout" content="main">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			img {
+				width: 100%;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<textArea id="textArea" col="20" rows="10"></textArea> <br />
+		<input class="example1" type="button" value="button">
+	</body>
+	<script type="text/javascript" src="jquery-3.1.1.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".example1").on("click", function(event) {
+				event.preventDefault();
+				html2canvas(document.body, {
+					allowTaint: true,
+					taintTest: false,
+					onrendered: function(canvas) {
+						canvas.id = "mycanvas";
+						//document.body.appendChild(canvas);  
+						//生成base64图片数据  
+						var dataUrl = canvas.toDataURL();
+						var newImg = document.createElement("img");
+						console.log(dataUrl);
+						newImg.src = dataUrl;
+						document.body.appendChild(newImg);
+					}
+				});
+			});
+
+		});
+	</script>
+
+</html>

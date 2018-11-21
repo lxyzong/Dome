@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-2.1.4.min.js"></script>
+	</head>
+
+	<body>
+		<input type="text" name="" id="" value="" class="input"/><br />
+		<input type="text" class="password"/> <br />
+		<button>按钮</button>
+		<div>
+			
+		</div>
+		<script>
+			$("button").click(function() {
+				$.ajax({
+					type: "post",
+					url: "http://127.0.0.1:3000/",
+					data:{
+						name:$(".input").val(),
+						password:$(".password").val()
+					},
+					async: true,
+					dataType: "json",
+					success: function(res) {
+						console.log(res)
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

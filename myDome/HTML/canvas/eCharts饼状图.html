@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="echarts.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div style="width: 600px; height: 500px;"></div>
+		<script type="text/javascript">
+			var mychart=echarts.init(document.querySelector("div"));
+			var option={
+				title:{
+					text:"实例",
+					textStyle: {
+						color:"gray"
+					}
+				},
+				backgroundColor:"salmon",
+				tooptip:{},
+				series:[{
+					type:"pie",
+					radius:"80%",
+					roseType:"radius",
+					itemStyle:{
+						normal:{
+							shadowOffsetX:10,
+							shadowOffsetY:10,
+							shadowBlur:100,
+							shadowColor:"pink"
+						}
+					},
+					data:[
+						{value:57,name:"手机"},
+						{value:43,name:"平板"},
+						{value:39,name:"笔记本"},
+						{value:69,name:"耳机"},
+						{value:79,name:"单反"}
+					].sort(function(a,b){
+						return a.value-b.value
+					})
+				}]
+			}
+			mychart.setOption(option)
+		</script>
+	</body>
+</html>

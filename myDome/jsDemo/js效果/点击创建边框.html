@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*所画方块的样式*/
+			.div {
+				border: 2px solid red;
+				position: absolute;
+				opacity: 0.5;
+			}
+		</style>
+	
+	</head>
+
+	<body>
+	<img src="1.jpg" alt="" class="img" id="img">
+	</body>
+    	<script type="text/javascript">
+			window.onload = function(e) {
+				
+				e = e || window.event;
+				
+				var startX, startY, diffX, diffY;
+				// 鼠标按下
+				document.onmousedown = function(e) {
+					
+					startX = e.pageX;
+					startY = e.pageY;
+				
+					var div = document.createElement("div");
+					div.id = "div";
+					div.className = "div";
+					div.style.top = startY + 'px';
+					div.style.left = startX + 'px';
+					document.body.appendChild(div);
+					div = null;
+					// 鼠标移动
+					document.onmousemove = function(e) {
+						
+						if(document.getElementById("div") !== null) {
+							var ab = document.getElementById("div");
+							ab.style.width = e.pageX - startX + 'px';
+							ab.style.height = e.pageY - startY + 'px';
+						}
+					};
+					// 鼠标抬起
+					document.onmouseup = function(e) {
+						if(document.getElementById("div") !== null) {
+							var ab = document.getElementById("div");
+							ab.removeAttribute("id");
+						}
+					};
+				};
+
+			};
+		</script>
+</html>

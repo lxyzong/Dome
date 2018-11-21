@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			{{aa}}
+		</div>
+	</body>
+	<script>
+		//		new Vue({
+		//			el:"#box",
+		//			data:{
+		//				aa:"aaaa"
+		//			}
+		//		})
+		var xm = new Vue({
+			data: {
+				aa: "aaaaa"
+			},
+			methods: {
+				a: function() {
+					return '1'
+				}
+			}
+		}).$mount("#box")
+//		console.log(xm.aa)
+		console.log(xm.$options.methods.a())
+	</script>
+
+</html>

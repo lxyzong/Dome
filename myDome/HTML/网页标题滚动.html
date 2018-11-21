@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>新学期开学课！</title>
+	</head>
+
+	<body>
+
+		<script type="text/javascript">
+			var  dir  = "left";  //默认初始为向左
+			function  huigun() {
+				if (dir  == "left") {  //当dir为left是向左滚动
+					var  title  =  document.title;  //取到title的值
+					var  first  =  title.charAt(0);  //取出第一个字
+					var  last  =  title.substring(1,
+						title.length);  //取出第二到最后的所有字
+					document.title  =  last  +  first;  //将第一个字加到最后
+				} else if (dir  == "right") {  //如果向右滚，则同理
+					var  title  =  document.title;
+					var  first  =  title.substring(0,
+						title.length  - 1)
+					var  last  =  title.charAt(title.length  - 1);
+					document.title  =  last  +  first;
+				} else  {
+					alert("方向错了");
+				}
+			}
+
+			function  setdir(d) {  //当鼠标点击按钮式同时给dir复制
+				dir  =  d;
+			}
+			setInterval("huigun()", 500);  //每隔0.5秒刷新一次
+		</script>
+		<input type="button"  value="向左滚动"  onclick="setdir('left');" />
+		<input type="button"  value="向右滚动"  onclick="setdir('right');" />
+	</body>
+
+</html>

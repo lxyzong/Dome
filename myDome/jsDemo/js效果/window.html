@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="jquery-3.1.1.js"></script>
+	</head>
+
+	<body>
+		<button>an</button>
+	</body>
+	<script>
+		
+		
+		function isWeiXin() {
+			var a = window.navigator.userAgent.toLowerCase();
+			return "micromessenger" == a.match(/MicroMessenger/i) ? !0 : !1
+
+		};
+		alert(isWeiXin())
+		$("button").eq(0).click(function() {
+			top.location.href = 'https://www.baidu.com/?tn=62095104_2_oem_dg'
+		})
+	</script>
+
+</html>

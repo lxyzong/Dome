@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid red
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="div">1div</div><br>
+        <div class="div">2div</div>
+    </div>
+    <script>
+        class Parent {
+            constructor() {
+                this.div = document.getElementsByClassName("div")
+                this.init()
+            }
+            init() {
+                const that = this;
+                for (var i = 0; i < that.div.length; i++) {
+                    let x = i;
+                    that.div[x].onclick = function () {
+                        console.log(that.div[x].innerHTML);
+                    }
+                }
+            }
+        }
+        class A {
+            constructor(name) {
+                this.name = name
+            }
+            sky() {
+                console.log(this.name)
+            }
+        }
+        class B extends A {
+            constructor(name) {
+                super(name)
+                this.age = 1
+            }
+            agee() {
+                console.log(this.name)
+                console.log(this.age)
+            }
+        }
+
+        window.onload = function () {
+            var Div = new Parent();
+            var a = new A();
+            a.sky();
+            var b = new B('b');
+            b.agee()
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>events</title>
+		<link rel="shortcut icon" href="favicon.ico" type="image/ x-icon" />
+	</head>
+
+	<!--<body oncopy="alert('对不起，本网页禁止复制！');return false;">-->
+
+	<body oncontextmenu="return false" onselectstart="return false">
+		<p>111111111111111111111111111111111</p>
+		<button onclick="getClick">按钮</button>
+		<noscript><iframe src="*.htm"></iframe></noscript>
+
+		<script>
+			//跨浏览器添加事件
+
+			function addEvent(obj, type, fn) {
+				if(obj.addEventListener) {
+					obj.addEventListener(type, fn, false);
+				} else if(obj.attachEvent) { //IE
+					obj.attchEvent('on' + type, fn);
+				}
+			}
+
+			//阻止浏览器默认行为
+
+			function preDef(ev) {
+				var e = ev || window.event;
+				if(e.preventDefault) {
+					e.preventDefault();
+				} else {
+					e.returnValue = false;
+				}
+			}
+
+			//获取滚动条位置
+			function getSP() {
+				return {
+					top: document.documentElement.scrollTop || document.body.scrollTop,
+					left: document.documentElement.scrollLeft || document.body.scrollLeft
+				}
+			}
+
+			var str = "asdasaaaasdcx";
+			var num = countStr(str);
+			console.log(num)
+			//统计出现次数最多的一个
+			function countStr(str) {
+				var obj = {};
+				for(var i = 0, l = str.length, k; i < l; i++) {
+					k = str.charAt(i);
+					if(obj[k]) {
+						obj[k]++;
+					} else {
+						obj[k] = 1;
+					}
+				}
+				var m = 0,
+					i = null;
+
+				for(var k in obj) {
+					if(obj[k] > m) {
+						m = obj[k];
+						i = k;
+					}
+				}
+				return i + ':' + m;
+			}
+
+		</script>
+	</body>
+
+</html>

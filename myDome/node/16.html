@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-2.1.4.min.js"></script>
+	</head>
+
+	<body>
+		<input type="text" name="" id="" value="" class="input" /><br />
+		<input type="text" class="age" /> <br />
+		<button>按钮</button>
+		<script>
+			//			 get,post
+			$("button").click(function() {
+				$.ajax({
+					type: "post",
+					url: "http://127.0.0.1:8080/list/2",
+					data: {
+						name: $(".input").val(),
+						age: $(".age").val()
+					},
+					async: true,
+					dataType: "json",
+					success: function(res) {
+						console.log(res)
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

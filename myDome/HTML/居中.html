@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.parent {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				z-index: 100;
+				/*第一种*/
+				/*display: flex;
+				justify-content: center;
+				align-items: center;*/
+				/*第二种*/
+				display: table;
+			}
+			
+			.children {
+				color: red;
+				z-index: 200;
+				background: rgba(0, 0, 0, 0.5);
+				display: table-cell;
+				text-align: center;
+				vertical-align: middle;
+			}
+			.div{
+				width: 100px;
+				height: 100px;
+				border: 2px solid red;
+				outline:green dotted thick;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="div"></div>
+		<div class="parent">
+			<div class="children">woshshndjasnj <br />asdsad</div>
+		</div>
+
+	</body>
+
+</html>

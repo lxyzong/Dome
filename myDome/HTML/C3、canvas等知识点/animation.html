@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+   @keyframes  名字{
+              form{
+                  动画开始的样式(或百分比表示)
+              }
+              to{
+                 动画结束的样式
+              }
+   }
+   除了用form，to还可用百分比表示
+   调用：  animation：名字  时间
+
+      animation :name duration timing-function delay initeration direction fill-mode 
+                 name：名字
+                 duration：持续时间
+                 timing-function  速率  ：linear  ease-in。。。。、
+                 delay  延迟动画
+                 ineration-count   n 定义动画播放次数的数值。infinite规定动画应该无限次播放。
+                 direction 轮流反向播放  alernate反向播放
+                 fill-mold ：forwords 完成动画，保持最后一个属性 在最后一帧中定义
+                              backwords
+                              both 向前向后填充都被应用
+	     animation-play-state:puased   暂停动画
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="jquery-1.9.1.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<ul id="oUl">
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>5</li>
+			<li>5</li>
+			<li>5</li>
+			<li>5</li>
+			<li>5</li>
+			<li>5</li>
+			<li>5</li>
+			<li>5</li>
+			<li>5</li>
+		</ul>
+	</body>
+	<script>
+		var ul=document.getElementById("oUl");
+		ul.onclick=function(event){
+			var eve=event.target|| window.event;//触发点击事件源
+			/*eve.srcElement*/ /*是触发事件的节点*/
+			if(eve.nodeName.toLowerCase()=="li"){
+				console.log(event.target.innerHTML);
+			}
+		}
+	</script>
+</html>

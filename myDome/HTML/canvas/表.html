@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="{CHARSET}">
+		<title></title>
+	</head>
+
+	<body>
+		<canvas width="500px" height="500px" style="border:1px solid red"></canvas>
+	</body>
+	<script>
+		var canvas = document.querySelector("canvas");
+		var ote = canvas.getContext("2d");
+
+		function run() {
+			var time = new Date();
+			var s = time.getHours();
+			var f = time.getMinutes();
+			var m = time.getSeconds();
+
+			var ss = (s * 30 + f / 2 - 90) * Math.PI / 180;
+			var ff = (f * 6 - 90) * Math.PI / 180;
+			var mm = (m * 6 - 90) * Math.PI / 180;
+
+			ote.beginPath();
+			for(var i = 0; i < 60; i++) {
+				ote.strokeStyle = "coral"
+				ote.moveTo(250, 250)
+				ote.arc(250, 250, 210, i * 6 * Math.PI / 180, (i + 1) * 6 * Math.PI / 180)
+				ote.stroke();
+			}
+			ote.closePath();
+
+			ote.beginPath()
+			ote.fillStyle = "white"
+			ote.moveTo(250, 250)
+			ote.arc(250, 250, 200, 0, 2 * Math.PI)
+			ote.fill()
+			ote.closePath()
+
+			ote.save()
+			ote.beginPath();
+			for(var i = 0; i < 12; i++) {
+				ote.lineWidth = 5
+				ote.strokeStyle = "#7FFF00"
+				ote.moveTo(250, 250)
+				ote.arc(250, 250, 210, i * 30 * Math.PI / 180, (i + 1) * 30 * Math.PI / 180)
+				ote.stroke();
+			}
+			ote.closePath();
+			ote.restore()
+
+			ote.save()
+			ote.beginPath()
+			ote.fillStyle = "aquamarine"
+			ote.moveTo(250, 250)
+			ote.arc(250, 250, 190, 0, 2 * Math.PI)
+			ote.fill()
+			ote.closePath()
+			ote.restore()
+
+			ote.save()
+			ote.beginPath()
+			ote.strokeStyle = "red"
+			ote.moveTo(250, 250)
+			ote.arc(250, 250, 175, mm, mm)
+			ote.stroke()
+			ote.closePath();
+			ote.restore()
+			ote.save()
+			ote.beginPath()
+			ote.lineWidth = 5
+			ote.strokeStyle = "yellow"
+			ote.moveTo(250, 250)
+			ote.arc(250, 250, 145, ff, ff)
+			ote.stroke()
+			ote.closePath();
+			ote.restore()
+			ote.save()
+			ote.beginPath()
+			ote.lineWidth = 10
+			ote.strokeStyle = "darkmagenta"
+			ote.moveTo(250, 250)
+			ote.arc(250, 250, 125, ss, ss)
+			ote.stroke()
+			ote.closePath();
+			ote.restore()
+
+		}
+		setInterval(run, 1000)
+	</script>
+
+</html>

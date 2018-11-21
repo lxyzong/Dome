@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			//			var obj={
+			//				 foo(){
+			//				 	 return "ojbk!"
+			//				 }
+			//			}
+			//			console.log(obj.foo());
+			//			console.log(0.2+0.1) //=0.00000000034
+			//			
+			//		    console.log(+ "42")	
+
+			//			var obj = {
+			//				a: 5,
+			//				func: () => {
+			//					console.log(this);
+			//					//Window
+			//					console.log(this.a);
+			//				},
+			//				test: function() {
+			//					console.log(this);
+			//					//{a: 5, func: ƒ, test: ƒ}
+			//					setTimeout(() => {
+			//						console.log(this);
+			//						//{a: 5, func: ƒ, test: ƒ}
+			//						this.func();
+			//					}, 1);
+			//				}
+			//			}
+			//			obj.test();
+
+			//			var funcs = []
+			//			for(var i = 0; i < 10; i++) {
+			//				
+			//				funcs.push((function(va){
+			//						return function(){
+			//					         console.log(va)
+			//						}
+			//					})(i))
+			//			}
+			//			funcs.forEach(function(func,index) {
+			//				func()
+			////				console.log(index)
+			//			})
+
+			// 1.includes：判断是否包含然后直接返回布尔值
+			//  const str = 'hahay'
+			//  console.log(str.includes('y')) // true
+
+			// 2.repeat: 获取字符串重复n次
+			//  const str = 'he'
+			//  console.log(str.repeat(3)) // 'hehehe'
+			//  
+			//  //如果你带入小数, Math.floor(num) 来处理
+			//  // s.repeat(3.1) 或者 s.repeat(3.9) 都当做成 s.repeat(3) 来处理
+
+			// 3. startsWith 和 endsWith 判断是否以 给定文本 开始或者结束
+			//  const str =  'hello world!'
+			//  console.log(str.startsWith('hello')) // true
+			//  console.log(str.endsWith('!')) // true
+
+			// 4. padStart 和 padEnd 填充字符串，应用场景：时分秒
+			//  setInterval(() => {
+			//      const now = new Date()
+			//      const hours = now.getHours().toString()
+			//      const minutes = now.getMinutes().toString()
+			//      const seconds = now.getSeconds().toString()
+			//      console.log(`${hours.padStart(2, 0)}:${minutes.padStart(2, 0)}:${seconds.padStart(2, 0)}`)
+			//  }, 1000)
+
+			//  function action(num =200) {
+			//      console.log(num) 
+			//  }
+			//  action(300) 
+			//  
+			//   //or
+			//   function action(num){
+			//   	num= num||200
+			//   }
+			//  action(0)
+
+			//var calculate = function(x, y, z) {
+			//    if (typeof x != 'number') { x = 0 }
+			//    if (typeof y != 'number') { y = 6 }
+			//
+			//    var dwt = x % y
+			//    var result
+			//
+			//    if (dwt == z) { result = true }
+			//    if (dwt != z) { result = false }
+			//    
+			//    return result
+			// }
+
+			//			const calculate = (x, y, z) => {
+			//				x = typeof x != 'number' ? 0 : x;
+			//				y = typeof x != 'number' ? 0 : y;
+			//				return x % y == z
+			//			}
+			//			var a=calculate(6, 4, 2);
+			//			console.log(a)
+
+			//  function a(name,age){
+			//  	return {name,age}
+			//  }
+			//  var obj=a('liu',1);
+			//  console.log(obj)
+
+			//const obj={
+			//	name:'liu',
+			//	cet(){
+			//		console.log(this.name);
+			//	}
+			//};
+			//obj.cet();
+
+			//			setTimeout(function() {
+			//				console.log(1)
+			//			}, 0);
+			//			new Promise(function executor(resolve) {
+			//				console.log(2);
+			//				for(var i = 0; i < 10000; i++) {
+			//					i == 9999 && resolve();
+			//				}
+			//				console.log(3);
+			//			}).then(function() {
+			//				console.log(4);
+			//			});
+			//			console.log(5);
+
+			//			//类的定义
+			//			class Animal {
+			//				//ES6中新型构造器
+			//				constructor(name) {
+			//					this.name = name;
+			//				}
+			//				//实例方法
+			//				sayName() {
+			//					console.log('My name is ' + this.name);
+			//				}
+			//			}
+			//			//类的继承
+			//			class Programmer extends Animal {
+			//				constructor(name) {
+			//					//直接调用父类构造器进行初始化
+			//					super(name);
+			//				}
+			//				program() {
+			//					console.log("I'm coding...");
+			//				}
+			//			}
+			//			//测试我们的类
+			//			var animal = new Animal('dummy'),
+			//				wayou = new Programmer('wayou');
+			//			animal.sayName(); //输出 ‘My name is dummy’
+			//			wayou.sayName(); //输出 ‘My name is wayou’
+			//			wayou.program(); //输出 ‘I'm coding...’
+
+			//			class parent {
+			//				constructor(name) {
+			//					this.name = name;
+			//				}
+			//				cet() {
+			//					console.log(this.name);
+			//				}
+			//			}
+			//
+			//			class children extends parent {
+			//				constructor(name) {
+			//					super(name)
+			//				}
+			//				eat() {
+			//					console.log(this.name);
+			//				}
+			//			}
+			//
+			//			const obj = new parent("liu");
+			//			const obj1 = new children("1111");
+			//			console.log(obj)
+
+			//			function sayHello(name) {
+			//				//传统的指定默认参数的方式
+			//				var name = name || 'dude';
+			//				console.log('Hello ' + name);
+			//			}
+			//			//运用ES6的默认参数
+			//			function sayHello2(name = 'dude') {
+			//				console.log(`Hello ${name}`);
+			//			}
+			//			sayHello(); //输出：Hello dude
+			//			sayHello('Wayou'); //输出：Hello Wayou
+			//			sayHello2(); //输出：Hello dude
+			//			sayHello2('Wayou'); //输出：Hello Wayou
+
+//			for(let codePointAt of 'hicai') {
+//				console.log(codePointAt);
+//			}
+		</script>
+
+	</body>
+
+</html>

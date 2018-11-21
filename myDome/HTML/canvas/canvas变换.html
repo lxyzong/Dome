@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myfirst" width="500px" height="500px" style="border:1px solid red">
+
+</canvas>
+<script>
+    var canvas=document.querySelector("#myfirst");
+    //搭建画布
+    var og=canvas.getContext("2d");
+
+    //开始绘制
+      og.save();//保存
+     og.beginPath()
+      og.translate(100,100);//改变圆点
+      //og.scale(1,2);//缩放
+      og.rotate(45*Math.PI/180);//旋转
+     og.fillRect(0,0,200,200);//绘制矩形
+     og.restore();//复位还原
+     //绘制2
+    og.beginPath();
+    og.fillStyle="red";
+    og.fillRect(200,0,200,200)
+</script>
+</body>
+</html>

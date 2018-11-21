@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<aaa></aaa>
+			<bbb></bbb>
+			<ccc></ccc>
+		</div>
+	</body>
+	<template id="aaa">
+		<div>
+			<p>我是A----{{a}}</p>
+			<button @click="aa">按钮A</button>
+		</div>
+	</template>
+	<template id="bbb">
+		<div>
+			<p>我是B----{{b}}</p>
+			<button @click="bb">按钮B</button>
+		</div>
+	</template>
+	<template id="ccc">
+		<div>
+			<p>我是C----{{c}}</p>
+			 <p>我是A接收的数据---{{q}}</p>
+			 <p>我是B接收的数据---{{w}}</p>
+		</div>
+	</template>
+	<script>
+		var ev=new Vue();
+		//兄弟之间传递需重建一个空的根vue实列
+		Vue.component("aaa",{
+			template:"#aaa",
+			data(){
+				return {
+					a:"我是数据a"
+				}
+			},
+			methods:{
+				aa(){
+					ev.$emit("com-a",this.a)
+				}
+			}
+		})
+		Vue.component("bbb",{
+			template:"#bbb",
+			data(){
+				return {
+					b:"我是数据b"
+				}
+			},
+			methods:{
+			     bb(){
+					ev.$emit("com-b",this.b)
+				}	
+			}
+		})
+		Vue.component("ccc",{
+			template:"#ccc",
+			data(){
+				return {
+					c:"我是数据c",
+					q:"",
+					w:""
+				}
+			},
+			mounted(){
+				ev.$on("com-a",function(a){
+					this.q=a
+				}.bind(this))
+				ev.$on("com-b",function(b){
+					this.w=b
+				}.bind(this))
+			}
+		})
+		new Vue({
+			el:"#box",
+			data:{
+				
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas width='600px' height="600px" style="border:1px solid red"></canvas>
+		
+		<script>
+			var canvas=document.querySelector("canvas");
+			var otex=canvas.getContext("2d");
+		 //头
+		otex.beginPath();
+		      otex.arc(300,160,150,0,2*Math.PI);
+		      otex.closePath();
+		      otex.stroke();
+		otex.closePath(); 
+	     //左眼
+		 otex.beginPath();
+		    otex.arc(230,110,30,0,2*Math.PI);
+		    otex.stroke();
+		otex.closePath();
+	    //右眼		
+		 otex.beginPath();
+		    otex.arc(360,110,30,0,2*Math.PI);
+		    otex.stroke();
+		otex.closePath();
+        //左耳
+		 otex.beginPath();
+		    otex.arc(180,40,30,0,90*Math.PI/180,300*Math.PI/180);	    
+		    otex.fillStyle='black';
+		    otex.fill();
+		    otex.stroke();
+		otex.closePath();
+		  //右耳
+		 otex.beginPath();
+		    otex.arc(420,40,30,180*Math.PI/180,90*Math.PI/180);
+		    otex.fillStyle='black';
+		    otex.fill();
+		    otex.stroke();
+		otex.closePath();		
+		
+		//左眼珠
+		 otex.beginPath();
+		    otex.arc(240,110,10,0,2*Math.PI);
+		    otex.fillStyle='black';
+		    otex.fill();
+		    otex.stroke();
+		otex.closePath();	
+	//右眼珠
+		 otex.beginPath();
+		    otex.arc(350,110,10,0,2*Math.PI);
+		    otex.fillStyle='black';
+		    otex.fill();
+		    otex.stroke();
+		otex.closePath();		
+		//嘴巴
+		 otex.beginPath();
+		    otex.arc(300,210,50,0,180*Math.PI/180);
+		    otex.fillStyle='black';
+		    otex.fill();
+		    otex.stroke();
+		otex.closePath();			
+			
+		//鼻子
+		otex.beginPath();
+		   otex.fillRect(275,145,40,2)
+		   otex.fillRect(275,155,40,2)
+		   otex.fillRect(275,165,40,2)
+		   otex.stroke();
+		otex.closePath();
+			
+	    //身子
+	otex.save()
+	    otex.beginPath();
+	       otex.moveTo(300,310);
+	       otex.lineTo(470,420);
+	       otex.lineTo(115,420);
+           otex.fillStyle='pink';
+           otex.fill();
+	    otex.closePath();      
+	 otex.restore()
+     
+	    otex.beginPath()
+	       otex.fillStyle="paleturquoise";
+	       otex.fillRect(230,420,35,170)
+	       otex.fillRect(330,420,35,170)           
+	       otex.stroke()
+	    otex.closePath()
+
+		</script>
+		
+		
+	</body>
+</html>

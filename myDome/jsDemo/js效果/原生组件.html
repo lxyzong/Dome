@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			class ButtonElement extends HTMLButtonElement {
+				constructor() {
+					super();
+					this.addEventListener("click", () => {
+						console.log("hello word!");
+					})
+				}
+			}
+
+			customElements.define("button-hello", ButtonElement, {
+				extends: 'button'
+			})
+		</script>
+		<button is="button-hello">测试</button 
+	</body> 
+</html>

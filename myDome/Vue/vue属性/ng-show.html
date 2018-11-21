@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+			p{
+				display: block;
+				width: 50px;
+				height: 50px;
+				background: blue;
+				color: red;
+			}
+			h1{
+				color: yellow
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<p v-if="a">1111111111</p>
+			<h1 v-else="a">H!</h1>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el:'#box',
+			data:{
+				a:true,
+				b:false
+			}
+		})
+		
+	</script>
+</html>

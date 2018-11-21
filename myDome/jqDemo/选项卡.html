@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+  .a1{
+  	 width: 300px;
+  	 border:1px solid red;
+  	 margin: 50px auto;
+  }
+  button{
+  	   width: 300px;
+  	   height: 30px;
+  	   text-align: center;
+       border:1px solid red;
+  	   background-color: pink;
+  }
+  ol{
+  	 display: none;
+  	 list-style: none;
+  }
+  li{
+  	  width: 288px;
+  	  height: 30px;
+  	  line-height: 30px;
+  	  text-align: center;
+      border-top:1px solid black;
+  	  margin-left: -38px;
+      padding-left:10px;
+  }
+
+.a2{
+	  border-bottom: 1px solid black;
+  }
+	</style>
+
+
+<body>
+   <div class="a1">
+   	   <button>家电</button>
+   	   <ol>
+   	     <li>冰箱</li>
+   	     <li>空调</li>
+   	     <li class="a2">彩电</li>
+   	   </ol>
+   	   <button>零食</button>
+   	    <ol>
+   	     <li>可乐</li>
+   	     <li>辣条</li>
+   	     <li class="a2">泡面</li>
+   	   </ol>
+       <button>服装</button>
+        <ol>
+   	     <li>帽子</li>
+   	     <li>上衣</li>
+   	     <li class="a2">裤子</li>
+   	   </ol>
+   </div>
+  <script type="text/javascript">
+  var aBut=document.getElementsByTagName("button");
+  var aOl=document.getElementsByTagName("ol");
+
+for(var i=0;i<aBut.length;i++){
+         function a(){     
+                var x=i;
+         	  return function(){
+         	     var w=aOl[x].style.display;	  	   
+         	  	   if(w=="block"){
+         	  	   	  aOl[x].style.display="none";
+         	  	   }else if(w!="block"){
+         	  	   	   aOl[x].style.display="block";
+         	  	   }
+         	  }
+         }
+         aBut[i].onclick=a();  
+}
+
+ 
+
+
+  </script>
+</body>
+</html>

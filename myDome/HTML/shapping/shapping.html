@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			th,
+			td {
+				padding: 10px 20px;
+			}
+			
+			th label,
+			td label {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.reacd,
+			.add {
+				width: 30px;
+				height: 25px;
+			}
+			
+			.over {
+				width: 50px;
+				height: 30px;
+				background: orangered;
+				color: white;
+				border: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<table border="" cellspacing="0" cellpadding="0">
+			<tr>
+				<th><label> 全选 <input type="checkbox" name="" id="" value="" class="checkbox"/></label></th>
+				<th>商品信息</th>
+				<th>价格</th>
+				<th>数量</th>
+			</tr>
+			<tr>
+				<td><label>选中<input type="checkbox" name="" id="" value="" class="cheack"/></label></td>
+				<td>拖孩儿</td>
+				<td class="pick">1</td>
+				<td>
+					<button class="reacd">-</button>
+					<span class="number">0</span>
+					<button class="add">+</button>
+				</td>
+			</tr>
+			<tr>
+				<td><label>选中<input type="checkbox" name="" id="" value="" class="cheack"//></label></td>
+				<td>裤子</td>
+				<td class="pick">1000</td>
+				<td>
+					<button class="reacd">-</button>
+					<span class="number">0</span>
+					<button class="add">+</button>
+				</td>
+			</tr>
+		</table>
+		<div>
+			<button class="over">结算</button>
+			<p>总价: <span class="many"></span></p>
+		</div>
+		<script src="jquery-2.1.4.min.js"></script>
+		<script>
+			$(function() {
+				//全选
+				$(".checkbox").click(function() {
+					var attr = $(this).prop("checked");
+					$(".cheack").prop("checked", attr);
+				});
+				//数量
+				$(".reacd").click(function() {
+					var html = Number($(this).next().html());
+					if(html > 0) {
+						$(this).next().html(html - 1);
+					} else {
+						alert("不能在小了");
+					}
+				});
+				$(".add").click(function() {
+					var html = Number($(this).prev().html());
+					$(this).prev().html(html + 1);
+				})
+				//结算
+
+				$('.over').click(function() {
+					var many = 0;
+					var status = $('.cheack');
+					for(var i = 0; i <= status.length; i++) {
+						if($(status[i]).prop('checked') == true) {
+							var a = Number($("tr").eq(i + 1).find('.number').html());
+							var b = Number($("tr").eq(i + 1).find('.pick').html())
+							many += a * b;
+						}
+					}
+					$('.many').html(many)
+				})
+			})
+		</script>
+	</body>
+
+</html>

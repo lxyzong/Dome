@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+    <script type="text/javascript" src="../js/react.min.js"></script>
+	<script type="text/javascript" src="../js/react-dom.min.js"></script>
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+	 <div id="box"></div>
+</body>
+<script type="text/babel">
+	var Parent=React.createClass({
+	   getInitialState:function(){
+           return  {link:true}
+	   },
+	   click:function(){
+            this.setState({link:!this.state.link})
+       },
+	   render:function(){
+            return  <div onClick={this.click}>
+            	        你爱我吗？&nbsp;&nbsp;
+            	       <Children love={this.state.link}/>
+                    </div>
+	    }
+    });
+	var Children=React.createClass({
+        render:function(){
+           var text=this.props.love?'爱你':'喜欢你'
+            return  <span>
+                        我{text}.
+                    </span>
+        }
+    });
+	ReactDOM.render(
+      <Parent />,
+      document.getElementById("box")
+	)
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+
+	<body>
+		<button onclick=" alert(1)">alert</button>
+		<button onclick="dist_confirm()">confirm</button>
+		<button onclick="dist_prompt()">prompt</button>
+
+	</body>
+	<script>
+		function dist_confirm() {
+			var r = confirm("是否确认？")
+			console.log(r)
+		}
+
+		function dist_prompt() {
+			var val = prompt();
+			console.log(val);
+		}
+	</script>
+
+</html>

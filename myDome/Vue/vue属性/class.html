@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+		<style>
+			
+			.red{
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+			.blue{
+				width: 100px;
+				height: 100px;
+				border: 5px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<div id="box" class="red class"></div>-->
+	<!--  <div id="box" v-bind:class="{red:true, 'blue': false }"></div>-->
+		<div id="box" :class="{red:a , 'blue':b}"></div>
+	</body>
+	<script>
+		window.onload=function(){
+			
+			new Vue({
+				el:"#box",
+				data:{
+					a:false,
+					b:true
+				}
+			})
+			
+		}
+		
+	</script>
+</html>

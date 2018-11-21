@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			{{mgs}} <br />
+			<input type="text" value="" @keyup.13="show()" />
+		</div>
+
+	</body>
+	<script>
+		window.onload = function() {
+			new Vue({
+				el: '#box',
+				data: {
+					mgs: "aaaaa"
+				},
+				methods: {
+					show: function() {
+						alert("1")
+					}
+				}
+			})
+		}
+	</script>
+
+</html>

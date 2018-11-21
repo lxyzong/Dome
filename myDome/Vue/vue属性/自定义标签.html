@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			 <v-red></v-red>
+		</div>
+	</body>
+	<script>
+		Vue.elementDirective("v-red",{
+			this.el.innerHTML="<h1>11111</h1>"
+		})
+		
+		new Vue({
+			el:"#box",
+			data:{
+				  
+			}
+		})
+		
+	</script>
+</html>

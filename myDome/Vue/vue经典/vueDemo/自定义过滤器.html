@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<p>{{num | currency("$")}}</p>
+			<p>{{sub | limeTo(1,3)}}</p>
+			<p>{{date|date}}</p>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el:'#box',
+			data:{
+				num:15,
+				sub:1234567899,
+				date:new Date()
+			},
+			filters:{
+				//货币过滤器
+			     currency:function(a,b){
+					return  ""+b+""+a
+				},  //截取过滤器
+				limeTo:function(a,b,c){
+					return  String(a).substr(b,c)
+				},  //日期过滤器
+				date:function(value){
+                    var oDate = new Date(value);
+                    return oDate.getFullYear()+'-'+(oDate.getMonth()+1)+'-'+oDate.getDate()+'      '+oDate.getHours()+':' +oDate.getMinutes()+':'+oDate.getSeconds();
+                }
+			}
+		})
+		
+	</script>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button onclick="">but</button>
+		<script src="axios.js"></script>
+		<script>
+			axios({
+				method: "post",
+				url: "https://test-api.yimenghd.com/market/product_list",
+			}).then(function(res){
+				console.log(res);
+			}).catch(function(err){
+				console.log(err)
+			})
+		</script>
+	</body>
+
+</html>

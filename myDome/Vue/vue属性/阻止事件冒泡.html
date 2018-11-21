@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box" @clikc="show2()">
+			{{mgs}} <br />
+			<input type="button" value="按钮" @click.stop="show($event)" />
+		</div>
+		
+	</body>
+	<script>
+		
+		window.onload=function(){
+			new Vue({
+				el:'#box',
+				data:{
+					mgs:"aaaaa"
+				},
+				methods:{
+					show:function(ev){
+						alert(1)
+//						ev.stopPropagation()
+					},
+					show2:function(){
+						alert(2)
+					}
+				}
+			})
+		}
+		
+	</script>
+</html>

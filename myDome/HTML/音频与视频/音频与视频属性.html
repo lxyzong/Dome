@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>音频与视频</title>
+	</head>
+	<body>
+	<audio src='mp3/成都.mp3' controls autoplay="autoplay"></audio>	
+	<button>查看属性</button> 
+	<button>静音</button>
+	
+	</body>
+<script>
+   
+	var audio=document.querySelector("audio");
+	var aBut=document.querySelectorAll("button");
+	aBut[0].onclick=function(){
+		 console.log("开始到播放位置的时间"+audio.currentTime);
+		 console.log("媒体总时间"+audio.duration);
+		 console.log('当前音量'+audio.volume);
+		 console.log("是否静音"+audio. muted);
+	}
+	aBut[1].onclick=function(){
+		  audio.muted=!audio.muted;
+		  if(audio.muted==true){
+		  	 aBut[1].innerHTML="静音"
+		  }else{
+		  	 aBut[1].innerHTML="有声"
+
+	}
+	  }
+</script>
+</html>

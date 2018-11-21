@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			{{str|reverse}}
+		</div>
+	</body>
+	<script>
+		Vue.filter('reverse', function(data) {
+			return data.split(" ").reverse().join(" ")
+		})
+
+		new Vue({
+			el: "#box",
+			data: {
+				str: 'websasaf in china'
+			}
+		})
+	</script>
+
+</html>

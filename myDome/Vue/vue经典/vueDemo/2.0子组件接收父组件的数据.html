@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+	<div id="box">
+		<p>我是父组件的数据-----》{{fu}}</p>
+		<button @click="add">add</button>
+
+		<bbb :mas="fu" :ads='add'></bbb>
+	</div>
+	<template id="bbb">
+		<div>
+			<p>我是子组件过来的数据-----》 {{zi}}</p>
+			<button @click="son">按钮</button>
+			<button @click="ads">ads</button>
+			<p>
+				父组件过来的数据----{{mas}},{{b}}
+			</p>
+		</div>
+	</template>
+</body>
+<!--  特点： 就是在基本没变化， 就是点击事件加载了  mounted时间中-->
+<script>
+	new Vue({
+		el: "#box",
+		data() {
+			return {
+				fu: "我是父组件数据",
+				add: function () {
+					alert(1)
+				}
+			}
+		},
+		methods: {
+		},
+		components: {
+			"bbb": {
+				template: "#bbb",
+				props: ["mas", "ads"],
+				data() {
+					return {
+						zi: "我是子组件的数据",
+						b: "",
+					}
+				},
+				methods: {
+					son() {
+						this.mas = "被更改了"
+					}
+				},
+				mounted() {
+					this.b = this.fu
+				}
+			}
+		}
+	})
+
+</script>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/vue-router.min.js"></script>
+		<style>
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			 <ul>
+			 	<li> <router-link to="/one">one</router-link> </li>
+			 	<li> <router-link to="/two">two</router-link> </li>
+			 </ul>
+			 <div>
+			 	<router-view></router-view>
+			 </div>
+		</div>
+	</body>
+	<template id="one">
+		<div>
+			 <h1>this is one page</h1>
+		</div>
+	</template>
+	<template id="two">
+		<div>
+			 <h1>this is two page</h1>
+		</div>
+	</template>
+	<script>
+		
+		var one={
+			template:"#one"
+		}
+		var two={
+			template:"#two"
+		}
+		const routes=[
+		   {path:"/one",component:one},
+		   {path:'/two',component:two},
+		   {path:"*",redirect:"/one"}
+		 ]
+		var router=new VueRouter({
+			routes
+		})
+		new Vue({
+			el:'#box',
+			router
+		})
+		
+	</script>
+</html>

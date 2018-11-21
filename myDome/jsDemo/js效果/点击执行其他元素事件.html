@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="jquery-3.1.1.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<button class="but1">1</button>
+		<button class="but2">2</button>
+	</body>
+	<script>
+		 $('.but1').click(function(){
+		 	console.log('1')
+		 })
+		 $('.but2').click(function(){
+		 	$($(this).prev()).trigger('click') //执行but1事件
+		 })
+	</script>
+</html>

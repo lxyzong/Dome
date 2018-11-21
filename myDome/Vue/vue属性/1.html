@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+	user: <input type="text" v-model="user" @keyup.13="add()"/><button @click="add()">添加</button>
+	<ul>
+		<li v-for="item in arr">{{item}} <a href="javascripte:;" @click="remove($index)">删除</a></li>
+	</ul>
+		</div>
+	</body>
+	<script>
+		
+		new Vue({
+			el:"#box",
+			data:{
+				user:"",
+				arr:[]
+			},
+			methods:{
+				add:function(){
+					this.arr.push(this.user)
+					this.user=""
+				},
+				remove:function($index){
+					this.arr.splice($index,1)
+				}
+			
+			}
+		})
+		
+	</script>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			span {
+				display: inline-block;
+				width: 300px;
+				height: 30px;
+				background-color: bisque;
+				border-radius: 20px;
+				position: relative;
+			}
+			
+			b {
+				display: block;
+				width: 50px;
+				height: 30px;
+				background-color: aqua;
+				border-radius: 20px;
+				position: absolute;
+			}
+			
+			video {
+				width: 40%;
+				height: 400px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<video src="音乐/2.mkv" autoplay loop></video>-->
+		<h3>皮皮虾我们走.mp3</h3>
+		<audio src='音乐/皮皮虾我们走.mp3' controls="controls" autoplay></audio>
+		<br /><br />
+		<span><b></b></span><u>快进键</u>
+		<br /><br />
+		<span><b></b></span><u>声音键</u>
+		<br /><br />
+		<button>播放</button>
+		<button>暂停</button>
+		<button>重新加载</button>
+		<br><br>
+		<button>音量+</button>
+		<button>音量-</button>
+		<button>静音</button>
+		<br><br>
+		<button>下一首</button>
+		<button>上一首</button>
+	</body>
+	<script>
+		var aBut = document.querySelectorAll("button");
+		var aVideo = document.querySelector("audio");
+		var aSpan = document.querySelectorAll("span");
+		var aB = document.querySelectorAll("b");
+		var aH = document.querySelector("h1");
+
+		var arr = [
+			"王力宏 - 大城小爱.mp3",
+			"赵雷 - 成都 - 歌手2017第一季第三期现场.mp3",
+			"韩安旭 - 多幸运.mp3",
+			"海生 - 情一动心就痛.mp3",
+			"崔子格 - 卜卦.mp3"
+		]
+		aB[0].onmousedown = function(ev) {
+			var ev = ev || event;
+			var bleft = ev.clientX - aB[0].offsetLeft;
+			aSpan[0].onmousemove = function(ev) {
+				var ev = ev || event;
+				var newleft = ev.clientX - bleft;
+				aB[0].style.left = newleft + "px";
+				if(newleft < 0) {
+					aB[0].style.left = 0;
+				}
+				if(newleft > 250) {
+					aB[0].style.left = 250 + "px";
+				}
+
+				var num = newleft / 250;
+				//  用b的左边距除以span的总长在乘以总时间就等于开始到现在已播放的时间
+				aVideo.currentTime = num * aVideo.duration;
+			}
+			aB[0].onmouseup = function() {
+				aSpan[0].onmousemove = aSpan[0].onmouseup = null;
+			}
+		}
+
+		//控制音量
+		aB[1].onmousedown = function(ev) {
+			var ev = ev || event;
+			var Bleft = ev.clientX - aB[1].offsetLeft;
+
+			aSpan[1].onmousemove = function(ev) {
+				var ev = ev || event;
+				var newLeft = ev.clientX - Bleft;
+				aB[1].style.left = newLeft + "px";
+
+				if(newLeft <= 0) {
+					aB[1].style.left = 0;
+				}
+				if(newLeft >= 250) {
+					aB[1].style.left = 250 + "px";
+				}
+				//声音算法  直接用当前left/总距离
+				aVideo.volume = newLeft / 250
+
+			}
+
+			aB[1].onmouseup = function() {
+				aSpan[1].onmousemove = aSpan[1].onmouseup = null;
+			}
+		}
+
+		aB[1].style.left = aVideo.volume * 250 + "px";
+		//播放	 
+		aBut[0].onclick = function() {
+			aVideo.play();
+		}
+		//停止
+		aBut[1].onclick = function() {
+			aVideo.pause();
+		}
+		//重置
+		aBut[2].onclick = function() {
+			aVideo.load();
+		}
+		//升音
+		aBut[3].onclick = function() {
+			aVideo.volume += 0.2
+		}
+		//降音
+		aBut[4].onclick = function() {
+			aVideo.volume -= 0.2
+		}
+		//静音
+		aBut[5].onclick = function() {
+			aVideo.muted = !aVideo.muted;
+			if(aVideo.muted == true) {
+				aBut[5].innerHTML = '有音'
+			} else {
+				aBut[5].innerHTML = '静音'
+			}
+		}
+
+		//上一首 
+		var a = 0;
+		aBut[6].onclick = function() {
+			a++;
+			if(a == arr.length) {
+				a = 0;
+			}
+			aVideo.src = '音乐/' + arr[a];
+			aH.innerHTML = arr[a];
+			aB[0].style.left = 0;
+			aB[1].style.left = aVideo.volume * 250 + "px";
+		}
+		// 下一首
+		aBut[7].onclick = function() {
+			a--;
+			if(a < 0) {
+				a = arr.length - 1;
+			}
+			aVideo.src = '音乐/' + arr[a];
+			aH.innerHTML = arr[a];
+			aB[0].style.left = 0;
+			aB[1].style.left = aVideo.volume * 250 + "px";
+		}
+		// 自动滑动功能  用已播放的时间/总时间在乘以总距离就是当前b的left
+		aVideo.ontimeupdate = function() {
+			var num = aVideo.currentTime / aVideo.duration;
+			aB[0].style.left = num * 250 + "px";
+		}
+	</script>
+
+</html>

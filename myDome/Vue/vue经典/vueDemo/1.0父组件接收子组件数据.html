@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/Vue1.0.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<aaa></aaa>
+		</div>
+		<template id="aaa">
+			  <div>
+			  	   <p>我是父组件————————》{{fu}}</p>
+			  	   <bbb @child="get"></bbb>
+			  </div>
+		</template>
+		<template id="bbb">
+			<div>
+				我是子组件----{{zi}}
+		 		<button @click="son">son</button>
+			</div>
+		</template>
+	</body>
+	<script>
+		 new Vue({
+		 	el:'#box',
+		 	data:{
+		 		
+		 	},
+		 	components:{
+		 		"aaa":{
+		 			template:"#aaa",
+		 			data(){
+		 				 return {
+		 				 	 fu:"我是父组件"
+		 				 }
+		 			},
+		 			methods:{
+		 		     	get(mas){
+		 		     		 this.fu=mas
+		 		     	}
+		 		    },
+		 			components:{
+		 			  "bbb":{
+			 				template:"#bbb",
+			 				data(){
+			 					return {
+			 						zi:"子组件"
+			 					}
+			 				},
+			 				methods:{
+			 					son(){
+			 						this.$emit("child",this.zi)
+			 					}
+			 				}
+			 			}	
+		 			}
+		 		}
+		 	}
+		 	
+		 })
+	</script>
+</html>

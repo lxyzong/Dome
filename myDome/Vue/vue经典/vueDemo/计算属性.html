@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/vue.min.js"></script>
+		<style>
+			[v-cloak]{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box" v-cloak>
+			{{a}}
+			<br />
+			{{b}}
+		</div>
+	</body>
+	<script>
+		var vm=new Vue({
+			el:"#box",
+			data:{
+				a:"1"
+			},
+			computed:{
+				b:{
+					get:function(){
+					  return this.a+1
+					},
+					set:function(val){
+						this.a=val
+					}
+				}
+			}
+		})
+		document.onclick=function(){
+			vm.b=101
+		}
+	</script>
+</html>

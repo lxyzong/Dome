@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="../js/react.min.js"></script>
+	<script src="../js/react-dom.min.js"></script>
+	<script src="../js/babel.min.js"></script>
+	<script src="../js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+</body>
+<script type="text/babel">
+	var Hell=React.createClass({
+	   render:function(){
+	     return <div>  
+	 	          <Word />
+	         </div>
+       }
+   });
+   var Word=React.createClass({
+       getInitialState:function(){
+           return{   names:"",
+                   password:""  
+           } 
+      },
+       render:function(){
+           return  <div>
+           	           {this.state.names}<br />
+           	           {this.state.password}  
+                  </div>
+   },
+   componentWillMount:function(){
+        console.log("渲染完成");
+   },
+   componentDidMount:function(){
+        console.log("做ajax")
+         $.get("https://api.github.com/users/octocat/gists",function(res){
+           console.log(res);
+           this.setState({
+                          names:res[0].comments,
+                          password:res[0].created_at
+           })
+     }.bind(this))
+   }
+})
+	
+	ReactDOM.render(
+      <div>
+      	<Hell />
+      </div>,
+      document.getElementById("box")
+	)
+</script>
+</html>

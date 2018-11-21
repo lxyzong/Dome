@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/vue.min.js"></script>
+		<style>
+			.red{
+				color:red;
+			}
+			.blue{
+				background: pink;
+			}
+		</style>
+	</head>
+	<body>
+          <div id="box">
+          	  <p class="red">sadas</p>
+          	  <p :class="[red]">asdasd</p>
+          	  <p :class="{red:true,blue:true}">this is p</p>
+          	  <p :class="{red:a,blue:b}">this is p</p>
+          	  
+          </div>
+	</body>
+	<script>
+	      new Vue({
+	      	el:"#box",
+	      	data:{
+	      		a:false,
+	      		b:true,
+	      		red:"red"
+	      	},
+	      	methods:{
+	      			
+	      		}
+	      	}
+	      })
+	</script>
+</html>
+x

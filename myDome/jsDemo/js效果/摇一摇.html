@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			var SHAKE_THRESHOLD = 100;
+			var last_update = 0;
+			var x, y, z, last_x, last_y, last_z;
+			if(window.DeviceMotionEvent) {
+				window.addEventListener('devicemotion', deviceMotionHandler, false);
+			} else {
+				document.getElementById("dmEvent").innerHTML = "Not supported on your device."
+			}
+
+			function deviceMotionHandler(eventData) {
+				var acceleration = eventData.accelerationIncludingGravity;
+				var curTime = new Date().getTime();
+				if(curTime - last_update > 300) {
+					var diffTime = curTime - last_update;
+					last_update = curTime;
+					x = acceleration.x;
+					y = acceleration.y;
+					z = acceleration.z;
+					var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+					if(speed > SHAKE_THRESHOLD) {
+						alert("shaked!");
+					}
+					last_x = x;
+					last_y = y;
+					last_z = z;
+				}
+			}
+		</script>
+	</body>
+
+</html>

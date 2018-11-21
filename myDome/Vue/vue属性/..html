@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+	      <p>a=>{{a}}</p>
+	      <p>b=>{{b}}</p>
+		</div>
+	</body>
+	 <script>
+window.onload=function(){
+	 		var xm=new Vue({
+	 		 data:{
+	 		 	a:1
+	 		 },
+	 		 computed:{
+	 		 	b:function(){
+	 		 	 return this.a+1
+	 		 	}
+	 		 }
+	 	}).$mount("#box")
+	}
+	 	
+	 	
+	 </script>
+</html>

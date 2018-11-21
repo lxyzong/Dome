@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title></title>
+	</head>
+
+	<body>
+		<button>获取验证码</button>
+		<script src="jquery-2.1.4.min.js"></script>
+		<script>
+			var timer;
+
+			function countdown() {
+				$("button").attr("disabled", "disabled");
+				var count = 59;
+				$("button").text(count + "s");
+				timer = setInterval(time, 1000);
+
+				function time() {
+					if(count == 0) {
+						clearInterval(timer);
+						$("button").removeAttr("disabled");
+						$("button").text("获取验证码")
+					} else {
+						count--;
+						$("button").text(count + "s");
+					}
+				}
+			};
+			$("button").click(function() {
+				if($(this).text() == "获取验证码") {
+					clearInterval(timer);
+					countdown();
+				}
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="../js/react.min.js"></script>
+	<script src="../js/react-dom.min.js"></script>
+	<script src="../js/babel.min.js"></script>	
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+</body>
+<script type="text/babel">
+	var Hell=React.createClass({
+		getInitialState:function(){
+			return {
+			  num:0
+			}
+	    },
+	    click:function(){
+               this.setState({num:this.state.num+1})
+	    },
+		render:function(){
+			return <div>
+						  <button onClick={this.click}>按钮</button>
+						  <Word Inum={this.state.num}/>
+			       </div>
+		  }
+	 })
+	 var Word=React.createClass({
+	     render:function(){
+             return <div>
+             	            {this.props.Inum}
+                    </div>
+	      },
+	      componentWillMount:function(){
+              console.log("component  Will  Mount   渲染之前 ")
+	      },
+	      componentDidMount:function(){
+              console.log("component  Did  Mount   第一次渲染调用")
+	      },
+	      componentWillReceiveProps:function(){
+              console.log("component Will Receive Props    组件接收新的prop时候调用，初始化render不会调用")
+	      },
+	      componentWillUpdate:function(){
+              console.log("component Will Update  接收到新的prop，state时调用render还没被调用，初始化不会被调用")
+	      },
+	      componentDidUpdate:function(){
+              console.log("component Did Update 更新完成调用，初始化不会被调用")
+	      }
+
+	})
+	ReactDOM.render(
+       <Hell />,
+       document.getElementById("box")
+	)
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title></title>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="printer-container">
+				<span id="teletype" hidden style="font-size: 14px;"></span>
+			</div>
+			<div class="input-group">
+				<input type="text" class="form-control u-input" placeholder="请输入要打印的文字..." style="display: none;">
+			</div>
+		</div>
+		<div class="content" style="display: none;">
+			1、这么多年来，我一直在寻找理想的爱情，但没有一个人能像你那样在最初的时刻打动了我，而且越来越深沉的打动。<br /> 
+			2、在你孤独、悲伤的日子里，请你悄悄地念一念我的名字。并且说：有人在怀念我，在世上我活在一个人的心里。<br /> 
+			3、在繁忙的工作中请您接受我最真挚的诚意和祝福;愿我的祝福消除一天工作带来的疲劳;愿幸福和快乐伴随着您生活的每一天。  <br /> 
+			4、在爱情的世界里,我一无所有,也一无所知,在情感的小站里,我愿你是第一位来客,也是永远的主人,伴着我宠着我;一生一世! <br /> 
+			5、遇上一个人要一分钟的时间，喜欢一个人只需一小时的时间，爱上一个人要一天的时间，可要我忘记你却要用上一生的时间。<br /> 
+			6、有你开心省心，对你真心痴心，为你担心痛心，也曾伤心醉心，不敢变心花心，不要多心疑心，写它我很费心，最怕你是无心 。<br /> 
+			7、遇见你是命运的安排而爱上你是我情不自禁。
+		</div>
+	</body>
+	<script src="jquery-2.1.4.min.js"></script>
+	<script>
+		(function() {
+			$(".u-input").val($(".content").html());
+			typeIt();
+
+			function typeIt() {
+				var cursor = "<span>|</span>";
+				var teletype = document.getElementById("teletype");
+				var input = document.querySelector(".u-input");
+				var telecopy = input.value;
+				var counter = 0;
+				teletype.innerHTML = cursor;
+				teletype.removeAttribute("hidden");
+				var timer = setInterval(function() {
+					teletype.innerHTML = telecopy.substr(0, counter) + cursor;
+					counter++;
+					if(counter === telecopy.length + 1) {
+						clearInterval(timer);
+					}
+				}, 200);
+			}
+		})();
+	</script>
+
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			// // 普通方法
+			//       var bian=new Object();
+			//             bian.name='小刘';
+			//             bian.sex='男';
+			//             bian.age=20;
+			//             bian.say=function(){
+			//             	  alert(this.name+'呵呵呵')
+			//             }
+			// bian.say();
+
+			// //字面量方法
+			//  var a={
+			//       name:'小刘',
+			//       sex:'男',
+			//       run:function(){
+			//       	 alert(this.name+'是'+this.sex)
+			//       }
+			//  }
+			// a.run();
+
+			// 	//工厂模式的方法
+			//  function qiche(name,color,style){   //必须传参
+
+			//       var bian=new Object();
+			//             bian.name=name;
+			//             bian.color=color;
+			//             bian.style=style;
+			//             bian.say=function(){
+			//             	  alert(this.name+'呵呵呵')
+			//             }
+			//         return bian   //必须返回对象名；
+			//  }
+
+			// var qiche1=qiche('奥迪','黑色','车形');
+			// var qiche2=qiche('奔驰','红色','人形');
+			// qiche2.say()
+
+			//   //构造函数
+//			     function  dog(pinzhong,color,sex){
+//			     	  this.pinzhong=pinzhong;
+//			     	  this.color=color;
+//			     	  this.sex=sex;
+//			     	  this.say=function(){
+//			     	  	   console.log('一只'+this.color+this.sex+'的'+this.pinzhong+"在对着墙撒尿")
+//			     	  }
+//			     }
+//			     var dog1=new dog('土狗','灰色','雄性');
+//			     var dog2=new dog('藏獒','黄色','雄性');
+//			     dog2.say();
+
+			//      //原型
+			//      function  Dog(){
+
+			//      }
+			//      Dog.prototype.name='虎子';
+			//      Dog.prototype.color='灰黄色';
+			//      Dog.prototype.sex=10;
+			//      Dog.prototype.sey=function(){
+			//               alert('一只'+this.sex+'岁大的'+this.color+'名叫'+this.name+'的狗在晒太阳')
+			//      }
+			//      var dog1=new Dog();
+			//      dog1.sey();
+
+//			//组合构造函数和原型的使用
+//			function call(name, color, lixing) {
+//				this.name = name;
+//				this.color = color;
+//				this.lixing = lixing;
+//			}
+//			call.prototype.a = function() {
+//				console.log('有一款名为' + this.color + this.lixing + '的' + this.name + '停在路边')
+//			}
+//			call.prototype.lun = function() {
+//				alert(this.name + '有四个轮子')
+//			}
+//
+//			var qi1 = new call('玛莎拉蒂', '红色', '跑车');
+//			qi1.a()
+//			qi1.lun()
+//			console.log(qi1.lun)
+//
+//			alert(call.hasOwnProperty('lun'))
+//			alert('lun' in qi1)
+
+//			 //原型链继承
+//			 function a(){
+//			 	 this.name='wangbadan'
+//			 }
+//			  a.prototype.say=function(){
+//			  	 alert(this.name+'王八蛋'+'已经'+this.age)
+//			  }
+//			 function b(){
+//			 	this.age=20
+//			 }
+//			  b.prototype=new a(); //关键代码   子类原型=父类实列
+//			  var b1=new b()
+//			  b1.say();
+//			  console.log(b1.name);
+
+			// //类式继承
+
+//			 function a(name,sex){
+//			    this.name=name;
+//			    this.sex=sex;
+//			 }
+//			 function b(name,sex){
+//			   a.call(this,name,sex)  //关键代码   父类对象名.call(this,'参')
+//			    this.age=21
+//			 }
+//			 var b1=new b('小王','男')
+//			 alert(b1.sex)
+
+			// //组合继承(原型链继承和类式继承的组合)
+
+			 function a(name,sex){
+			    this.name=name;
+			    this.sex=sex;
+			 }
+			 a.prototype.sey=function(){
+			      console.log(this.name+'是一个'+this.sex)
+			 }
+			   b.prototype=new a()  //子类的原型对象=父类的实列
+			 function b(name,sex){
+			       a.call(this,name,sex)
+			      this.age=20;
+			 }
+			 var b1=new b('小刘','男');
+		</script>
+		
+
+	</body>
+
+</html>

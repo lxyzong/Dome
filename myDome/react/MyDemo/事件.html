@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript" src="../js/react.min.js"></script>
+	<script type="text/javascript" src="../js/react-dom.min.js"></script>
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script type="text/babel" >
+   
+     var a={
+         name:"liu",
+         age:21
+     };
+	 var Hellow=React.createClass({
+	 	handleClick:  function(){
+               alert(1)
+	 	},
+	 	render:  function() {
+             return <h1 onClick={this.handleClick}>{this.props.arr.name}{this.props.arr.age}</h1> 
+	 	}
+	 });
+	 ReactDOM.render(
+       <Hellow arr={a}/>,
+       document.getElementById("box")
+	 )
+</script>
+</html>

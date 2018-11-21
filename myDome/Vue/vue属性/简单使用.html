@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<!--调用方式跟angular一样-->
+		<!--<div id="box">{{a}} <br />{{arr}} <br /> {{json}}</div>-->
+		
+		<!--循环 -->
+		
+		<div id="box">
+		<input type="button" name="oBut" id="oBut" value="按钮" @click='add()' />
+			<p v-for='i in  arr' track-by="$index">{{i}}</p>
+			 
+			<p v-for="(key,val) in json">{{key}},{{val}},{{$index}}</p>
+		</div>
+	</body>
+	<script>
+		 
+		  window.onload=function (){
+		  	
+		  	new Vue({
+		  		el:'#box',
+		  		data:{
+		  			a:'my is name LiuXiaoYun',
+		  			arr:['a','b','c'],
+		  			json:{'a':1,'b':2,'c':3}
+		  		},
+		  		methods:{
+		  			add:function(){
+		  				this.arr.push("1")
+		  				console.log(this)
+		  			}
+		  		}
+		  	});
+		  	
+		  }
+		
+	</script>
+</html>

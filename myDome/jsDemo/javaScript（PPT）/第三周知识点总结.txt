@@ -1,0 +1,108 @@
+1.string方法
+创建字符串的方法
+(1)var str = "hello world ";
+(2)var str = new String()
+
+
+
+2.string对象的方法
+(1)charAr() :返回字符串某一个下标的字符。 
+(2)charCodeAt() ：返回字符串指定的位置的字符的 Unicode 编码。
+(3)indexOf() : 找到字符在字符串中第一次出现的位置，返回值为数字
+(4)lastIndexOf()：找到字符在字符串中最后一次出现的位置，返回值为数字
+(5)search（） : 参数可以使字符或字符串，返回参数在字符串中首次出现的下标位置
+(6)replace()：替换字符。两个参数，前一个是要替换的字符，后一个是替换的字符(7)substr()：截取字符串。从起始索引号提取字符串中指定数目的字符。
+(8)substring():提取字符串中两个指定的索引号之间的字符。
+(9)toLowerCase() 把字符串转换为小写。
+(10)toUpperCase() 把字符串转换为大写。 
+
+
+
+3.Math对象的属性及方法
+(1)Math.E:返回算术常量 e，即自然对数的底数（约等于2.718）。
+(2)Math.PI:返回圆周率（约等于3.14159）。
+(3)abs(x) 返回数的绝对值。 
+(4)ceil(x) 对数进行上舍入。
+(5)floor(x) 对数进行下舍入。 
+(6)max(x,y) 返回 x 和 y 中的最高值。
+(7)min(x,y) 返回 x 和 y 中的最低值。
+(8)pow(x,y) 返回 x 的 y 次幂。
+(9)random() 返回 0 ~ 1 之间的随机数。
+(10)round(x) 把数四舍五入为最接近的整数。
+(11)sqrt(x) 返回数的平方根。
+
+
+
+4.BOM(Brower Object Model)对象的属性及方法：
+(1)window对象的属性及方法
+1-1window对象的属性
+document（文档） ，
+navigate（Navigator 对象包含有关浏览器的信息。），
+history（History 对象包含用户（在浏览器窗口中）访问过的 URL。），
+screen（Screen 对象包含有关客户端显示屏幕的信息。），
+location（Location 对象包含有关当前 URL 的信息。）
+
+
+1-2window对象的方法
+(1)setInterval() 按照指定的周期（以毫秒计）来调用函数或计算表达式。
+(2)setTimeout() 在指定的毫秒数后调用函数或计算表达式。 
+(3)alert()弹出警告框
+(4)confirm()弹出对话框
+(5)prompt()弹出输入框
+(6)open() 打开一个新的浏览器窗口或查找一个已命名的窗口。 
+(7)close() 关闭浏览器窗口。 
+(8)clearInterval() 取消由 setInterval() 设置的 timeout。
+(9)clearTimeout() 取消由 setTimeout() 方法设置的 timeout。 
+
+
+5.DOM（Document object model）对象的属性及方法：
+(1)节点的类型：元素节点，注释节点，属性节点，文本节点，文档节点
+
+(2)节点的属性：
+nodeName：属性指定节点的节点名称
+   如果节点是元素节点，则 nodeName 属性返回标签名。
+   如果节点是属性节点，则 nodeName 属性返回属性的名称。
+   文本节点的nodeName：返回#text
+   文档节点的nodeName：返回#document
+
+nodeValue：设置或返回指定节点的节点值
+   对于文本节点，nodeValue=文本值   对于属性节点，nodeValue=属性值
+   对于元素节点，返回null
+
+nodeType：返回以数字值返回指定节点的节点类型。   
+   如果节点是元素节点，则 nodeType 属性将返回 1。
+   如果节点是属性节点，则 nodeType 属性将返回 2。
+   如果节点是文本节点，则 nodeType 属性将返回 3。
+   如果节点是注释节点，则 nodeType 属性将返回 8。
+   如果节点是文档节点，则 nodeType 属性将返回 9。
+
+
+firstChild:      childNodes (孩子节点数组)列表中第一个节点。
+lastChild:       childNodes (孩子节点数组) 列表中的最后一个节点。
+parentNode:      返回父节点
+previousSibling: 返回当前节点之前的节点。
+nextSibling:     返回当前节点的下一个节点。
+attributes：     返回节点属性的对象集合
+childNodes:      返回子节点对象集合，是数组对象，包含文本节点和元素节点children ：      返回子节点对象集合，是数组对象，只包含元素节点
+innerHTML，outerHTML，innerText，outerText（四个属性一块看）
+
+
+
+DOM方法：
+(1)获取（访问）元素
+getElementById()：        返回对拥有指定 ID 的第一个对象的引用
+getElementsByName()：     返回带有指定名称的对象的集合。
+getElementsByTagName()：  返回带有指定标签名的对象的集合
+getElementsByClassName：  返回文档中所有指定类名的元素集合
+
+
+
+(2)创建标签方法
+document.createElement()   //创建一个元素节点 
+document.createTextNode()  //创建一个文本节点
+parentNode.appendChild(newChild) //newChild 被添加到孩子列表中的末端。
+
+-------------------下面预习---------------------
+(1)插入节点：insertBefore()
+(2)删除节点：removeChild()
+(3)替换节点：replaceChild()

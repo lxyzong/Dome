@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<p>{{mas}}</p>
+			<p>{{{mas}}}</p>
+			<p v-html="mas"></p>
+		</div>
+	</body>
+	 <script>
+	 	var xm=new Vue({
+	 		 data:{
+	 		 	mas:"<b>me to</b>"
+	 		 }
+	 	}).$mount("#box")
+	 	
+	 </script>
+</html>

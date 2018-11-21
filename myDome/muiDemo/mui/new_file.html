@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="./JSstatic/jquery.min.js"></script>
+		<script src="./JSstatic/mui.min.js"></script>
+		<script src="./JSstatic/mui.picker.min.js"></script>
+		<script src="./JSstatic/mui.poppicker.js"></script>
+		<link rel="stylesheet" type="text/css" href="./JSstatic/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="./JSstatic/css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="./JSstatic/css/mui.poppicker.css" />
+
+		<style>
+			.mui-bar-nav~.mui-content {
+				padding-top: 0px;
+			}
+			
+			.mui-scroll {
+				height: 100%;
+			}
+			
+			.mui-table-view-radio {
+				width: 100%;
+				height: 35px;
+				position: fixed;
+				bottom: 0px;
+				left: 0;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			
+			.mui-table-view-radio .mui-table-view-cell {
+				width: 33%;
+				height: 100%;
+				line-height: 35px;
+				text-align: center;
+				box-sizing: border-box;
+			}
+			
+			.mui-table-view-radio .mui-table-view-cell {
+				padding: 0;
+			}
+			
+			.mui-table-view {
+				background: none;
+			}
+			
+			.mui-table-view li {
+				background: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- 侧滑导航根容器 -->
+		<div class="mui-off-canvas-wrap mui-draggable" id="body">
+			<!-- 主页面容器 -->
+			<div class="mui-inner-wrap">
+				<!-- 菜单容器 -->
+				<aside class="mui-off-canvas-left">
+					<div class="mui-scroll-wrapper" style="background: pink;">
+						<!--为侧滑栏内容-->
+						<button onclick="get()">按纽</button>
+
+					</div>
+				</aside>
+				<!-- 主页面标题 -->
+				<!--<header class="mui-bar mui-bar-nav mui-bar-transparent" data-top='5' data-offset='150' data-duration='16' data-scrollby=".mui-scroll-wrapper">
+					<h1 class="mui-title">标题</h1>
+				</header>-->
+				<!-- 主页面内容容器 -->
+				<div class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+
+						<!--为页面内容-->
+						<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined" onclick="data()">蓝色</button>
+						<!--为中间部分内容-->
+						<div id="main">
+
+						</div>
+						
+					    <p>我是一棵海草海草海草！随波浊流😡😱</p>
+					     <span class="mui-icon mui-icon-weixin"></span>
+					     <span class="mui-icon mui-icon-arrowdown"></span>
+					     <span class="mui-icon mui-icon-back"></span>
+					     <span class="mui-icon mui-icon-arrowright"></span>
+					     
+						<!--为底部内容-->
+						<ul class="mui-table-view mui-table-view-radio">
+							<li class="mui-table-view-cell" id="index">1
+								<!--<a class="mui-navigate-right" id="index"> 1</a>-->
+							</li>
+							<li class="mui-table-view-cell" id="two">2
+								<!--<a class="mui-navigate-right"> 2</a>-->
+							</li>
+							<li class="mui-table-view-cell" id="three">3
+								<!--<a class="mui-navigate-right"> 3</a>-->
+							</li>
+						</ul>
+      
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script>
+		mui.init({
+			pullRefresh: {
+				container: "#body", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+				down: {
+					height: 50, //可选,默认50.触发下拉刷新拖动距离,
+					auto: true, //可选,默认false.首次加载自动下拉刷新一次
+					contentdown: "下拉可以刷新", //可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+					contentover: "释放立即刷新", //可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+					contentrefresh: "正在刷新...", //可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+					callback: pullfresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+				}
+			}
+		});
+
+		function pullfresh() {
+
+			this.endPullupToRefresh(false);
+			mui.ajax('1.txt', {
+				type: 'get', //HTTP请求类型
+				timeout: 10000, //超时时间设置为10秒；
+				success: function(data) {
+					console.log(data);
+					urlIndex("index.html","#main");
+					mui('#body').pullRefresh().endPulldownToRefresh(false);
+				},
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					console.log(type);
+				}
+			});
+
+		}
+
+		function get() {
+			var butArray = ['否', '是']
+			mui.confirm("确认跳转？", "跳转two页面", butArray, function(e) {
+				if(e.index == 1) {
+					mui.openWindow({
+						url: "two.html",
+						id: "two.html",
+						extras: {
+							name: 'liu'
+						}
+					})
+				} else {
+
+				}
+
+			});
+		}
+
+		var picker = new mui.PopPicker({
+			buttons: ['cancle', 'ok'],
+			layer: 2
+		})
+		picker.setData([{
+			value: '110000',
+			text: '北京市',
+			children: [{
+				value: "110101",
+				text: "东城区"
+			}]
+		}, {
+			value: '120000',
+			text: '天津市',
+			children: [{
+				value: "120101",
+				text: "和平区"
+			}, {
+				value: "120102",
+				text: "河东区"
+			}, {
+				value: "120104",
+				text: "南开区"
+			}]
+		}])
+		var dtpicker = new mui.DtPicker({
+			type: "datetime", //设置日历初始视图模式 
+			beginDate: new Date(2015, 01, 01), //设置开始日期 
+			endDate: new Date(2018, 11, 30), //设置结束日期 
+			labels: ['Year', 'Mon', 'Day', 'Hour', 'min'], //设置默认标签区域提示语 
+			customData: {
+				h: [{
+						value: 'AM',
+						text: 'AM'
+					},
+					{
+						value: 'PM',
+						text: 'PM'
+					}
+				]
+			} //时间/日期别名 
+		})
+
+		function data() {
+			dtpicker.show(function(mes) {
+				console.log(mes)
+			})
+		}
+
+		var list = document.querySelector('.mui-table-view.mui-table-view-radio');
+		list.addEventListener('selected', function(e) {
+			//			console.log(e.detail.el);
+			var a = $(e.detail.el).attr('id');
+			if(a != undefined) {
+				localStorage.setItem('name', 'liu');
+				var urlHtml = a + ".html";
+				urlIndex(urlHtml,"#main");
+			}
+		});
+
+		function urlIndex(url,div) {
+
+			$.ajax({
+				url: url,
+				async: false,
+				success: function(data) {
+					var strBegin = data.indexOf("<body>");
+					var strEnd = data.indexOf("</body>");
+					var strHtml = data.substring(strBegin + 6, strEnd);
+					$(div).html(strHtml);
+				}
+			});
+
+		}
+	</script>
+	<script src="index.js"></script>
+	
+</html>

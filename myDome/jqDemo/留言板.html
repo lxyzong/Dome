@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script type="text/javascript" src='jquery-2.1.4.min.js'></script>
+		<style type="text/css">
+			#a1 {
+				width: 380px;
+				height: 280px;
+				background-color: #ccc;
+				margin: 0 auto;
+				padding: 20px 20px;
+			}
+			
+			#a2 {
+				width: 420px;
+				margin: 0px auto;
+				background-color: white;
+			}
+			
+			a {
+				float: right;
+			}
+			
+			.qq {
+				border-bottom: 2px dashed black;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="a1">
+			<span>说说你在想什么，做什么</span><br><br>
+			<input type="text"><br><br>
+			<textarea cols="45" rows="10"></textarea><br>
+			<p>还能输入<span>150</span>个字</p>
+			<button>发布</button>
+		</div>
+		<div id="a2">
+			<p style=" background:#ccc;font-size:20px;" class="a2">大家在说</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$("button").click(function() {
+			var $inp = $(":text").val();
+			var $wen = $("textarea").val();
+			var shij = new Date();
+			var s = shij.toLocaleString()
+			$("<p class='qq'>" + $inp + ":" + $wen + "<a href='#'>删除</a>" + "<br><br>" + s + "</p>").insertAfter($(".a2"))
+
+			$("a").click(function() {
+				$(this).parent().remove();
+			})
+			$(":text").val('');
+			$("textarea").val("");
+		})
+
+		function tt() {
+			var $leng = $("textarea").val().length;
+			var s = 150 - $leng;
+			return s;
+		}
+		$('textarea').keyup(function() {
+			$("span").html(tt());
+		})
+	</script>
+
+</html>

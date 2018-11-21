@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/vue.min.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			<p>我是父组件数据----{{fu}}</p>
+
+			<bbb @child="get"></bbb>
+		</div>
+		<template id="bbb">
+			<div>
+				<p>我是子组件的数据---{{zi}}</p>
+				<button @click="son">按钮</button>
+			</div>
+		</template>
+	</body>
+	<script>
+		new Vue({
+			el: "#box",
+			data: {
+				fu: "我是父组件中的数据"
+			},
+			methods: {
+				get(mas) {
+					this.fu = "改变了"
+				}
+			},
+			components: {
+				"bbb": {
+					template: "#bbb",
+					data() {
+						return {
+							zi: '我是子组件中的数据'
+						}
+					},
+					methods: {
+						son() {
+							this.$emit("child", this.zi)
+						}
+					}
+				}
+			}
+		})
+		
+	</script>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul {
+				width: 620px;
+				height: 450px;
+				border: 1px solid red;
+				float: left;
+				margin-left: 40px;
+			}
+			
+			li {
+				width: 100px;
+				height: 100px;
+				border: 1px solid red;
+				border-radius: 50%;
+				font-size: 40px;
+				text-align: center;
+				line-height: 100px;
+				list-style: none;
+				float: left;
+			}
+			
+			div {
+				width: 520px;
+				height: 500px;
+				border: 1px solid red;
+				float: right;
+				margin-right: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+			<li>12</li>
+			<li>13</li>
+			<li>14</li>
+			<li>15</li>
+			<li>16</li>
+			<li>17</li>
+			<li>18</li>
+			<li>19</li>
+		</ul>
+		<div></div>
+
+		<script>
+			var oLi = document.querySelectorAll("li");
+			var oDiv = document.querySelector("div");
+			var oUl = document.querySelector("ul");
+			var num;
+			for(var i = 0; i < oLi.length; i++) {
+				oLi[i].draggable = true;
+
+				oLi[i].ondragstart = function() {
+					num = this;
+				}
+			}
+			oDiv.ondrop = function() {
+				this.appendChild(num)
+			}
+			oUl.ondrop = function() {
+				this.appendChild(num)
+			}
+			oDiv.ondragover = oUl.ondragover = function() {
+				return false;
+			}
+		</script>
+	</body>
+
+</html>

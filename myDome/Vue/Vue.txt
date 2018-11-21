@@ -1,0 +1,170 @@
+
+Vue的基本使用方法
+1.
+new Vue({
+    el: 'element',
+    data:{//数据
+        arr:[],
+        json:{},
+        str: ''
+    },
+    methods:{//处理函数;
+        fn1: function(){  },
+        fn2: function(){  }
+    }
+})
+2.
+  var vm=new Vue({
+    data:{//数据
+        arr:[],
+        json:{},
+        str: ''
+    }
+})
+ vm.$mount("element");
+
+
+
+
+vue: 个人维护;
+    mvc,双向数据绑定,更加小巧,更适合做移动端开发;
+
+angular:
+    ng-: 指令
+
+vue:指令:扩展html语法;
+    v-开头;
+    v-on:
+    v-bind:
+    v-model="data":
+    v-for="item in arr":
+    v-show="true/false":操作display
+    v-if="true/false":操作DOM;
+    v-else="true/false":操作DOM;
+
+v-for="item in arr"  {{item}}  循环
+
+点击事件  写法:  v-on:click='add()';或者  @click
+
+  重复添加  需添写track-by="$index"
+
+ev.stropPropagation  阻止事件冒泡: EventName.stop="add()"
+
+ev.keyCode ==13  回车键  Ev.13="add()"
+
+ev.keyCode=37 ,38,39,40 : Ev.left,rigth,up,down="add()"
+
+v-bind：src=“src” \  :src="src"
+
+转义输出 用 {{{ }}}   把数据中的标签输出到html中做标签使用 或者  v-html=“”
+
+v-show 通过判断真假来确定元素的显示隐藏。 通过display来判断的。
+
+v-if  不能用于根元素身上，值为true/false  通过DOM操作来判段元素的显示隐藏。
+
+ 过滤器：
+
+ {{a:currency '￥' 1}}
+
+ {{a|uppercase}}
+
+ {{a|lowercase}}
+
+ {a|capitalize} 首字母专大写。
+
+ {{json|json}}  json过滤器
+  
+ | limitBy  截取的长度 截取的开始位置   截取过  滤器
+
+ |orderBy 1/-1 排序
+ 
+ |filterBy  ‘’  模糊查询
+ 
+ |debounce  时间   延迟使用
+
+ Vue.filter("名字"，function（）{}） 自定义过滤器
+
+  自定义指令：
+ 1.
+   Vue.directive（‘名字’，function(){   }   this.el 是指当前元素。 使用指令的时候直接 v-名字  就可以了。
+ 2.
+  Vue.elementDirective("名字"，{this.el.innerHTML=="" })  自定义标签
+
+ $watch 监听  .$wacth("要监听的数据",function(){ 要做的事 }，{deep:true} )  
+  深度监听需加{deep：true}
+
+ Vue.component（“名字”,{ props：[属性名 ],template:'模板'}）自定义组件/Vue.extend({  })
+
+ vue1.0路由实现
+
+ 路由实现  v-link=“{path:“/名字”}”;
+ 
+ v-link-active  当前样式。
+
+ Vue路由步揍  1.定义组件  2.配置路由  3.开启路由 4.默认显示页面
+    js代码：
+           	var Home=Vue.extend({
+			template:"<h1>我是home</h1>"
+		});
+		var Index=Vue.extend({
+			template:"#txt"
+		})
+		var App=Vue.extend({   });
+		
+		//配置路由
+		 var Router=new VueRouter();
+		 Router.map({
+		 	'index':{
+		 		component:Index
+		 	},
+		 	'home':{
+		 		component:Home
+		 	}
+		 })	 
+	     //开启路由
+		 Router.start(App,'#box');
+		 //默认显示的页面
+		 Router.redirect({
+		 	'/':'index'
+		 })
+
+https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=i&cb=show
+
+npm install --golbal -vue cli
+
+vue中声明计算属性的属性是  computed
+
+子组件显示用 props声明它期待获取的数据
+
+脚手架程序组件三部分  template  script style
+
+data 是一个函数。
+
+created钩子函数在实列被创建后调用
+
+Vue实列属性  data  computed  v-model watch
+
+ 生命周期
+            created:function(){
+                alert("实列已经创建完成！")
+            },
+            boforeCompile:function(){
+                alert("编译之前")
+            },
+            compiled:function(){
+                alert("编译之后")
+            },
+             ready:function(){
+                alert("数据插入页面之中")
+            }，
+            beforDestroy:function(){
+                alert("数据销毁之前")
+            },
+            destroy:function(){
+               alert("数据销毁之后")
+            }
+
+  加载代码时不显示模板标记
+      加  v-cloak
+        在
+         《style》【v-vloak】{display：none；}《/style》

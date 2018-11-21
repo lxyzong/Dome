@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+语法 1：在画布上定位图像：context.drawImage(img,x,y);
+语法 2： context.drawImage(img,x,y,width,height);width,height设置插入图片的宽高
+语法 3：剪切图像，并在画布上定位被剪切的部分：
+context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
+//sx：开始剪切的 x 坐标位置。
+//sy：开始剪切的 y 坐标位置。
+// swidth：被剪切图像的宽度。
+//sheight：被剪切图像的高度。
+<canvas width="500px" height="500" style="border:1px solid red" id="a1">
+</canvas>
+<script>
+    var canvas=document.getElementById("a1");
+    var og=canvas.getContext("2d");
+
+    //创建
+    var oImg=document.createElement("img");
+    oImg.src="1.jpg";
+    //等待图片加载完之后
+    oImg.onload=function(){
+        og.drawImage(oImg,0,0);//语法一 插入图片
+        //og.drawImage(oImg,100,100,300,100);  //语法二 插入图片 并设置宽高
+        og.drawImage(oImg,140,0,100,150,0,300,100,150);
+//                 图像
+    }
+</script>
+</body>
+</html>

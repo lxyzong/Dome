@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/Vue1.0.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<aaa></aaa>
+		</div>
+		<template id="aaa">
+			<div>
+				 <p>我是父组件的数据-----》 {{fu}}</p>
+				 <bbb :mmm.sync="fu"></bbb>
+				 <!--最主要的是在子组件中添加 .sync-->
+			</div>
+		</template>
+		<template id="bbb">
+			 <div>
+			 	<p>我是子组件中父组件传过来的数据----{{mmm}}</p>
+			 	<button @click="son">按钮</button>
+			 </div>
+		</template>
+	</body>
+	<script>
+		new Vue({
+			el:"#box",
+			data:{
+				
+			},
+			components:{
+				"aaa":{
+					template:"#aaa",
+					data(){
+						return {
+							fu:"我是父组件"
+						}
+					},
+					components:{
+						"bbb":{
+							template:"#bbb",
+							props:["mmm"],
+							methods:{
+								son(){
+									this.mmm="被更改了"
+								}
+							}
+						}
+					}
+				}
+			}
+		})
+		
+	</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="jquery-2.1.4.min.js"></script>
+		<style>
+			input::input-placeholder {
+				color: #fb4747;
+			}
+			
+			input::-webkit-input-placeholder {
+				color: #fb4747;
+			}
+			
+			div {
+				width: 100px;
+				height: 100px;
+				border: 1px solid red;
+				padding: 10px;
+			}
+			
+			*,
+			:after,
+			:before {
+				box-sizing: border-box;
+				-webkit-tap-highlight-color: transparent
+			}
+			
+			::-webkit-scrollbar {
+				display: none
+			}
+			
+			html {
+				-webkit-user-select: none;
+				user-select: none
+			}
+			
+			input[type=radio]::-ms-check,
+			input[type=checkbox]::-ms-check {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div></div>
+		<p>1111111111111111111111</p>
+		<input type="text" name="" id="" value="" />
+		<!--<input type="password" placeholder="输入密码" />-->
+
+		<button>Button</button>
+		<!--<input type="radio" name="" id="" value="" />-->
+
+	</body>
+	<script>
+		$(function() {
+			$("button").click(function() {
+				var a=$("input").val();
+				if(a=="" || !/^(?!(\s+$))/.test(a)){
+					console.log(1)
+				}else{
+					console.log(/^(?!(\s+$))/.test(a))
+				}
+//				var prop = $("input").attr("type");
+//				console.log(prop);
+//				if(prop == "password") {
+//					$("input").attr("type", "text");
+//					//换睁眼图
+//				} else {
+//					$("input").attr("type", "password")
+//					//换闭眼图
+//				}
+			})
+		})
+	</script>
+
+</html>
+
+  

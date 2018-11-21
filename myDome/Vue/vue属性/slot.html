@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<aa>
+				<ul slot="ul">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+				</ul>
+				<ol slot="ol">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+				</ol>
+			</aa>
+		</div>
+		<template id="aa">
+			<h1>this is h1</h1>
+			<slot name="ul">默认显示的页面</slot>
+			<slot name="ol">默认显示的页面</slot>
+		</template>
+	</body>
+	<script>
+		 window.onload=function(){
+		 	var xm=new Vue({
+		 		el:"#box",
+		 		data:{},
+		 		components:{
+		 			"aa":{
+		 				template:"#aa"
+		 			}
+		 		}
+		 	})
+		 }
+	</script>
+</html>

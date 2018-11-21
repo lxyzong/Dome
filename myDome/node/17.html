@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-2.1.4.min.js"></script>
+	</head>
+
+	<body>
+		ipone:<input type="text" name="" id="" value="" class="ipone" /><br /> name:
+		<input type="text" class="name" /> <br />
+		<button class="but">查找</button>
+		<button class="but1">注册</button>
+		<time>1</time>
+		<script>
+			//			 get,post
+			$(".but").click(function() {
+				$.ajax({
+					type: "post",
+					url: "http://127.0.0.1:8080/select",
+					data: {
+						ipone: $(".ipone").val(),
+						name: $(".name").val()
+					},
+					async: true,
+					dataType: "json",
+					success: function(res) {
+						console.log(res)
+					}
+				});
+			})
+			$(".but1").click(function() {
+				$.ajax({
+					type: "post",
+					url: "http://127.0.0.1:8080/login",
+					data: {
+						ipone: $(".ipone").val(),
+						name: $(".name").val()
+					},
+					async: true,
+					dataType: "json",
+					success: function(res) {
+						console.log(res)
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

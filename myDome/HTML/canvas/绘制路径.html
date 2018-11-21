@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <canvas id="myfirst" width="500px" height="400px" style="border:1px solid red">
+
+   </canvas>
+
+   <script>
+       //绘制
+       var canvas=document.querySelector("#myfirst");
+       //搭建画布
+       var og=canvas.getContext("2d");
+
+       //开始绘制
+       og.beginPath();//开始的坐标
+       og.moveTo(100,100);//起点
+       og.lineTo(300,100);//终点
+       og.lineTo(300,300);
+       og.lineTo(100,100);
+
+       //og.closePath();//关闭路径
+       og.lineWidth=5;//线条的粗细
+       //og.fillStyle="green"
+       og.strokeStyle="green";
+       og.stroke();//用线条绘制路径
+
+        //绘制
+       og.beginPath()
+       og.moveTo(400,100);
+       og.lineTo(300,300);
+       og.strokeStyle="red";
+       og.stroke();
+   </script>
+</body>
+</html>

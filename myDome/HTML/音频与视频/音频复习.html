@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+	</head>
+	<body>
+	  <h1>崔子格 - 卜卦.mp3</h1>
+	  <audio autoplay></audio>
+	  <a href="#">崔子格 - 卜卦</a><br />
+	  <a href="#">王力宏 - 大城小爱</a><br />
+	  <a href="#">誓言 - 求佛</a><br />
+	  <a href="#">皮皮虾我们走</a><br />
+	  <a href="#">北京的冬天</a> <br />
+	  <a href="#">李玉刚 - 新贵妃醉酒</a><br />
+	  <a href="#">韩安旭 - 多幸运</a>
+	  <br />
+	  <video src="../音乐/2.mkv" width="50%" height="300px"></video>
+	  
+	  <label><img src="canvas/1.jpg"/>点我播放</label>
+	</body>
+	<script>
+	var oAudio=document.querySelector("audio");
+	var oA=document.querySelectorAll("a");
+	var aH=document.querySelector("h1")
+	var arr=[
+	    "崔子格 - 卜卦.mp3", 
+	    "王力宏 - 大城小爱.mp3",
+	    "誓言 - 求佛.mp3",
+	    "皮皮虾我们走.mp3",
+	    "北京的冬天.mp3",
+	    "李玉刚 - 新贵妃醉酒.mp3",
+	    "韩安旭 - 多幸运.mp3"
+	         ]
+    for(var i=0;i<oA.length;i++){
+    	   oA[i].index=i
+    	  oA[i].onclick=function(){
+    	  	oAudio.src="../音乐/"+arr[this.index]   
+    	    aH.innerHTML=arr[this.index]
+    	  	oAudio.play()
+    	  }
+    }
+    var oImg=document.querySelector("label")
+    var oVideo=document.querySelector("video");
+    oImg.onclick=function(){
+    	   
+    	   if(oVideo.paused==false){
+    	   	oVideo.pause()
+    	   }else{
+    	   	oVideo.play();
+    	   }
+    }
+	</script>
+</html>

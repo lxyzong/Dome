@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>利用js的FormData</title>
+		<style>
+			#preview,
+			.img,
+			img {
+				width: 200px;
+				height: 200px;
+			}
+			
+			#preview {
+				border: 1px solid #000;
+			}
+		</style>
+	</head>
+
+	<body>
+		<form enctype="multipart/form-data" id="tf" onsubmit="return false">头像:
+			<input type="file" name="file" onchange="preview(this)" style="display: none;">
+			<div id="preview"></div>
+			<input type="submit" value="提交" onclick="test()">
+		</form>
+		<button class="but1">按钮</button>
+		<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+		<script type="text/javascript">
+			$('.but1').click(function(){
+				$("input").eq(0).trigger('click')
+			})
+			function test() {
+				var form = new FormData(document.getElementById("tf"));
+				//             var req = new XMLHttpRequest();
+				//             req.open("post", "${pageContext.request.contextPath}/public/testupload", false);
+				//             req.send(form);
+				$.ajax({
+					url: "https://blog.csdn.net/qq_35727895/article/details/80453207",
+					type: "post",
+					data: form,
+					processData: false,
+					contentType: false,
+					success: function(data) {
+						window.clearInterval(timer);
+						console.log("over..");
+					},
+					error: function(e) {
+						console.log("错误！！");
+						window.clearInterval(timer);
+					}
+				});
+			}
+
+			function preview(file) {
+				var prevDiv = document.getElementById('preview');
+				if(file.files && file.files[0]) {
+					var reader = new FileReader();
+					console.log(reader)
+					reader.onload = function(evt) {
+						prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+					}
+					reader.readAsDataURL(file.files[0]);
+				} else {
+					prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+				}
+			}
+		</script>
+	</body>
+
+</html>

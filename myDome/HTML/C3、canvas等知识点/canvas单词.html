@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		canvas 画布
+		获取的变量名.getContext("2d");   必写<br />
+		storkeStyle='' 改变笔触颜色<br />
+		storkeRect(x,y,width,height)  绘制不填充的巨型<br />
+		
+		fillStyle='' 改变填充的巨型颜色<br />
+		fillRect(x,y,width,height)   绘制填充的巨型<br />
+		
+		clearRect(x,y,width,height)  清空像素<br />
+		
+		canvas路径<br />
+		  moveTo(x,y) 定义线条开始的起点<br />
+		  lineTo(x,y)   终点<br />
+		  lineWidth=2   线宽<br />
+		  storkeStyle='' 改变笔触颜色<br />
+		  storke()
+		  <br />
+		  beginPath() 开始绘制路径<br />
+		  closePath()  结束绘制路径<br />
+		  fill()  填充<br />
+		  fillStyle  填充样式<br />
+		  
+		  arc(x,y,r,起始角弧度，结束角，顺（逆）)  绘制圆<br />
+                      r：半径 <br />
+                                           顺：false  默认<br />
+                                           逆：true      <br />
+                                           弧度=度数*Math.PI/180<br />
+          
+          translate(x,y) 位移<br />
+          scale(2,2)  缩放<br />
+          rotate() 旋转    以弧度计算<br />
+          save()保存当前状态<br />
+          restore()   恢复
+             
+		
+	</body>
+</html>

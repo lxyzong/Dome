@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#Rmenu {
+				width: 80px;
+				background: #00AAAA;
+				position: absolute;
+				display: none;
+				color: #fff;
+				text-align: center;
+				border-radius: 5px;
+				cursor: pointer;
+				-moz-box-shadow: 2px 2px 20px #333333;
+				-webkit-box-shadow: 2px 2px 20px #333333;
+				box-shadow: 2px 2px 20px #333333;
+			}
+			
+			#Rmenu ul li:hover {
+				font-size: 17px;
+				background-color: #E1B700;
+			}
+			
+			#Rmenu ul li {
+				border-radius: 5px;
+				list-style: none;
+				margin: 5px;
+				font-size: 16px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<p>1111111111</p>
+		<div id="Rmenu">
+			<ul>
+				<li>复制</li>
+				<li>删除</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		window.onload = function() {
+			var menu = document.getElementById("Rmenu");
+			document.oncontextmenu = function(ev) {
+				var ev = ev || event;
+				menu.style.display = "block";
+				menu.style.left = ev.clientX + "px";
+				menu.style.top = ev.clientY + "px";
+				//阻止默认右键事件
+				return false;
+			}
+			document.onclick = function(e) {
+				//click事件可以关闭右键菜单
+				if(e.target.tagName.toLowerCase() === 'li') {
+					console.log("您点击的是：" + e.target.outerText);
+				}
+				menu.style.display = "none";　
+			}
+		}
+	</script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/Vue1.0.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<aaa></aaa>
+		</div>
+		<template id="child">
+			<div>
+				我是父组件中的----》{{mas}} <br />
+				<bbb :mmm="mas">我是子组件</bbb>
+			</div>
+		</template>
+	</body>
+	<script>
+		
+		new Vue({
+		   el:"#box",
+		   data:{
+		   	
+		   },
+		   components:{
+		   	  "aaa":{
+		   	  	template:"#child",
+		   	  	data(){
+		   	  		return {
+		   	  			mas:"我是父组件数据"
+		   	  		}
+		   	  	},
+		   	  	components:{
+		   	  		"bbb":{
+		   	  			template:"我是父组件中传递过来的---》{{mmm}}",
+		   	  			props:["mmm"]
+		   	  		}
+		   	  	}
+		   	  }
+		   }
+		})
+		
+		
+	</script>
+</html>

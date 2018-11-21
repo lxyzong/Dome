@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+createLinearGradient(x1,y1,x2,y2);
+线性渐变：
+第一组参数：起始点坐标；第二组参数：结束点坐标
+addColorStop(位置，颜色) 添加渐变点 ; 位置:0-1之间的数字；颜色：字符串颜色
+<canvas id="a1" width="700px" height="300px" style="border:2px solid red;">
+</canvas>
+
+<script>
+    //获取
+    var canvas=document.getElementById("a1");
+    var bg=canvas.getContext("2d");
+
+    //创建线性渐变
+    var change=bg.createLinearGradient(0,100,700,100);
+    //添加 渐变点
+    change.addColorStop(0,"red");
+    change.addColorStop(0.2,"green");
+    change.addColorStop(0.7,"yellow");
+    change.addColorStop(1,"blue");
+    //使用渐变
+    bg.fillStyle=change;//填充
+    bg.fillRect(0,0,700,300);
+
+</script>
+
+</body>
+</html>

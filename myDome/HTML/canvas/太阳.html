@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas width="900px" height="600px"></canvas>
+		
+		<script>
+			var canvas=document.querySelector("canvas");
+			var ote=canvas.getContext("2d");
+			
+			var a=ote.createRadialGradient(250,250,2,250,250,250);  //放射性渐变
+			//var a=ote.createLinearGradient(0,500,900,500)   //线性渐变
+			   
+			   a.addColorStop(0.01,"red");
+//			   a.addColorStop(0.15,"yellow")
+//			   a.addColorStop(0.2,"green")
+//			   a.addColorStop(0.25,"chartreuse")
+//			   a.addColorStop(0.3,"blue")
+//			   a.addColorStop(0.35,"darkmagenta")
+//			   a.addColorStop(0.4,"deeppink")
+//			   a.addColorStop(0.45,"aquamarine")
+//			   a.addColorStop(0.5,"darkorange")
+//    		   a.addColorStop(0.55,"gold")
+//			   a.addColorStop(0.6,"peru")
+//			   a.addColorStop(0.65,"bisque")
+//			   a.addColorStop(0.7,"teal")
+//			   a.addColorStop(0.75,"tomato")
+//			   a.addColorStop(0.8,"orangered")
+//			   a.addColorStop(0.85,"hotpink")
+//			   a.addColorStop(0.9,"springgreen")
+//			   a.addColorStop(0.95,"black")
+//			   a.addColorStop(1,"yellow")
+
+			ote.fillStyle=a;
+			ote.arc(250,250,250,0,2*Math.PI)
+			ote.fill()
+			//ote.fillRect(0,0,900,500)   //线性渐变
+		</script>
+		
+	</body>
+</html>

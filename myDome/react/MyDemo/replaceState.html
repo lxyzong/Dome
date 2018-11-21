@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript" src="../js/react.min.js"></script>
+	<script type="text/javascript" src="../js/react-dom.min.js"></script>
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+	  <div id="box"></div>
+</body>
+<script type="text/babel">
+	var Hello=React.createClass({
+	   getInitialState:function(){
+           return {num:1}
+	   }, 
+	   hand:function(){
+            this.setState(function(state){
+                 return {num:state.num+1}
+            })
+        },
+       render:function(){
+           return <div onClick={this.hand}>点击次数为：{this.state.num}</div>
+        }
+        
+    })
+	ReactDOM.render(
+       <div><Hello /></div>,
+       document.getElementById("box")
+	)
+</script>
+</html>

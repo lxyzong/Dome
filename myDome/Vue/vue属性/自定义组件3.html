@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+		
+	</head>
+	<body>
+		<div id="box">
+			<aa></aa>
+		</div>
+	</body>
+	<script>
+	var title=Vue.extend({
+			template:"<h1>my is  H1</h1>"
+		})
+		Vue.component("aa",title)
+		new Vue({
+			el:"#box"
+		})
+	</script>
+</html>

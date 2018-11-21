@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="../js/react.min.js"></script>
+	<script src="../js/react-dom.min.js"></script>
+	<script src="../js/babel.min.js"></script>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+</body>
+<script type="text/babel">
+	
+	var Div=React.createClass({
+    click:function(){
+        console.log(ReactDOM.findDOMNode(this.refs.Input1).value)
+    },
+	render:function(){
+		return <div>
+			      <input type="text" ref="Input1" />
+			      <input type="button" value="按钮" onClick={this.click} />
+			      <input type="text" ref="Input2" />	
+		       </div>
+    }
+})
+	ReactDOM.render(
+       <Div />,
+       document.getElementById("box")
+	)
+</script>
+</html>

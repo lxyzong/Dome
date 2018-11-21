@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+  盒子分为两种模式： 1.标准模式  2.怪异模式
+     标准模式的宽/高=内容宽/高+padding+margin+border
+     怪异模式的宽/高=宽/高+margin=内容宽/高+padding+margin+border
+
+   设置怪异盒子的属性是  box-sizing：border-box
+   
+   弹性盒子是一种新的布局模式，又叫伸缩盒模型。
+   弹性盒子是由弹性容器和弹性子元素组成。通过设置display-flex将其设为弹性容器。
+    disply：flex。
+
+   flex-direction    元素的主轴排列方向
+                 1.row(默认值)主轴为水平方向，起点在左端
+                 2.row-reverse  主轴为水平方向，起点在右端
+                 3.column    主轴为垂直方向，起点上
+                 4. column-reverse           起点下
+
+    flex-wrap   换行
+             nowwrap  默认  不换行
+             wrap   换行
+             wrap-reverse   换行  第一行在下
+ 
+      justify-content   属性     定义元素在主轴上的对齐方式
+
+                      flex-start    默认 左对齐
+                      flex-end      右对齐
+                      center     中
+                      space-between   两端对齐，元素之间距离相等
+                      space-around    每个元素两侧距离星等
+
+       align-items   属性  定义元素在交叉轴
+                  flex-start  起点对齐
+                  flex-end       终点对齐
+                  center   中
+                  baseline    以文字基线对齐
+                  startch  默认
+
+         align-content  属性  用于修改flex-wrap属性的行为
+
+                     flex-start   起点对齐
+                     flex-end    终点对齐
+                      center  中
+                      space-between   交叉轴两端对齐
+                      space-around   两侧对齐
+                      startch  默认  沾满整个交叉轴
+
+
+               align—self    定义单个元素在纵轴上的位置
+
+
+        order：数字     定义元素在容器中的排序   （值越小越靠前）
+
+        flex-grow：数字   弹性盒子元素的扩展比例
+
+        flex-shrink：数字   弹性盒子元素的收缩比例
+
+</body>
+</html>

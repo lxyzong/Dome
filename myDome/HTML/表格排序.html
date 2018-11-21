@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+	</head>
+
+	<body>
+		<button onclick="tab()">but</button>
+		<table border="1" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>王</td>
+				<td>18</td>
+				<td>男</td>
+			</tr>
+			<tr>
+				<td>刘啊</td>
+				<td>19</td>
+				<td>男</td>
+			</tr>
+			<tr>
+				<td>刘晓</td>
+				<td>19</td>
+				<td>男</td>
+			</tr>
+			<tr>
+				<td>张</td>
+				<td>20</td>
+				<td>男</td>
+			</tr>
+		</table>
+	</body>
+	<script>
+		var table = document.getElementsByTagName("table")[0];
+		var tr = document.getElementsByTagName("tr");
+		var isAsc = true;
+		var arr = [];
+
+		function tab() {
+			if(isAsc) {
+				for(var i = 0; i < tr.length; i++) {
+					arr.push(tr[i]);
+				};
+				arr.sort(function(a, b) {
+					var value1 = a.getElementsByTagName("td")[0].innerHTML;
+					var value2 = b.getElementsByTagName("td")[0].innerHTML;
+					return value2.localeCompare(value1, "zh-CN");
+					//localeCompare() 方法提供的是比较字符串的方法，如果value2>value1,则返回1；如果value2<value1,则返回-1;相等则0
+				});
+				var fragment = document.createDocumentFragment();
+				for(var j = 0; j < arr.length; j++) {
+					fragment.appendChild(arr[j]);
+				};
+				table.appendChild(fragment);
+				isAsc = false;
+			} else {
+				for(var i = 0; i < tr.length; i++) {
+					arr.push(tr[i]);
+				};
+				arr.sort(function(a, b) {
+					var value1 = a.getElementsByTagName("td")[0].innerHTML;
+					var value2 = b.getElementsByTagName("td")[0].innerHTML;
+					return value1.localeCompare(value2);
+				});
+				var fragment = document.createDocumentFragment(); //当你想提取文档的一部分，改变，增加，或删除某些内容及插入到文档末尾可以使用createDocumentFragment() 方法
+				for(var j = 0; j < arr.length; j++) {
+					fragment.appendChild(arr[j]);
+				};
+				table.appendChild(fragment);
+				isAsc = true;
+			}
+		}
+	</script>
+
+</html>
+

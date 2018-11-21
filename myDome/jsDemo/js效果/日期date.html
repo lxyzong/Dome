@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //日期对象
+    //1.创建日期对象
+    /*var date=new Date();   //返回的是本地的当前的时间
+    console.log(typeof date);    //返回值是对象
+    console.log(date.toString());  // 返回的格式是字符串
+    console.log(date.toLocaleString())   //根据本地时间的格式
+    console.log(date.toLocaleDateString())
+    console.log(date.toLocaleTimeString())
+    console.log(typeof date.valueOf())   //number  返回据1970年1月1日午夜的毫秒数*/
+
+
+
+    //各种类型转换
+   /* console.log(date)      //对象
+    console.log(date.toString())    //转换为字符串
+    console.log(date.toLocaleString())   //根据本地时间转换为字符串
+    console.log(date.toLocaleDateString())
+    console.log(date.toLocaleTimeString())
+    console.log(date.valueOf())   //   number  距离1970年1月1日午夜的毫秒数*/
+
+
+
+    //getTime() 返回1970年距今的毫秒数
+ /*   var date=new Date();
+    console.log(date.getTime())   //number*/
+     //console.log(date.getTime())
+     //计算1970年距今天有多少天
+/*
+     var minutes=60*1000;
+    var hours=60*minutes;
+    var days=24*hours;
+//    var years=365*days;    //一年有多少毫秒
+    var date=new Date();
+    alert(parseInt(date.getTime()/days))
+*/
+
+
+
+    /* var minutes=1000*60;
+     var hours=minutes*60;
+     var days=24*hours;
+     var years=365*days;
+     var t=date.getTime();
+     var now=t/years;
+     document.write("1970年距今天是"+now+"年")*/
+
+    //获取时间  getFullYear()  返回一个表示年份的四位数字
+   // getMonth()  月份   0-11分别代表1-12月份
+    /*var date=new Date();
+    alert(date.getFullYear());   //年份的四位数字
+    alert(date.getMonth())    //0-11  //月
+    alert(date.getDate())    //1-31   //日
+    alert(date.getDay())    //0-6     //星期
+    alert(date.getHours())    //小时
+    alert(date.getMinutes())   //分钟
+    alert(date.getSeconds())    //秒
+    alert(date.getMilliseconds())   //毫秒*/
+    /*将创建一个数组，以输出月份的名称，而不是一个数字：
+
+     var d=new Date()
+    var month=new Array(12)
+    month[0]="January"
+    month[1]="February"
+    month[2]="March"
+    month[3]="April"
+    month[4]="May"
+    month[5]="June"
+    month[6]="July"
+    month[7]="August"
+    month[8]="September"
+    month[9]="October"
+    month[10]="November"
+    month[11]="December"
+    document.write("The month is " + month[d.getMonth()])*/
+
+ /*   var month=[];
+    month[0]="一月";
+    month[1]="二月";
+    month[2]="三月";
+    month[3]="四月";
+    var date=new Date();
+    alert(month[date.getMonth()])*/
+    //getDate()  月份中的某一天     1-31
+    //getDay()   返回星期的某一天    0-6  分别代表周日到周六
+    /*var d=new Date()
+
+    var weekday=new Array(7)
+    weekday[0]="Sunday"
+    weekday[1]="Monday"
+    weekday[2]="Tuesday"
+    weekday[3]="Wednesday"
+    weekday[4]="Thursday"
+    weekday[5]="Friday"
+    weekday[6]="Saturday"
+
+    document.write("Today it is " + weekday[d.getDay()])*/
+
+    //getHours()0-23  getMinutes()0-59   getSeconds()0-59  getMilliseconds()  0-999
+
+    //设置时间
+    //setTime()   以毫秒设置Date对象  设置时间   // 向 1970/01/01 添加毫秒，并显示新的日期和时间。
+    //setFullYear(1999,1,21)   可设置月日
+    //setMonth()
+    //setDate()
+    //setHours()
+    //setMinutes()
+    //setSeconds()
+    //setMilliSeconds()
+
+    var date=new Date();
+//    date.setFullYear(2016,2,25);
+//    date.setMonth(2,25)
+//    date.setDate(25)
+//     date.setHours(22,55,23)  //0-23   0-59    0-59   0-999
+//    date.setMinutes(55)
+    //    date.setSeconds(23)
+//    var minutes=60000;
+    date.setTime(600000);   //再标准时间的基础上加上你设置的毫秒数
+
+     console.log(date)
+
+
+
+</script>
+</body>
+</html>

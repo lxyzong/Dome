@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			header {
+				width: 200px;
+				height: 200px;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--    <form action="" method="get">
+  音频：<input type="range"><br><br>
+  邮箱：<input type="email"><br><br>
+  数字：<input type="number"><br><br>  
+  日期：<input type="date"><br><br>
+  星期：<input type="month"><br><br>
+  时间：<input type="time"><br><br>
+  地址：<input type="url"><br><br>
+  搜索：<input type="search"><br><br>
+  颜色：<input type="color"><br><br>
+  <input type="submit" formaction='taobao.html'>
+   </form>
+
+  非主体结构标签：
+   <header></header>    头部
+   <nav></nav>   导航链接
+   <aside></aside>  侧边栏
+   <footer></footer>   尾部-->
+
+		<!-- 主体结构标签 -->
+		<!--   <article></article> 主章主体
+   <section></section>  章节
+   <aside></aside>   侧边栏
+   <nav></nav>    导航链接
+   <time></time>   时间 -->
+
+		<!-- 带功能的标签 -->
+		<!--    <input type="text" list="dlist">
+    <datalist id='dlist'>
+    	  <option value="js">1</option>
+    	  <option value="css">2</option>
+    	  <option value="html">3</option>
+    </datalist>
+  <details>
+  	  <summary>我要努力！！！</summary>
+  	  <p>为了她！！！</p>
+  	  <p>为了我们的未来！！！</p>
+  </details>
+ -->
+
+		<!-- 表单验证<br> -->
+		<!--新增表单验证方法-->
+		<!--1．checkValidity()方法
+显式验证方法。每个表单元素都可以调用checkValidity()方法（包括form），它返回一个布尔值，
+表示是否通过验证。默认情况下，表单的验证发生在表单提交时，如果使用checkValidity()方法，
+可以在需要的任何地方验证表单。
+-->
+
+		<!--2．setCustomValidity()方法
+自定义错误提示信息的方法。
+当默认的提示错误满足不了需求时，可以通过该方法自定义错误提示。
+-->
+
+		<form action="www.taobao.com" method="post">
+			<input type="text" required pattern="^\w{6,10}$" id="put" novalidate="false"> <span>请输入字母或数字6-10位</span><br><br>
+			<input type="password"><br><br>
+			<input type="submit">
+			<input type="submit" value="提交到草稿箱" id="test" formaction="提交.html">
+
+		</form>
+
+		<script type="text/javascript">
+			var test = document.querySelector("#test");
+			var put = document.querySelector("#put");
+			var span = document.querySelector("span");
+
+			test.onclik = function() {
+				// if(put.value==''){
+				// 	    span.innerHTML=="不能为空"
+				// }else{
+				alert(1)
+				// if(test.checkValidity()){
+				// 	   alert("通过")
+				// }else{
+				// 	   alert("位通过")
+				// 	   return  false;
+
+				//}
+
+			}
+			}
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .wrap{
+            width: 200px;
+            height: 300px;
+            border:1px solid red;
+            padding:50px;
+            margin:100px auto;
+            /*搭建3D 空间*/
+            transform-style: preserve-3d;
+            /*设置景深*/
+            perspective: 300px;
+        }
+        .wrap div{
+            width: 200px;
+            height: 300px;
+            background-color: #ff6600;
+            /*
+            rotateX()  //围绕X轴旋转
+            rotateY()  //围绕Y轴旋转
+            rotateZ()  //围绕Z轴旋转
+            */
+            transition: 2s;
+            /*设置基准点*/
+            /*transform-origin: left;*/
+        }
+        .wrap div:hover{
+            /*transform: rotateY(-180deg);*/
+            /*transform: rotateZ(-180deg);*/
+
+            /*在Z轴上位移*/
+            transform: translateZ(-300px);
+        }
+    </style>
+</head>
+<body>
+     <div class="wrap">
+         <div></div>
+     </div>
+</body>
+</html>

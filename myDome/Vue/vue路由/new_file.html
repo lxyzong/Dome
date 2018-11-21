@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+		<script src="vue-router.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><a v-link="{path:'/home'}">home</a></li>
+				<li><a v-link="{path:'/time'}">time</a></li>
+			</ul>
+			<router-view></router-view>
+		</div>
+		
+		<template id="home">
+			<h1>my this is home page</h1>
+			<div>
+			  <ul>
+				<li><a v-link="{path:'/home/home1'}">home1</a></li>
+				<li><a v-link="{path:'/home/home2'}">home2</a></li>
+			  </ul>
+			<router-view></router-view>
+		</div>
+		</template>
+	</body>
+	<script>
+		
+		  var app=Vue.extend({});
+		  var home=Vue.extend({
+		  	 template:"#home"
+		  })
+		 var time=Vue.extend({
+		 	template:"222222"
+		 })
+		 var Router=new VueRouter();
+		 Router.map({
+		 	'home':{
+		 		component:home,
+		 		subRoutes:{
+		 			'home1':{
+		 				component:{
+		 				    template:"<h1>my this is home1 page</h1>"
+		 			   }
+		 			},
+		 			'home2':{
+		 				component:{
+		 					template:"<h1>my this is home2 page</h1>"
+		 				}
+		 			}
+		 			
+		 		}
+		 	},
+		 	'time':{
+		 		component:time
+		 	}
+		 })
+		 Router.start(app,"#box")
+		 Router.redirect({
+		 	'/':'home'
+		 })
+		
+	</script>
+</html>

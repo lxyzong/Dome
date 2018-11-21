@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script type="text/javascript" src='tween.js'></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				width: 100%;
+				height: 100%;
+				background-color: black;
+				overflow:hidden;
+			}
+			
+			div {
+				border-radius: 50%;
+				position: absolute;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			function Div() {
+				this.div = document.createElement("div");
+				this.width = rAndom(1, 50);
+				var r = rAndom(0, 256);
+				var g = rAndom(0, 256);
+				var b = rAndom(0, 256);
+				this.color = "rgb(" + r + ',' + g + ',' + b + ")";
+				this.left = rAndom(1, document.documentElement.clientWidth);
+				this.top = rAndom(1, document.documentElement.clientHeight);
+			}
+
+			Div.prototype.clear = function() {
+				this.div.style.width = this.width + 'px';
+				this.div.style.height = this.width + 'px';
+				this.div.style.background = this.color;
+				this.div.style.left = this.left + 'px';
+				this.div.style.top = this.top + 'px';
+				document.body.appendChild(this.div)
+			}
+			var time = null;
+
+			Div.prototype.mover = function() {
+				var sudu = rAndom(1, 8);
+				var sudu1 = rAndom(1, 10);
+				var a = this;
+				var ding = null;
+				time = setInterval(function() {
+					if(a.div.offsetLeft > document.documentElement.clientWidth - a.div.offsetWidth || a.div.offsetLeft < 0) {
+						sudu = -sudu
+					}
+					if(a.div.offsetTop > document.documentElement.clientHeight - a.div.offsetWidth || a.div.offsetTop < 0) {
+						sudu1 = -sudu1
+					}
+					a.div.style.left = a.div.offsetLeft + sudu + "px";
+					a.div.style.top = a.div.offsetTop + sudu1 + "px";
+				}, 10)
+			}
+
+			setInterval(function() {
+				var div1 = new Div();
+				div1.clear()
+				div1.mover()
+			}, 2000)
+
+			//重建随机函数
+			function rAndom(x, y) {
+				var sj = parseInt(Math.random() * (y - x + 1) + x)
+				return sj
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="../js/react.min.js"></script>
+	<script src="../js/react-dom.min.js"></script>
+	<script src="../js/babel.min.js"></script>
+	<script src="../js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script type="text/babel">
+	var Hell=React.createClass({
+    getInitialState:function(){
+           return {num:1}
+    },
+    add:function(event){
+       this.setState({num:event.target.value})
+    },
+	   render:function(){
+	     return <div>
+                <input value={this.state.num} onChange={this.add} />
+                   <div>{this.state.num}</div> 
+	             </div>
+          }
+   });
+	ReactDOM.render(
+      <div>
+      	<Hell />
+      </div>,
+      document.getElementById("box")
+	)
+</script>
+</html>

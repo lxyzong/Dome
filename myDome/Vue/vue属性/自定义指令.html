@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			 <p v-red="arr">afasfa</p>
+		</div>
+	</body>
+	<script>
+		Vue.directive("red",function(val){
+			this.el.style.background="red"  //this.el 是指当前元素。
+			this.el.innerHTML=val;
+		})
+		
+		new Vue({
+			el:"#box",
+			data:{
+				 arr:"12ewdas"
+			}
+		})
+		
+	</script>
+</html>

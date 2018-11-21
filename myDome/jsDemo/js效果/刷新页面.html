@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+
+	<body>
+		<p> location.reload([bForceGet]) 强制刷新网页 <br /> 参数为fasle从客户端缓存取页面 为true以get方式服务器获取</p>
+		<p>location.replace(‘url’) 替换当前页面， 后退、前进无法使用</p>
+		<p>history.go(0) 也可</p>
+		<p>页面自动刷新方法 <br /> meta http-equiv="refresh" content="20;url=http://www.jb51.net" </p>
+		<p>其余：1，location=location <br />
+				  2，location.assign(location) <br /> 
+				  3，document.execCommand('Refresh') <br />
+				  4，window.navigate(location) <br /> 
+				  5，location.replace(location) <br /> 
+				  6，document.URL=location.href
+		</p>
+	</body>
+
+</html>

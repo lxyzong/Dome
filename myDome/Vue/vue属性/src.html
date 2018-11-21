@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<!--<img src="{{src}}" alt="" />-->
+			<img v-bind:src="src" alt="" />
+			<img :src="src" alt="" />
+		</div>
+	</body>
+	<script>
+		window.onload=function(){
+			
+			new Vue({
+				el:"#box",
+				data:{
+					src:"banner-6.jpg"
+				}
+			})
+			
+		}
+		
+	</script>
+</html>

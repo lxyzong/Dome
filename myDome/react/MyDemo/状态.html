@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript" src="../js/react.min.js"></script>
+	<script type="text/javascript" src="../js/react-dom.min.js"></script>
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script type="text/babel">
+	var Hell=React.createClass({
+	    getInitialState:function(){
+            return {link:true}
+	    },
+        link:function(){
+            this.setState({link:!this.state.link});
+        },
+        render:function(){
+          var  text=this.state.link?'喜欢':'不喜欢'; 
+          return <p onClick={this.link}>我{text}你</p>
+       }
+    })
+	ReactDOM.render(
+       <Hell />,
+       document.getElementById("box")
+	)
+</script>
+<script>
+	
+	document.getElementsByClassName()
+</script>
+</html>

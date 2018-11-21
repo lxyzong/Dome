@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas id="myfirst" width="500px" height="300px" style="border:1px solid red;">
+        <span>浏览器不支持canvas</span>
+    </canvas>
+
+    <script>
+        //获取
+        var canvas=document.querySelector("#myfirst");
+        //搭建画布
+        var otx=canvas.getContext("2d");
+
+        otx.strokeStyle="green";
+       // otx.fillStyle="pink";
+        //绘制未填充矩形
+        //otx.strokeRect(100,100,200,100);
+        //绘制填色的矩形
+        otx.fillRect(400,0,100,200);
+        otx.clearRect(400,0,100,50);
+
+    </script>
+</body>
+</html>

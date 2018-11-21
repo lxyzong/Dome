@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas width="500px" height="500px" style="border:1px solid red"></canvas>
+		
+		<script>
+			var canvas=document.querySelector("canvas");
+			var ote=canvas.getContext("2d");
+			 
+		  ote.save();	 
+			 ote.strokeStyle="#FF0000"
+			 ote.font='50px 隶书';
+			 ote.strokeText("刘晓云",30,270);
+	      ote.restore();
+	      
+	      ote.save();
+	      ote.beginPath();
+	         ote.arc(250,250,50,0,2*Math.PI)
+	         ote.stroke();
+	      ote.closePath();
+	      ote.restore()
+			
+		  ote.save();	 
+			 ote.strokeStyle="#FF0000"
+			 ote.font='50px 隶书';
+			 ote.strokeText("XXX",320,270);
+	      ote.restore();			
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+	<script type="text/javascript" src="tools.js"></script>
+	
+	<script type="text/javascript">
+	//年月日分别为自定义函数的参数，判断是否为正确的日期
+	//2016 2 30
+	function isDate(year,month,day){
+		if(isNaN(year)==false && isNaN(month)==false && isNaN(day)==false){//先判断年，月，日是不是数字
+			if(month>0 && month<=12){//月合法了
+				//31天，30天的，2月（闰年和平年）
+				if(month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12 ){
+					//31天月份要求日期是1-31
+					if(day>=1 && day<=31){
+						return true;
+					}
+				}else if(month==2){
+					//2月情况
+					if(isRun(year)==true){//是闰年
+						if(day>=1 && day<=29){//1-29
+							return true;
+						}
+					}else{//是平年
+						if(day>0 && day<=28){//1-28
+							return true;
+						}
+					}
+				}else{//30天的月份
+					if(day>=1 && day<=30){//1-30
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	
+	function test(){
+		//1、分别获得三个文本框的内容
+		var nianNum = document.f.nian.value;
+		var yueNum = document.f.yue.value;
+		var riNum = document.f.ri.value;
+		if(isDate(nianNum,yueNum,riNum)==true){
+			alert("亲，合法！");
+		}else{
+			alert("亲，不合法！");
+		}
+	}
+	
+		
+	</script>
+	<body>
+		<form name="f">
+			<input type="text" name="nian" />年
+			<input type="text" name="yue" />月
+			<input type="text" name="ri" />日
+			<input type="button" value="判断" onclick="test()"/>
+			
+	</body>
+	
+</html>

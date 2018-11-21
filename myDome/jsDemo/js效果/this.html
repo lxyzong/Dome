@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			label{
+				position: relative;
+			}
+			.div1{
+				position: absolute;
+				right: 0;
+				left: 0;
+				bottom: 0;
+				background: rgba(0,0,0,0.4);
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<button onclick="but(this)">按钮</button>
+		
+		<!--<label class="div">
+			<img src="dazhong_banner.png"/>
+			<div class="div1" style="border: 1px solid red;">111111111111</div>
+		</label>-->
+	</body>
+	<script>
+
+		function a() {
+			console.log(this); //window
+		}
+		a();
+
+		var a = {
+			name: 'liu',
+			nex: function() {
+				console.log(this); //指向该对象
+			}
+		}
+		a.nex();
+
+		function but(that) {
+			console.log(this); //window
+
+			console.log(that); //指向该元素
+		}
+	</script>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+1.strokeText(文字,x,y)
+文字边框
+2.fillText(文字,x,y)
+文字填充
+3.font        文字大小：'40px 宋体'
+4.textAlign  (左右对齐方式)
+默认是start,跟left一样的效果 end right center
+5.textBaseLine  (上下对齐方式)
+top  middle  bottom
+-->
+<canvas width="500px" height="500px" style="border:1px solid red" id="myfirst">
+
+</canvas>
+
+<script>
+    //获取
+    var canvas=document.querySelector("#myfirst");
+    //搭建画布
+    var og=canvas.getContext("2d");
+
+    og.font="40px 微软雅黑"
+    og.fillStyle="red";
+    //水平对齐方式
+    og.textAlign="start";
+    og.textBaseline="bottom";
+    og.strokeText("百合",200,200);//描边字体
+   // og.fillText("赵四",200,200)
+</script>
+</body>
+</html>

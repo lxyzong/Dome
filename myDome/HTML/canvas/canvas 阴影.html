@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <canvas width="400" height="400" style="border:1px solid red" id="canvas">
+
+   </canvas>
+   shadowOffsetX、shadowOffsetY
+   X轴偏移、Y轴偏移
+   shadowColor
+   阴影颜色
+   shadowBlur
+   高斯模糊值
+   <script>
+       //获取
+       var canvas=document.querySelector("#canvas");
+       //
+       var og=canvas.getContext("2d");
+       //canvas 阴影
+       og.shadowOffsetX=4;// X轴的偏移
+       og.shadowOffsetY=4; // Y轴的偏移
+       og.shadowColor="red";  //阴影的颜色
+       og.shadowBlur=5;   //高斯模糊值
+
+
+       og.fillStyle="gray";
+       og.fillRect(50,50,200,100);
+   </script>
+</body>
+</html>

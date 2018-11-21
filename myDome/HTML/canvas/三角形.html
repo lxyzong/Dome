@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="mycanvas">
+			您的浏览器不支持canvas
+		</canvas>
+		<!--canvas 画布相当于显示生活中的画板
+		width height 设置宽高 不在css里面设置
+		默认宽高300*150
+		默认背景颜色是透明-->
+		<script type="text/javascript">
+		//获取画布
+			var canvas=document.getElementsByTagName("canvas")[0];
+			//获取绘图环境
+			var cantext=canvas.getContext("2d");
+			//2d 二维平面  webgl  三维空间
+			//设置画布宽高以及边框
+			canvas.width="800";
+			canvas.height="500";
+			canvas.style.border="1px solid red";
+			
+			cantext.beginPath();
+			cantext.moveTo(100,100);
+			cantext.lineTo(300,100);
+			cantext.lineTo(300,300);
+			
+			cantext.lineWidth=5;
+//			cantext.strokeStyle=" #F4A460"
+//			cantext.lineCap="square";
+
+//			cantext.lineJoin=" bevel";
+			
+			cantext.closePath();
+			cantext.stroke();
+			//填充
+			
+			cantext.filltyle="red";
+			cantext.fill();
+		</script>
+	</body>
+</html>

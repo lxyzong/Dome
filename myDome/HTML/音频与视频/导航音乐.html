@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}		
+	ul{
+		width: 70%;
+		height: 50px;
+		background-color: aqua;
+		margin:0 auto;
+	}		
+	li{
+		width:12%;
+		text-align: center;
+		line-height: 50px;
+		list-style: none;
+		float: left;
+	}
+			
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+		</ul>
+	<audio src="钢琴/a1.mp3"></audio>
+	</body>
+  <script>  
+    var aLi=document.querySelectorAll("li");
+  	var qaudio=document.querySelector("audio");
+  	var arr=[
+  	         "a1.mp3",
+  	         "a2.mp3",
+  	         "a3.mp3",
+  	         "a4.mp3",
+  	         "a5.mp3",
+  	         "a6.mp3",
+  	         "a7.mp3"
+  	           ]
+
+  	
+  	for(var i=0;i<aLi.length;i++){
+  		 aLi[i].index=i;
+  	
+  	    aLi[i].onmouseover=function(){
+  	    	 qaudio.src="钢琴/"+(arr[this.index]);
+  	    	 qaudio.play();
+  	    }
+  	}
+  </script>
+</html>

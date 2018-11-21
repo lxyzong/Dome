@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				background-color: black;
+			}
+			
+			div {
+				width: 40px;
+				height: 40px;
+				background-image: url(xing.png);
+				background-size: 100%;
+				position: absolute;
+				left: 650px;
+				top: 305px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+	</body>
+	<script type="text/javascript">
+		function Div() {
+			this.div = document.createElement("div");
+		}
+		Div.prototype.create = function() {
+			document.body.appendChild(this.div);
+		}
+		Div.prototype.mover = function() {
+			var sudu = rAndom(10, -10);
+			var sudu1 = rAndom(10, -10);
+			var time = null;
+			var a = this;
+			time = setInterval(function() {
+				if(a.div.offsetLeft > document.documentElement.clientWidth || a.div.offsetLeft < 20) {
+					a.div.remove()
+				};
+				if(a.div.offsetTop > document.documentElement.clientHeight || a.div.offsetTop < 20) {
+					a.div.remove()
+				}
+				a.div.style.left = a.div.offsetLeft + sudu + 'px';
+				a.div.style.top = a.div.offsetTop + sudu1 + 'px';
+			}, 100)
+		}
+		setInterval(function() {
+			var div1 = new Div()
+			div1.create();
+			div1.mover();
+		}, 100)
+		//创建随机函数
+		function rAndom(x, y) {
+			var sj = parseInt(Math.random() * (y - x + 1) + x);
+			return sj;
+		}
+	</script>
+
+</html>

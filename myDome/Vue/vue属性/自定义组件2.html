@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<aa img-src="banner-6.jpg" :arr="arr"></aa>
+		</div>
+	</body>
+	<script>
+		
+		window.onload=function(){
+			Vue.component("aa",{
+				props:["imgSrc","arr"],  //属性名
+				template:'#tem'
+			})
+			new Vue({
+				el:"#box",
+				data:{
+					arr:"afasfbb"
+				}
+			})
+		}	
+	</script>
+    <script type="text/template" id="tem">
+    	<div>
+    		<h1>{{arr}}</h1>
+    		<img :src="imgSrc"/>
+    	</div>
+    </script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<!--中文-->
+		<div><input type="text" /><input type="button" value="验证" /></div>
+		<!--数字-->
+		<input type="text" id="lxPhone" name="lxPhone" onkeyup="value=value.replace( /[^\d]/g,'')" />
+	</body>
+	<script src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//中文
+			$("input[type=button]").click(function() {
+				var myReg = /^[\u4e00-\u9fa5]+$/;
+				if(myReg.test($("input[type=text]").val())) {
+					alert("输入正确");
+				} else {
+					alert("输入错误");
+				}
+			})
+		});
+	</script>
+
+</html>

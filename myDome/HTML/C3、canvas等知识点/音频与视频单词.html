@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		audio  音频   video  视频   source <br />
+媒体元素属性 ：
+            controls  :   显示或隐藏用户控制界面
+            autoplay  :  媒体是否自动播放
+            loop  : 媒体是否循环播放
+            currentTime  :  开始到播放现在所用的时间
+            duration  :  媒体总时间(只读)
+            volume  :   0.0-1.0的音量相对值
+            muted  :   是否静音		
+		<br />
+媒体元素_2 ：
+           paused  :   媒体是否暂停(只读)
+           ended   :   媒体是否播放完毕(只读)
+           error   :  媒体发生错误的时候，返回错误代码 (只读)
+           currentSrc  :   以字符串的形式返回媒体地址(只读)
+
+           play()  :  媒体播放
+           pause()  :  媒体暂停
+           load()  :  重新加载媒体		
+	<br />	
+事件：
+        onended：当媒介已到达结尾时运行的脚本（可发送类似“感谢观看”之类的消息）。
+
+        ontimeupdate：当播放位置改变时（比如当用户快进到媒介中一个不同的位置时）运行的脚本。	
+	
+	<br />
+Video额外特性 ：
+              poster  :   视频播放前的预览图片    eg:oV.poster = 'timg.jpg'
+              width、height  :   设置视频的尺寸
+              videoWidth、 videoHeight  :   视频的实际尺寸(只读)	
+	
+	</body>
+</html>

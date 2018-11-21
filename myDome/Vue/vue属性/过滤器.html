@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<p>{{arr|currency "￥" 3}}货币</p>
+			<p>{{arr1 | uppercase}}大写</p>
+			<p>{{arr1 | lowercase}}小写</p>
+			<p>{{arr1 | capitalize}} 首字母</p>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el:'#box',
+			data:{
+				arr:'12',
+				arr1:"asfasfasda"
+			}
+		})
+		
+	</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="box">
+                <a-com></a-com>
+                <b-com></b-com>
+		</div>
+	</body>
+	<script>
+		var tem=new Vue();
+		Vue.component("a-com",{
+			template:`
+			<div>
+	              <h1>{{e}}</h1>
+	              <p>接受的数据---{{a}}</p>
+	              <button @click="get()">按钮</button>
+	              </div>
+			   `,
+			data(){
+				return{
+					a:"",
+					e:"this is h1"
+				}
+			},
+			methods:{
+				get(){
+					tem.$emit("a-com",this.e)
+				}
+			},
+			created(){
+				tem.$on("b-com",function(a){
+					this.a=a
+				}.bind(this))
+			}
+		})
+		Vue.component("b-com",{
+			template:`
+			  <div>
+			    <h3>{{e}}</h3>
+			    <p>接受的数据---{{b}}</p>
+			    <button @click="song()">按钮</button>
+			    </div>
+			 `,
+			data(){
+				return {
+					b:"",
+					e:"this is h3"
+				}
+			},
+			methods:{
+				song(){
+					tem.$emit("b-com",this.e)
+				}
+			},
+			created(){
+				tem.$on("a-com",function(b){
+					this.b=b
+				}.bind(this));
+				
+			}
+		})
+		 new Vue({
+		 	el:"#box",
+		 	data:{},
+		 	methods:{}
+		 })
+	</script>
+</html>

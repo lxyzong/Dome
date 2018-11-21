@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>延时调用</title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+		   <button @click="get | debounce 2000">按钮</button>
+		</div>
+	</body>
+	<script>
+		var xm=new Vue({
+			data:{
+				
+			},
+			methods:{
+				get(){
+					alert(1)
+				}
+			}
+		}).$mount("#box")
+	</script>
+</html>

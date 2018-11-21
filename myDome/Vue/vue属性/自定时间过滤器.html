@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			{{aa|data}}
+		</div>
+	</body>
+	<Script>
+	window.onload=function(){
+		Vue.filter("data",function(a){
+			var oDate=new Date()
+			return oDate.getFullYear()+"年"+(oDate.getMonth()+1)+"月"+oDate.getUTCDate()
+			+"日"+oDate.getHours()+"时"+oDate.getMinutes()+"分"+oDate.getSeconds()
+		})
+		var xm=new Vue({
+		 	data:{
+		 		aa:new Date().getTime()
+		 	}
+		 }).$mount("#box")
+	}
+		 
+	</Script>
+</html>

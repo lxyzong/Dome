@@ -1,0 +1,103 @@
+1.跳转语句
+break：浏览器执行到break，直接跳出循环或判断语句，结束本语句
+continue：语句的作用是忽略其后的语句并结束此轮循环和开始新的一轮循环Continue与break语句非常类似，但他不是退出循环，而是转而执行下一次循环。return：语句结束函数执行，返回调用函数，而且把表达式的值作为函数的结果
+
+2.函数可分为：内置函数。例如alert（），prompt（）；自定义函数。
+3.函数的声明方法
+（1）：使用function关键字
+function a(){
+  
+}
+(2):使用变量和匿名函数
+var a = function(){
+
+}
+4函数的调用：无论使用那种方法声明函数，调用方法的格式都是 ：函数名（）；
+例如：a();
+5.函数的参数：形式参数，实际参数
+形参：就是在函数定义时，函数名后面的参数，不能用var修饰。
+实参：就是调用时，函数名后面的参数。参数可以传递多个
+例如 function alertName(name){//形式参数
+   alert("我的名字是"+name);
+}
+name("xiaoming");//实际参数
+
+函数也可以传入一个数组作为函数的参数，要注意：
+function h(arr){
+   for(var i =0;i<arr.length;i++){
+      document.write(arr[i]);
+   }
+}
+6.通过关键字return为函数设置返回值
+function all(){
+  var a = 10;
+  var b = 20;
+  return a+b;
+}
+注意，再调用此方法时，我们只是得到a+b的值，也叫返回a+b的值
+
+7.函数的重载：函数的参数可以传递多个，使用arguments对象可以判断参数的个数，根据个数执行不同的代码，arguments是个数组。
+function info(name,age,sex,fav){
+    if(arguments.length==1){
+       alert("我的名字是"+name);
+    }else if（arguments.length==2）{
+       alert("我的名字是"+name+"我的年龄是"+age);
+    }else if(arguments.length==3){
+       alert("我的名字是"+name+"我的年龄是"+age+"我的性别是"+sex);
+    }else{
+       alert("我的名字是"+name+"我的年龄是"+age+"我的性别是"+sex+"我的爱好是"+fav);
+    }             
+}
+                                                                                              
+8局部变量：局部变量就是定义在函数内部的变量，这个变量只能在函数内部使用，即作用域范围只是函数内部，另外，形参也是局部变量。
+全局变量：全局变量就是定义在函数外部的变量，这个变量在任何函数中都有效，即作用域范围是当前文件的任何地方。
+
+
+9.数组：是一个可以存储一组或是一系列相关数据的容器
+数组的声明：
+var arr = [];arr1 = [1,2,3,4,5];
+var arr = new Array();arr = new Array(1,2,3,4,5);//当Array（）括号里只有一个数字类型的值，它的意义是声明此数组的长度。
+var arr = new Array(5);//意思是声明一个长度是5的数组，长度可以随时改变
+数组的好处是;
+         – 解决大量相关数据的存储和使用的问题。
+         – 便于程序的开发和维护。
+向数组中添加元素：
+   arr[0] = "haha";//代表把haha的字符串放到名为arr数组的第一个位置
+   arr1[100] = 10000;//代表把10000的数字放到名为arr1数组的第10001个位置
+向数组中删除元素：
+   利用delete关键字：
+   var arr2 = [1,2,3,4,5];
+   delete arr2[3];//删除arr2数组的第四个位置的元素；但是此位置依然保留，只是内容被删除，在alert(arr2[3]);返回undefined
+
+
+10.  遍历数组     for(){}
+     for in
+var a = [];//声明一个数组
+a[0] = "泰国";//给数组赋值，第一个值是泰国
+a[1] = "韩国";//给数组赋值，第一个值是韩国//利用for循环遍历
+for(var i =0;i<2;i++){
+   alert("我去过"+a[i]);
+}//利用for in 循环遍历
+for(country in a){
+   alert("我去过"+a[country]);
+}  
+
+
+11.数组的维度
+一维数组 var yiwei = [1,2,3,4,5];
+ 读取数组yiwei[3];//4
+二维数组 var erwei = [["a","b","c","d","e"],["A","B","C","D","E"]];
+ 读取数组yiwei[1][2]; //C
+
+12.数组的检测(1)instanceof 关键字：运用instanceof运算符来判断一个对象是不是数组
+ var arr = [2,4,6,7,8];
+ alert(arr instanceof Array);//如果arr是数组，返回true，否则返回false
+（2）Array.isArray(arr)固定格式，不允许改变
+ var arr1 = [1,2,3,4,5];
+ alert(Array.iaArray(arr1));//如果arr是数组，返回true，否则返回false
+
+
+13.数组对象的方法，十个，必须牢记
+
+14.日期对象的方法，get。。。，set。。。 getTime（）等，必须牢记
+

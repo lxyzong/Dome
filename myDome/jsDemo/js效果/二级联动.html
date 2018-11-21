@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+	</head>
+
+	<body>
+		<form action="" name="myform">
+			<select name="sheng">
+				<option value="">请选择省份</option>
+			</select>
+			<select name="shi">
+				<option value="">请选择城市</option>
+			</select>
+		</form>
+		<script>
+			var obj = {
+				name: "232",
+				age: 34
+			}
+
+			var myform = document.myform;
+			var sheng = myform.sheng;
+			var shi = myform.shi;
+
+			var arr = [
+				["西藏", "日喀则", "林芝"],
+				["广西", "桂林", "南宁"]
+			];
+
+			sheng.onfocus = function() {
+				sheng.innerHTML = "<option value=''>请选择省份</option>"
+				shi.innerHTML = "<option value=''>请选择城市</option>"
+				for(var i = 0; i < arr.length; i++) {
+					var op = document.createElement("option");
+					op.innerHTML = arr[i][0];
+					sheng.appendChild(op);
+				}
+			}
+			sheng.onchange = function() {
+				var index = sheng.selectedIndex - 1;
+				for(var i = 1; i < arr[index].length; i++) {
+					var op = document.createElement("option");
+					op.innerHTML = arr[index][i];
+					shi.appendChild(op);
+				}
+			}
+		</script>
+	</body>
+
+</html>

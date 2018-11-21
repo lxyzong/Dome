@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		 要在元素内写  draggable=true   就可实现拖拽<br />
+		被拖拽的元素事件：
+		          ondragstart   拖拽前触发
+		          ondrag        拖拽前，拖拽结束之间，连续触发
+		          ondragend     拖拽结束触发
+		
+		目标元素事件：
+		        dragenter       进入目标元素触发
+		        dragover        进入目标，离开目标之间，连续触发
+		        dragleave       离开目标元素触发
+		        drop            在目标元素上释放鼠标触发
+		        
+		 drop触发的时候要给目标元素的 dragover设置取消默认事件
+		        1. ev。perveentDefault（）
+	 	        2.直接定义方法里写  return  false
+		 
+		解决火狐拖拽的问题：
+		                 用dataTransfer 除图片外的元素
+		               语法：ev.dataTransfer.setData("key","value")
+		                         getData("key") 通过它可获取它的value的值
+	    
+	    第二用途
+	      1.改变光标样式
+	           ev.dataTransfer.effectAllowed() 里面可以写：none,copy,copyLink,copyMove,link,linkMOve,move
+	      
+	      2.鼠标后的图片
+	           ev,.dataTreansfer.setDraglimage(img.x.y)
+		               
+		        
+		        
+		      
+		      
+		      
+		
+	</body>
+</html>

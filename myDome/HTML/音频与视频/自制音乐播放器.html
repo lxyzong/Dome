@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style>
+			span {
+				display: block;
+				width: 300px;
+				height: 20px;
+				background-color: #CCCCCC;
+				border-radius: 20px;
+				margin-bottom: 10px;
+				position: relative;
+			}
+			
+			b {
+				display: inline-block;
+				width: 50px;
+				height: 20px;
+				border-radius: 20px;
+				background-color: black;
+				position: absolute;
+			}
+			
+			h1 {
+				font-size: 1.5rem;
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>像风一样自由.mp3</h1>
+		<audio src='./音乐/像风一样自由.mp3' autoplay></audio>
+		<span><b></b></span>
+		<span><b></b></span>
+		<button>播放</button>
+		<button>暂停</button>
+		<button>重新加载</button>
+		<br><br>
+		<button>音量+</button>
+		<button>音量-</button>
+		<button>静音</button>
+		<br><br>
+		<button>下一首</button>
+		<button>上一首</button>
+
+	</body>
+	<script>
+		var arr = [
+			"韩安旭 - 多幸运.mp3",
+			"海生 - 情一动心就痛.mp3",
+			'成都.mp3',
+			'崔子格 - 卜卦.mp3',
+			'小沈阳、汤潮 - 美了美了.mp3',
+			'韩安旭 - 多幸运.mp3',
+			'童话-光良.mp3',
+			'乌兰图雅 - 草原一枝花.mp3',
+			'信乐团 - 海阔天空.mp3',
+			'孙露 - 不想回家的女人.mp3',
+			" 李玉刚 - 新贵妃醉酒.mp3"
+		]
+		var oBut = document.querySelectorAll("button");
+		var oH = document.querySelector("h1");
+		var oSpan = document.querySelectorAll("span");
+		var oB = document.querySelectorAll("b");
+		var oAudio = document.querySelector("audio");
+
+		oB[0].onmousedown = function(ev) {
+			var ev = ev || event;
+			var jiuleft = ev.clientX - oB[0].offsetLeft;
+			oSpan[0].onmousemove = function(ev) {
+				var ev = ev || event;
+				var xinleft = ev.clientX - jiuleft;
+				oB[0].style.left = xinleft + "px";
+				if(xinleft < 0) {
+					oB[0].style.left = 0;
+				};
+				if(xinleft > 250) {
+					oB[0].style.left = 250 + 'px';
+				};
+				var a = xinleft / 300;
+				oAudio.currentTime = a * oAudio.duration;
+			}
+			oB[0].onmouseup = function() {
+				oSpan[0].onmousemove = oB[0].onmouseup = null;
+			}
+		}
+
+		// 自动滑动功能  用已播放的时间/总时间在乘以总距离就是当前b的left	
+		oAudio.ontimeupdate = function() {
+			oB[0].style.left = oAudio.currentTime / oAudio.duration * 250 + "px";
+		}
+		oB[1].onmousedown = function(ev) {
+			var ev = ev || event;
+			var jiuleft = ev.clientX - oB[1].offsetLeft;
+			oSpan[1].onmousemove = function(ev) {
+				var ev = ev || event;
+				var xinleft = ev.clientX - jiuleft;
+				oB[1].style.left = xinleft + "px";
+				if(xinleft < 0) {
+					oB[1].style.left = 0;
+				};
+				if(xinleft > 250) {
+					oB[1].style.left = 250 + 'px';
+				};
+				oAudio.volume = xinleft / 250;
+			}
+			oB[1].onmouseup = function() {
+				oSpan[1].onmousemove = oB[1].onmouseup = null;
+			}
+		}
+		oB[1].style.left = oAudio.volume * 250 + "px";
+		oBut[0].onclick = function() {
+			oAudio.play();
+		}
+		oBut[1].onclick = function() {
+			oAudio.pause();
+		}
+		oBut[2].onclick = function() {
+			oAudio.load();
+		}
+		oBut[3].onclick = function() {
+			oAudio.volume += 0.2;
+			oB[1].style.left = oAudio.volume * 250 + "px";
+		}
+		oBut[4].onclick = function() {
+			oAudio.volume -= 0.2;
+			oB[1].style.left = oAudio.volume * 250 + "px";
+		}
+		oBut[5].onclick = function() {
+			oAudio.muted = !oAudio.muted;
+			if(oAudio.muted == true) {
+				oBut[5].innerHTML = '静音';
+			} else {
+				oBut[5].innerHTML = '有音';
+			}
+		}
+		var num = 0;
+		oBut[6].onclick = function() {
+			num++;
+			if(num == arr.length) {
+				num = 0
+			};
+			oAudio.src = '音乐/' + arr[num];
+			oH.innerHTML = arr[num];
+			oAudio.play();
+			oB[1].style.left = oAudio.volume * 250 + "px";
+		}
+		oBut[7].onclick = function() {
+			num--;
+			if(num <= 0) {
+				num = arr.length - 1
+			};
+			oAudio.src = '音乐/' + arr[num];
+			oH.innerHTML = arr[num];
+			oAudio.play();
+			oB[1].style.left = oAudio.volume * 250 + "px";
+		}
+	</script>
+
+</html>

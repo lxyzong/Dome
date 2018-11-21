@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<style>
+			* {
+				touch-action: none;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				-webkit-overflow-scrolling: touch;
+			}
+			
+			li {
+				width: 100%;
+				height: 40px;
+				line-height: 40px;
+				font-size: 14px;
+				color: #bbb;
+				text-indent: 4%;
+				margin-bottom: 10px;
+				background: #FFFFFF;
+				border-bottom: 1px solid currentColor;
+			}
+			
+			.scroll {
+				width: 30px;
+				height: 30px;
+				background: red;
+				position: fixed;
+				right: 2%;
+				top: 50%;
+				border-radius: 50%;
+				z-index: 100;
+			}
+			/*div::-webkit-scrollbar,
+			body::-webkit-scrollbar {
+				display: none
+			}*/
+			.mui-pull-caption-down{
+				color: blue;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="">
+					<li v-for="(val,index) in arr" @tap="skiepage(index)">{{val}}</li>
+				</ul>
+			</div>
+			<div class="scroll" @tap="scroll($event)"></div>
+		</div>
+		<script src="mui.min.js"></script>
+		<script src="vue.min.js"></script>
+		<script src="jquery-2.1.4.min.js"></script>
+		<script>
+			new Vue({
+				el: "#refreshContainer",
+				data: function() {
+					return {
+						arr: []
+					}
+				},
+				created: function() {
+					this.refresh();
+					this.setTime()
+				},
+				methods: {
+					refresh: function() {
+						var that = this;
+						var oUl = document.querySelector("ul");
+						mui.init({
+							pullRefresh: {
+								container: "#refreshContainer", //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+								up: {
+									height: 80, //可选.默认50.触发上拉加载拖动距离
+									auto: true,
+									contentdown:"查看更多",
+									contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+									contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+									callback: function() {
+										var oLi = document.querySelectorAll("li");
+										if(oLi.length == 30) {
+											mui('#refreshContainer').pullRefresh().endPullupToRefresh(true); //表示没有数据
+											mui('#refreshContainer').pullRefresh().refresh(false); //禁止上拉控件
+										} else {
+											setTimeout(function() {
+												for(var i = 1; i < 6; i++) {
+													that.arr.push(i)
+												}
+												mui('#refreshContainer').pullRefresh().endPullupToRefresh(true); //表示数据没了
+												mui('#refreshContainer').pullRefresh().refresh(true); //重置上拉控件
+											}, 1000);
+										}
+									}
+								}
+							}
+						});
+					},
+					setTime: function() {
+						//						$(document).scroll(function() {
+						//
+						//						})
+						mui('.mui-scroll-wrapper').scroll({
+							deceleration: 0.1, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值 0.0006 
+							indicators: false //隐藏一条滚动条 增大减速系数。。。
+						});
+					},
+					scroll: function(event) {
+						event.preventDefault();
+						mui('#refreshContainer').pullRefresh().scrollTo(1, 1, 500);
+					},
+					skiepage: function(index) {
+						alert(index);
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+	</head>
+
+	<body>
+		<p class="p">11111</p>
+		<script src="jquery-2.1.4.min.js"></script>
+		<script>
+			function deviceEnvCheck() {
+				var ua = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
+				if(/MicroMessenger/gi.test(ua)) {
+					return 'wechat';
+				}
+				if(/WeiBo/gi.test(ua)) {
+					return 'weibo';
+				}
+				if(/QQ/gi.test(ua)) {
+					return 'qq';
+				}
+				if(/(iPhone|iPad|iPod|iOS)/gi.test(ua)) {
+					return 'ios';
+				}
+				if(/mozilla/gi.test(ua)) {
+					return 'browser';
+				}
+			}
+			var a = deviceEnvCheck();
+			$('.p').html(a);
+		</script>
+	</body>
+
+</html>

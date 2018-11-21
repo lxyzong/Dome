@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.1.4.min.js"></script>
+	<style>
+	*{margin: 0;padding: 0;}
+	img{width: 300px;height: 200px;}
+	li{width:300px;height:200px;list-style: none;position: absolute;display: none;}
+	ul{width:300px;height: 200px;}
+	#content{width:300px;height: 200px;position: relative;}
+
+	#flag{position: absolute;top: 170px;left: 100px;}
+	#flag span{display: inline-block;background: red;height: 15px;width:15px;border-radius: 50%;text-align: center;line-height: 15px;}
+	</style>
+</head>
+<body>
+	<div id="content">
+		<ul>
+			<li style="display: block;"><img src="1.jpg" alt=""></li>
+			<li>11111</li>
+			<li>2222</li>
+			<li>33333</li>
+		</ul>
+		
+		<div id="flag">
+			<span style="background: #000;">1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+		</div>
+	</div>
+
+
+</body>
+
+<script>
+var timer=null;
+var num=0;		//初始变量
+timer=setInterval(move,3000);
+
+$('#content').hover(function(){
+	clearInterval(timer);
+},function(){
+	timer=setInterval(move,3000);
+})
+
+function move(){
+	$('li').eq(num).stop().fadeOut(3000);
+	
+	num++;	//让下标逐渐增加
+	if(num==4){	//如果下标增加到4了，就变成0 
+		num=0;
+	}
+	$('li').eq(num).stop().fadeIn(3000);
+	$('span').eq(num).css('background','#000').siblings().css('background','');
+}
+
+//因为move函数里的num与下面的点击span时获得的index不一样，才导致有 bug产生，那么解决办法就是让这两个变量的值变成相等的， 怎么变呢，其实就是把下面span的下标也赋给Num这个 变量。
+$('span').click(function(){
+	clearInterval(timer);
+	num=$(this).index();	//当前点击的span的下标
+	$('li').eq(num).fadeIn(3000).siblings().fadeOut(3000);
+	$(this).css('background','#000').siblings().css('background','');
+})
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      div{
+          width: 100px;
+          height: 100px;
+          background-color: #ae4d1d;
+          /*过渡属性*/
+          transition: 3s;
+      }
+      div:hover{
+          /*位移*/
+          transform: translate(400px,400px) scale(2,2);
+      }
+
+
+      img{
+          /*过渡属性*/
+          transition: 2s;
+      }
+        img:hover{
+            /*旋转 正度数表示顺时针旋转 负度数表示逆时针旋转*/
+            /*transform: translate(300px) rotate(360deg) scale(2,2);*/
+          /*缩放*/
+            /*transform: scale(2,2);*/
+           /*倾斜*/
+            transform: skew(-45deg,-45deg);
+        }
+    </style>
+</head>
+<body>
+    <div>
+    </div>
+
+    <img src="1.jpg" alt="">
+</body>
+</html>

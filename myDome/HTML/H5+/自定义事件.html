@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Camera Example</title>
+
+	</head>
+
+	<body>
+		<script>
+			window.onload = function() {
+				window.addEventListener('inputChange', function(event) { //监听这个自定义事件动没动
+					console.log(event.detail);
+				});
+				myBord.init(); //使用
+			};
+			(function() {
+				window['myBord'] = {};
+
+				function init() {
+					myBord.inputChangeEvt = document.createEvent('Event'); //创建一个事件
+					myBord.inputChangeEvt.initEvent('inputChange', true, true); //初始化事件,给定事件名字
+					//初始化一下数据
+					myBord.inputChangeEvt.detail = {
+						TranslateX: '0.00',
+						TranslateY: '0.00',
+						TranslateZ: '0.00',
+						RotateX: '0.00',
+						RotateY: '0.00',
+						RotateZ: '0.00',
+						Scale: '1.00'
+					};
+					try {
+						window.dispatchEvent(myBord.inputChangeEvt); //触发自定义inputChangeEvt事件
+					} catch(e) {
+						console.error(e);
+					}
+				}
+				window['myBord']['init'] = init;
+			})();
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+		<script src="vue-router.js"></script>
+		<Style>
+			*{
+				list-style: none;
+			}
+		</Style>
+	</head>
+	<body>
+		<div id="box">
+			<a v-link="{path:'/home'}">home</a>
+			<a v-link="{path:'/time'}">time</a>
+			<router-view></router-view>
+		</div>
+	 <template id="home">
+	 	<h1>this is home</h1>
+	 	<div>
+	 		 <ul>
+	 		   <li><a v-link="{path:'/home/home1'}">home1</a></li>
+	 		   <li><a v-link="{path:'/home/home2'}">home2</a></li>
+	 		 </ul>
+	 	</div>
+	 	<div>
+	 		<router-view></router-view>
+	 	</div>
+	 </template>
+	 <template id="time">
+	 	<h1>this is time</h1>
+	 </template>
+	</body>
+	<script>
+		window.onload=function(){
+			var app=Vue.extend();
+			var Router=new VueRouter();
+			var home=Vue.extend({
+				template:"#home"
+			});
+			var time=Vue.extend({
+				template:"#time"
+			});
+			
+			Router.map({
+				"home":{
+					component:home,
+					subRoutes:{
+						"home1":{
+							component:{
+							   template:"<h1>this is home1</h1>"
+							}
+						},
+						"home2":{
+							component:{
+							   template:"<h1>this is home2</h1>"
+							}
+						}
+					}
+				},
+				"time":{
+					component:time
+				}
+			})
+			Router.start(app,"#box")
+			Router.redirect({
+				"/":"home"
+			})
+		}
+		
+		
+	</script>
+</html>

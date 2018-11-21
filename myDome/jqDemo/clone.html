@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+	<body>
+		<div>
+			 <button class="But">Button</button>
+		</div>
+	</body>
+	<script src="jquery-2.1.4.min.js"></script>
+	<script>
+		$(".But").click(function(){
+			$('div').append($(this).clone(true))
+		})
+	</script>
+</html>

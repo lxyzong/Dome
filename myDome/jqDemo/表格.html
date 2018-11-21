@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script type="text/javascript" src='jquery-2.1.4.min.js'></script>
+		<style type="text/css">
+			table {
+				width: 600px;
+			}
+			
+			tr {
+				width: 500px;
+				height: 30px;
+			}
+			
+			td {
+				width: 400px;
+				height: 30px;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		姓名：<input type="text" class="xm"> 年龄：
+		<input type="text" class="nl"> 专业：
+		<input type=" text" class="zy">
+		<button class="a1">添加</button><br><br>&nbsp&nbsp&nbsp
+		<br>
+		<table cellpadding="0" cellspacing="0" border="1">
+			<tr>
+				<td>序号</td>
+				<td><input type="checkbox" class='qx'>全选</td>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>专业</td>
+				<td>删除</td>
+			</tr>
+		</table><br>
+		<button class="a2">全部删除</button>
+		<button class="a3">选中删除</button>
+		<button class="a4">倒着删除</button>
+		<input type="text" class="sk">
+		<button class="ss">搜索</button>
+		<br>
+	</body>
+	<script type="text/javascript">
+		$(".a1").click(function() {
+
+			$("<tr>" + "<td>" + id() + "</td>" + "<td>" + "<input type='checkbox' class='qb'>" + "</td>" + "<td>" + $(".xm").val() + "</td>" + "<td>" + $(".nl").val() + "</td>" + "<td>" + $(".zy").val() + "</td>" + "<td>" + "<a href='#' name='remove'>删除</a>" + "</td>" + "</tr>").appendTo("table");
+			$(".xm").val("");
+			$(".nl").val("");
+			$(".zy").val("");
+			// 单行删除
+			$("a[name=remove]").click(function() {
+				$(this).parent().parent().remove()
+			});
+		})
+		//倒着删除
+		$(".a4").click(function() {
+			$("tr:eq(1)").last().remove();
+		})
+		//全部删除
+		$(".a2").click(function() {
+			$("tr:gt(0)").remove()
+		})
+		//全选按钮
+		$(".qx").click(function() {
+			var $qx = $(".qx").prop("checked");
+			$(".qb").prop("checked", $qx)
+		})
+		//选中删除
+		$(".a3").click(function() {
+			$(".qb:checked").parent().parent().remove()
+
+		})
+		//序号
+		function id($num) {
+			var $num = 1;
+			$('tr:gt(0)').each(function() {
+				$(this).children().first().html($num++);
+
+			})
+			return $num;
+		}
+
+		//搜索框
+		$(".ss").click(function() {
+			$("tr").css("background", "")
+			var $text = $(".sk").val();
+			if($text == '') {} else {
+				$("tr:contains(" + $text + ")").css("background", "red")
+				if($("tr:contains(" + $text + ")").length == 0) {
+					alert("搜索不到")
+				}
+			}
+			$(".sk").val("")
+		})
+	</script>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>分页练习</title>
+		<script src="Vue.js"></script>
+	    <script src="vue-router.js"></script>
+	    <style>
+	    	.v-link-active{
+	    		color: red;
+	    		font-size: 20px;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<div id="box">
+			 <ul>
+			 	<li><a v-link="{path:'/index'}">index</a></li>
+			 	<li><a v-link="{path:'/home'}">home</a></li>
+			 </ul>
+			 <router-view></router-view>
+		</div>
+		<template id="txt">
+			<h1>my is txt</h1>
+		</template>
+	</body>
+	<script>
+		var Home=Vue.extend({
+			template:"<h1>我是home</h1>"
+		});
+		var Index=Vue.extend({
+			template:"#txt"
+		})
+		var App=Vue.extend({});
+		
+		//配置路由
+		 var Router=new VueRouter();
+		 Router.map({
+		 	'index':{
+		 		component:Index
+		 	},
+		 	'home':{
+		 		component:Home
+		 	}
+		 })	 
+	     //开启路由
+		 Router.start(App,'#box');
+		 //默认显示的页面
+		 Router.redirect({
+		 	'/':'index'
+		 })
+		 
+	</script>
+</html>

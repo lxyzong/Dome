@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="resourse/js/angular.js"></script>
+	</head>
+	<body ng-app="app">
+		<div ng-controller="ctl">
+			{{name}}
+			<div ng-controller="ct2">
+			  <button ng-click="get2('传递成功	')">改变</button>
+			  {{name}}
+		    </div>
+		</div>
+		
+		
+		
+	</body>
+	<script>
+		var app=angular.module("app",[]);
+		app.controller("ctl",function($scope){
+			$scope.name="父级元素";
+			$scope.$on("prov",function(e,obj){
+				$scope.name=obj.name
+			})
+		})
+		app.controller("ct2",function($scope){
+			$scope.get2=function(name){
+				var obj={name:"自己",age:12}
+				$scope.$emit("prov",obj)
+			}
+		})
+	</script>
+</html>

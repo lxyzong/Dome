@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript" src="../js/react.min.js"></script>
+	<script type="text/javascript" src="../js/react-dom.min.js"></script>
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script type="text/babel" >
+	var a=0;
+	 ReactDOM.render(
+       <div>{a==0?'我':'你'}</div>,
+       document.getElementById("box")
+	 )
+
+
+</script>
+</html>

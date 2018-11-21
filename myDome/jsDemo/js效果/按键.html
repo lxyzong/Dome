@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+
+	<body>
+		<input type="text" />
+		<ul class="ul" id="oUl">
+			<li>11</li>
+			<li>12</li>
+			<li>13</li>
+			<li>14</li>
+		</ul>
+		<div>
+			
+		</div>
+	</body>
+	<script src="jquery-3.1.1.js"></script>
+	<script>
+		$("input").keyup(function(event) {
+			event = (event) ? event : ((window.event) ? window.event : "")
+			keyCode = event.keyCode ? event.keyCode : (event.which ? event.which : event.charCode);
+			if(event.keyCode == 13) {
+				console.log("13")
+			}
+		})
+//     $("ul").delegate("li","click",function(){
+//     	 console.log($(this).text())
+//     })
+
+        var oUl=document.getElementsByClassName("ul");
+        oUl[0].onclick=function(event){
+        	var ev= event.target || window.event;
+        	if(ev.nodeName.toLocaleLowerCase()=="li"){
+        		console.log(ev.innerHTML)
+        	}
+        }
+    
+	</script>
+
+</html>

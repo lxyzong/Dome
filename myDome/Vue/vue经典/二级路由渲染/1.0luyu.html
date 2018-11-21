@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/Vue1.0.js"></script>
+		<script src="../js/vue-router.js"></script>
+		<style>
+			.v-link-active{
+				color: red;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			 <ul>
+			 	 <li>
+			 	 	<a v-link="{path:'/one'}">one</a>
+			 	 </li>
+			 	 <li>
+			 	 	<a v-link="{path:'two'}">two</a>
+			 	 </li>
+			 </ul>
+			 <div>
+			 	<router-view></router-view>
+			 </div>
+		</div>
+	</body>
+	<template id="one">
+		<div>
+			<h1>我是one页面</h1>
+			<ul>
+				<li>
+					<a v-link="{path:'/one/yi'}">one/yi</a>
+				</li>
+				<li>
+					<a v-link="{path:'/one/er'}">one/er</a>
+				</li>
+			</ul>
+			<router-view></router-view>
+		</div>
+	</template>
+	<template id="two">
+		<div>
+			<h1>我是two页面</h1>
+			<ul>
+				<li>
+					<a v-link="{path:'/two/yi'}">two/yi</a>
+				</li>
+				<li>
+					<a v-link="{path:'/two/er'}">two/er</a>
+				</li>
+			</ul>
+			<router-view></router-view>
+		</div>
+	</template>
+	<script>
+		 var App=Vue.extend();
+		 var One=Vue.extend({
+		 	template:"#one"
+		 })
+		 var Two=Vue.extend({
+		 	template:"#two"
+		 })
+		 var Router=new VueRouter({});
+		 Router.map({
+		 	 "/one":{
+		 	 	component:One,
+		 	 	subRoutes:{
+		 	 		'/yi':{
+		 	 			component:{
+		 	 				template:"<h1>我是one中一页面</h1>"
+		 	 			}
+		 	 		},
+		 	 		'/er':{
+		 	 			component:{
+		 	 				template:"<h1>我是one中er页面</h1>"
+		 	 			}
+		 	 		}
+		 	 	}
+		 	 },
+		 	 "/two":{
+		 	 	component:Two,
+		 	 	subRoutes:{
+		 	 		'/:id':{
+		 	 			component:{
+		 	 				template:"<h1>我是two中一页面</h1>"
+		 	 			}
+		 	 		}
+		 	 	}
+		 	 }
+		 })
+		 Router.start(App,"#box")
+		 Router.redirect({
+		 	'/':'one'
+		 })
+		 new Vue({
+		 	el:"#box",
+		 	data:{
+		 		
+		 	}
+		 })
+	</script>
+</html>

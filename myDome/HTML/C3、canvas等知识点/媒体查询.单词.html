@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+      响应式设计主要方法是使用css 的媒体查询。
+
+      语法：
+          @media 媒体类型  and （媒体特性）{
+
+            样式代码
+          }
+       列如：5.
+
+
+       @media screen and (min-width:960px){    
+　　     body{        
+　　　　      background: #dcdcdc;    
+　　      } 
+
+   媒体类型有：
+      all 所有设备
+      braille 盲人触觉回馈设备
+      embossed 盲人打印机
+      print 打印设备
+      projection 投影设备
+      tv 电视机设备
+      screen 电脑显示器
+      handheld 手持设备
+
+   媒体特性：
+        min-width 屏幕最小值
+        max-width 屏幕最大值
+        device-width 屏幕可视宽度
+        orientation：portrait |landscape
+                   portrait：高大于宽时
+                   landscape：宽大于高时
+      
+
+      and 关键词用来把多个 媒体属性 组合成一条媒体查询。只有当每个属性都为真时，结果才为真。
+
+</body>
+</html>

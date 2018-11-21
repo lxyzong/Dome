@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-3.1.1.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				font: "微软雅黑";
+			}
+			
+			.aihao {
+				width: 500px;
+				height: 150px;
+				border: 1px solid red;
+				border-radius: 10px 10px 10px 10px;
+			}
+			
+			.aihao div {
+				width: 80px;
+				height: 50px;
+				text-align: center;
+				line-height: 50px;
+				background: palegoldenrod;
+				font-size: 30px;
+				border-radius: 5px 5px 5px 5px;
+				float: left;
+				margin: 10px 10px;
+			}
+			
+			.shou {
+				width: 500px;
+				height: 150px;
+				border: 1px solid red;
+				border-radius: 10px 10px 10px 10px;
+			}
+			
+			.shou div {
+				width: 80px;
+				height: 50px;
+				text-align: center;
+				line-height: 50px;
+				background: palegoldenrod;
+				font-size: 30px;
+				border-radius: 5px 5px 5px 5px;
+				float: left;
+				margin: 10px 10px;
+			}
+			
+			.shan {
+				width: 500px;
+				height: 150px;
+				border: 1px solid red;
+				border-radius: 10px 10px 10px 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h2>兴趣爱好：</h2>
+		<div class="aihao">
+			<div>吃</div>
+			<div>喝</div>
+			<div>嫖</div>
+			<div>赌</div>
+			<div>抽</div>
+			<div>坑</div>
+			<div>蒙</div>
+			<div>拐</div>
+			<div>骗</div>
+			<div>偷</div>
+		</div>
+		<h2>收藏兴趣爱好</h2>
+		<div class="shou"></div>
+		<h2>删除收藏的爱好</h2>
+		<div class="shan"></div>
+	</body>
+	<script>
+		var oDiv = document.querySelectorAll(".aihao div");
+		var div_shou = document.querySelector(".shou");
+		var div_shan = document.querySelector('.shan');
+		for(var i = 0; i < oDiv.length; i++) {
+			//oDiv[i].index=i
+			oDiv[i].draggable = "true";
+			oDiv[i].ondragstart = function(ev) {
+				num = this
+				// var ev=ev||event;
+				// ev.dataTransfer.setData('name',this.index)
+			}
+		}
+		div_shou.ondrop = function(ev) {
+			//var ev=ev||event;
+			//var num=ev.dataTransfer.getData('name');
+			//var now=oDiv[num].cloneNode(true)		 	 var now=num.cloneNode(true)
+			this.appendChild(num);
+			num.ondragstart = function() {
+				num = this;
+			}
+		}
+		div_shan.ondrop = function() {
+			num.parentNode.removeChild(num)
+
+		}
+		div_shou.ondragover = div_shan.ondragover = function() {
+			return false;
+		}
+
+	</script>
+
+</html>

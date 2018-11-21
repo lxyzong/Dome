@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	 思路：创建一个img标签     添加路径   图片预览加载，在onload中定义一个函数
+	   1.在画布上定义图像      .drawimage(img,x,y)
+	   2.在画布上定义图像并设置宽高      .drawimage(img,x,y,width,height)
+       3.剪切图片并在画布上设置  .drawimage(img,开始剪切的x坐标，y坐标，要剪切的width，height，画布上x，y，widht，height)
+	  列如：
+	    	<!--var canvas=document.querySelector("canvas");
+			var ote=canvas.getContext("2d");
+			
+			var img=document.createElement("img")
+			 img.src="6.9周末作业/演示002/1.jpg";
+			 
+			 img.onload=function(){
+			 	   //ote.drawImage(img,100,100)   
+			 	   
+			 	//ote.drawImage(img,110,0,100,100,100,20,400,200)
+			 }
+			-->
+	设置背景
+	      createpattern(img,平铺方式)  repeat,repeat-x,repeat-y,no-repeat)
+	      
+	 canvas渐变
+	      1.线性渐变
+	             createLinearGreadient(起始x，y,结束x,y)
+	             addColorStop(位置，颜色)
+		  2.放射性渐变（圆）
+		          createRadialGreadient(第一个圆的x,y,半径,第二圆的x,y,半径)
+		          
+    canvas 文本
+           stroteText(文字，x,y) 文字边框
+           fillText(文字,x,y) 文字填充
+           font："大小   字体"
+           textAlige  水平对齐方式  end right  center
+           textBaseLine 垂直对齐方式   top middle bootom 
+           
+           
+           
+          阴影
+        shadowOffsetx
+        shadowOffsety
+        shadowBlur  模糊值
+        shadowColor 阴影颜色
+    
+		
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-3.1.1.js"></script>
+	</head>
+	<body>
+		<span></span>:<span></span>:<span></span>
+		<script>
+			setInterval(function(){
+							var date=new Date();
+			$("span").eq(0).html(date.getHours())
+			$("span").eq(1).html(date.getMinutes())
+			$("span").eq(2).html(date.getSeconds())
+			},1000)
+
+		</script>
+	</body>
+</html>

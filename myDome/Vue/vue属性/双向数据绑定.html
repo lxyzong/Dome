@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Vue.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<input type="text" v-model='mgs' /> <br />
+			{{mgs}} <br />
+		    {{*mgs}}  如果加个*就不会改变值了。 <br />
+		</div>
+	</body>
+	<script>
+		window.onload=function(){
+			
+		  new Vue({
+			  el:'#box',
+			  data:{
+				 mgs:'I love You'
+			  }
+		  })	
+		}
+		
+		
+	</script>
+</html>

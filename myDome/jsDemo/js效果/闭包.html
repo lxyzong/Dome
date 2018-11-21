@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div style="border:1px solid red;width: 100px ; height: 100px;padding: 100px; "></div>
+	</body>
+	<script>
+		function foo(x) {
+		    var tmp = 3;
+		    function bar(y) {
+		        alert(x + y + (++tmp));//在我这 传参值  作用域值   函数传参值  我都可以访问
+		    }
+		    bar(10);
+		}
+		foo(2);
+		
+		/*function foo(x) {
+		    var tmp = 3;
+		    return function (y) {
+		        alert(x + y + (++tmp));
+		    }
+		}
+		var bar = foo(2); // bar 现在是一个闭包     alert(2 + 10 + (++3));
+		bar(10);*/
+		/*第一种*/
+		function Circle(r) {  
+          this.r = r;  
+		}  
+		Circle.prototype.PI = 3.14159;  
+		Circle.prototype.area = function()
+		{    
+			return Circle.prototype.PI * this.r * this.r;
+		}  
+		var c = new Circle(1.0);     
+		alert(c.area());
+		/*第二种*/
+        var Circle = function() {  
+			 obj = new Object(); 
+			 var PI = 3.14159;  
+			 obj.area = function(r) { 
+			 		 return PI * r * r; 
+			  }	
+			 return obj
+			
+		};
+		 var c = new Circle();  
+		 alert(c.area( 1.0 ) );
+		/*第五种*/
+	 	var Circle = new Function("this.PI = 3.14159;this.area = function( r ) {return r*r*this.PI;}"); 
+	 	alert( (new Circle()).area(1.0) );
+	
+		/*第三种*/
+		 var Circle = new Object();  
+		 Circle.PI = 3.14159;  
+		 Circle.Area = function( r ){
+		 	return this.PI * r * r;  
+		  }
+		  alert(Circle.Area( 1.0 ));
+	 
+	    /*第四种*/
+	    var Circle={  
+	 	PI:3.14159, 
+	 	area:function(r){
+	 	   return this.PI * r * r; 
+	 		}
+	 	}
+	 	alert(Circle.area(1.0) );
+	 	
+	
+	
+	</script>
+</html>

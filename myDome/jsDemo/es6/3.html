@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+</body>
+<script>
+	//		var a=[1,2,34,];
+	//		console.log(a.reduce(function(x,y){
+	//			 return x+y
+	//		}))
+
+	//		function make_pow(n) {
+	//			return function(x) {
+	//				return Math.pow(x, n);
+	//			}
+	//		}
+	//		var a=make_pow(3);
+	//		console.log(a(2));
+
+	// var obj = {
+	// 	birth: 2000,
+	// 	getAge: function () {
+	// 		var b = this.birth; // 1990
+	// 		var fn = function () {
+	// 			var year = new Date().getFullYear() - b;
+	// 			return year;  // this指向window或undefined
+	// 		};
+	// 		return fn();
+	// 	}
+	// };
+	// var year = obj.getAge();
+	// console.log(year);
+
+	var arr = [1, 2, 3, 4, 4, 4, 4, 2, 23, 1, 4, 4, 1, 1, 1, 1];
+	var s = [...new Set(arr)];
+	console.log(s);
+	for (var item of s) {
+		console.log(item)
+	}
+</script>
+
+</html>

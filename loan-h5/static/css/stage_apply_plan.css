@@ -1,0 +1,115 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+.body {
+	width: 100%;
+	height: 100%;
+	background: #EFEFEF;
+}
+
+.header {
+	width: 100%;
+	height: 1.23rem;
+	background: #FFDB45;
+}
+
+.header .title {
+	display: block;
+	font-size: 0.13rem;
+	color: #333333;
+	padding-left: 0.185rem;
+	padding-top: 0.14rem;
+}
+
+.header p {
+	height: 0.3rem;
+	line-height: 0.3rem;
+	padding-left: 0.16rem;
+	background: #FCD431;
+	font-size: 0.12rem;
+	color: #333333;
+}
+
+.header .money {
+	font-family: PingFangSC-Medium;
+	font-size: 0.34rem;
+	color: #333333;
+	line-height: 0.28rem;
+	margin: 0.14rem 0 0.19rem 0;
+	padding-left: 0.16rem;
+}
+
+.main {
+	width: 100%;
+	background: white;
+	margin: 0.1rem 0;
+}
+
+.main .title_p {
+	height: 0.4rem;
+	line-height: 0.4rem;
+	font-size: 0.14rem;
+	color: #333333;
+	padding-left: 0.16rem;
+	border-bottom: 0.01rem solid #EFEFEF;
+	font-weight: bold;
+}
+
+.main li {
+	height: 0.66rem;
+	padding: 0 0.16rem;
+	border-bottom: 0.01rem solid #EFEFEF;
+	display: box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	-webkit-align-items: center;
+	align-items: center;
+	font-size: 0.14rem;
+	color: #333333;
+}
+
+.main li div:nth-of-type(2) {
+	text-align: right;
+}
+
+.main li div:nth-of-type(2) p {
+	font-family: PingFangSC-Medium;
+	font-size: 0.18rem;
+	color: #333333;
+	margin-bottom: 0.06rem;
+	font-weight: bold;
+}
+
+.main li div:nth-of-type(2) span {
+	font-size: 0.12rem;
+	color: #999999;
+}
+
+.footer {
+	width: 100%;
+	background: white;
+	padding: 0.14rem 0 0.14rem 0.16rem;
+}
+
+.footer p {
+	font-family: PingFangSC-Regular;
+	font-size: 0.12rem;
+	color: #999999;
+	line-height: 0.25rem;
+}
+
+.footer p:last-child {
+	margin-top: 0.21rem;
+}

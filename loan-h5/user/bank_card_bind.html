@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>添加银行卡</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<script src="../static/js/common.js?v=20180421"></script>
+		<link rel="stylesheet" href="../static/css/common/reset.min.css?v=20181011" />
+		<link rel="stylesheet" href="../static/css/bank_card_bind.css?v=2018111" />
+	</head>
+
+	<body>
+		<div class="credit-card">
+			<div class="credit-card-confirm">添加您的银行卡用于收款、还款</div>
+			<div class="credit-card-list">
+				<ul class="clearfix">
+					<li class="clearfix">
+						<label>持卡人</label>
+						<span class="credit-card-input input1" style="line-height: 0.44rem;"></span>
+					</li>
+					<li class="clearfix">
+						<label>卡号</label>
+						<input required class="credit-card-input input3" type="number" maxlength="19" placeholder="请输入银行卡号" />
+					</li>
+					<li class="select-idcard clearfix">
+						<label>银行<img src="../static/img/ic_info.png" id="fee_question"></label>
+						<div class="bank-select1" style="width:90%"></div>
+					</li>
+					<div class="bank_error"></div>
+					<li class="clearfix">
+						<label>手机号</label>
+						<input required class="credit-card-input input4" type="tel" maxlength="11" placeholder="请输入银行预留手机号" />
+					</li>
+				</ul>
+			</div>
+
+			<div class="credit-card-next" style="text-align:center;">
+				<input type="submit" class="credit-card-next-btn" disabled="disabled" value="下一步">
+			</div>
+		</div>
+		<div id="myModal" style="display:none">
+			<img src="../static/img/loading.png">
+		</div>
+		<div class="modal" id="loadingModal" style="display: none">
+			<div class="popup"><img class="photo" src="../static/img/loading.png" alt=""></div>
+		</div>
+		<div class="bank" style="display: none;">
+			<div class="list">
+				<div>
+					<p>支持银行如下：</p>
+					<ul>
+						<li>招商银行</li>
+						<li>浦发银行</li>
+						<li>工商银行</li>
+						<li>华夏银行</li>
+						<li>广发银行</li>
+						<li>交通银行</li>
+						<li>农业银行</li>
+						<li>中信银行</li>
+						<li>兴业银行</li>
+						<li>光大银行</li>
+						<li>建设银行</li>
+						<li>北京银行</li>
+						<li>中国银行</li>
+						<li>上海银行</li>
+						<li>民生银行</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		
+		<script src="../static/js/common/jquery.min.js"></script>
+		<script type="text/javascript" src="../static/js/bridge.js"></script>
+		<script>
+			var token = getToken();
+			var api_url = apiDomain();
+			//			var api_url="http://127.0.0.1:10001/";
+			function getUserName() {
+				$.ajax({
+					url: api_url + "bank_user",
+					type: "post",
+					dataType: "json",
+					data: {
+						token: token
+					},
+					success: function(data) {
+						if(data.status == 2000) {
+							$('.input1').text(data.data.name);
+						}
+					}
+
+				});
+			}
+			getUserName();
+			$(".credit-card-next-btn").click(function() {
+				var cardNo = $(".input3").val()
+				var cardPhone = $(".input4").val()
+				if(cardNo && cardPhone) {
+					$.ajax({
+						url: api_url + "bank_card_code",
+						type: "post",
+						dataType: "json",
+						data: {
+							token: token,
+							cardNo: cardNo,
+							cardPhone: cardPhone
+						},
+						beforeSend: function() {
+							$('#myModal').show();
+						},
+						success: function(data) {
+							if(data.status == 2000) {
+								//								$("#req_data").val(JSON.stringify(data.data));
+								//								$("#form").submit();
+								window.location.href = "bank_card_code.html?token=" + token;
+							} else {
+								$(".bank_error").html(data.message);
+							}
+						},
+						complete: function() {
+							$('#myModal').stop().hide();
+						}
+					});
+				}
+			})
+			$(".input3").on('input', function() {
+				$(".bank_error").html("");
+				var bankno = $(".input3").val();
+				if(/^\d{16,19}$/.test(bankno)) {
+					$.ajax({
+						url: apiDomain() + "bank_name",
+						type: "post",
+						dataType: "json",
+						data: {
+							cardNo: bankno
+						},
+						success: function(data) {
+							if(data.status == 2000) {
+								$(".bank-select1").text(data.data);
+							} else {
+								$(".bank-select1").text(data.message)
+							}
+						}
+					});
+				}
+			})
+			$(".credit-card-list").find('input').on("input", function() {
+				$(".bank_error").html("");
+				if($(".input3").val() != "" && $(".input4").val().length == 11 && $(".bank-select1").text() != "") {
+					$(".credit-card-next-btn").attr("disabled", false);
+					$(".credit-card-next-btn").css("color", "white");
+					$(".credit-card-next-btn").css("background", "#ffb700");
+				} else {
+					$(".credit-card-next-btn").css("background", "#E3E3E3");
+					$(".credit-card-next-btn").attr("disabled", true);
+				}
+			});
+			//银卡卡分类提示
+			$("#fee_question").click(function() {
+				$(".bank").stop().show();
+			});
+			$(".bank").click(function() {
+				$(this).stop().hide();
+			})
+		</script>
+		<form action="https://wap.lianlianpay.com/signApply.htm" method="post" id="form">
+			<input name="req_data" id="req_data" value="" style="display:none;" />
+		</form>
+	</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>借款申请</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<script src="../static/js/common.js"></script>
+		<link rel="stylesheet" href="../static/css/common/reset.min.css" />
+		<link rel="stylesheet" href="../static/css/borrow_details.css" />
+		<link rel="stylesheet" href="../static/css/common/mui.min.css" />
+	</head>
+
+	<body>
+		<div class="borrow-details">
+			<div class="borrow-content clearfix">
+				<ul>
+					<li>
+						<span>借款金额</span>
+						<span id="productMoney"></span>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span>借款期限</span>
+						<span id="productDay"></span>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span id="">综合费用</span>
+						<span id="totalFee"></span>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span>到账金额<img src="../static/img/ic_info.png" id="fee_question"></span>
+						<span id="actualMoney"></span>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span>收款账户</span>
+						<span id="cardNo"></span>
+					</li>
+				</ul>
+			</div>
+			<div class="borrow-btn" data="1">
+				<div class="borrow-word" onclick="apply()">
+					申请下单
+				</div>
+			</div>
+		</div>
+
+		<!-- 提交的loading -->
+		<div class="modal" id="myModal3" style="display:none;">
+			<div class="popup"><img class="photo" src="../static/img/loading.png" /></div>
+		</div>
+		<!-- 回购价描述 -->
+		<div class="modal" id="myModal4" style="display:none;">
+			<div class="popup"></div>
+			<div class="details-dialog1">
+				<div class="modal-content">
+					<div class="details-modal-body fee-msg">
+						到账金额=借款金额-综合费用
+					</div>
+					<div class="modal-footer">
+						<p style="margin-bottom: 0;">知道了</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="data_productId" />
+		<input type="hidden" id="data_productMoney" />
+		<input type="hidden" id="data_productDay" />
+		<script type="text/javascript" src="../static/js/common/jquery.min.js"></script>
+		<script type="text/javascript" src="../static/js/common/mui.min.js"></script>
+		<script type="text/javascript" src="../static/js/bridge.js?v=20180607"></script>
+		<script>
+			$('#fee_question').on('touchend', function(e) {
+				$("#myModal4").css("display", "block");
+			});
+			$('.modal-footer p').on('touchend', function(e) {
+				$(this).parents('.modal').fadeOut(300);
+			});
+			var domain = apiDomain();
+			var webDomain = webDomain();
+			initFee();
+
+			function initFee() {
+				var token = getToken();
+				$.ajax({
+					type: "post",
+					url: domain + "order/order_confirm",
+					dataType: "json",
+					data: {
+						token: token
+					},
+					success: function(result) {
+						if(result.status == 4002) {
+							closeAndOpen(0);
+							closeAndOpen(1);
+//							initFee();
+							return;
+						}
+						if(result.status == 2000) {
+							$("#data_productId").val(result.data.productId);
+							$("#data_productMoney").val(result.data.productMoney);
+							$("#data_productDay").val(result.data.productDay);
+							$("#productMoney").text(result.data.productMoney + "元");
+							$("#productDay").text(result.data.productDay + "天");
+							$("#totalFee").text(result.data.totalFee + "元");
+							$("#actualMoney").text(result.data.actualMoney + "元");
+							$("#cardNo").text(result.data.cardName + "(" + result.data.cardNo + ")");
+						} else {
+							mui.alert(result.message);
+						}
+					}
+				});
+			}
+
+			function apply() {
+				var token = getToken();
+				var deviceMes = getDevice();
+				var arr = deviceMes.split('|'); //截取原生字段
+				$.ajax({
+					type: "post",
+					url: domain + "order/order_submit",
+					dataType: "json",
+					data: {
+						token: token,
+						productId: $("#data_productId").val(),
+						productDay: $("#data_productDay").val(),
+						productMoney: $("#data_productMoney").val(),
+						paramValue: "",
+						phoneModel: arr[1],
+						phoneMemory: arr[2],
+						phoneType: getClientType()
+					},
+					success: function(result) {
+						if(result.status == 4002) {
+							closeAndOpen(1);
+//							initFee();
+							return;
+						}
+						if(result.status == 2000) {
+							//							mui.alert("系统将在1小时内通过审核，给我们的服务五星好评，通过率更高哦~", "提示", function() {
+							//								try {
+							////									goAppStore();
+							//                                  skipPage(1,webDomain+'store_borrowing.html');
+							//								} catch(e) {
+							//									//TODO handle the exception
+							//								}
+							//							});
+							mui.alert("提单成功", "提示", function() {
+								try {
+									closeAndOpen(0); 
+								} catch(e) {
+									//TODO handle the exception
+								}
+							});
+						} else {
+							mui.alert(result.message, "提示", function() {
+								try {
+									closeAndOpen(0); //转到首页
+								} catch(e) {
+									//TODO handle the exception
+								}
+							});
+						}
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

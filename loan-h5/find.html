@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	</head>
+
+	<body>
+		<script type="text/javascript" src="static/js/common.js"></script>
+		<script type="text/javascript" src="static/js/common/jquery.min.js"></script>
+		<script>
+
+			showMarket();
+			function showMarket() {
+				var code = getUserAgentCode();
+				$.ajax({
+					url: apiDomain() + "market/config",
+					type: "post",
+					dataType: "json",
+					data: {
+						code: code
+					},
+					success: function(data) {
+						var url = "help_center.html"
+						if(data.status == 2000) {
+							if(data.data.status){
+								url = "market.html";
+							}
+						}
+						window.location.replace(url);
+					}
+				});
+			}
+
+			function getUserAgentCode() {
+				var ua = navigator.userAgent.toLowerCase();
+//				var ua="mozilla/5.0 (linux; android 7.1.1; od103 build/nmf26f; wv) applewebkit/537.36 (khtml, like gecko) version/4.0 chrome/53.0.2785.97 mobile safari/537.36 agentweb/4.0.2 ucbrowser/11.6.4.950 modfintech/2018 ( malihuishou;_360;4;1.2.0_debug )";
+				if(/iphone|ipad|ipod/.test(ua)) {
+					return "ios";
+				}
+				if(/android/.test(ua)) {
+					var arr=ua.match(/modfintech\/2018 \( (\S*) \)/);
+					if(arr){
+//						alert(arr[1].split(";")[1]);
+						return arr[1].split(";")[1];
+					}
+					return "android";
+				}
+				return "android";
+			}
+			//			function showMarket() {	
+			//				var totalArr=[/iphone|ipad|ipod/,/android/,/tencent/,/xiaomi/,/vivo/,/ali/,/vivo/
+			//				,/huawei/,/samsung/,/oppo/,/chuizi/,/anzhi/,/pc6/,/anfen/,/sogou/,/meizu/,/lenovo/];
+			//				var showArr=[/iphone|ipad|ipod/];//含有关键字的ua，关闭贷款超市
+			//				var ua = navigator.userAgent.toLowerCase();
+			//				for(var i=0;i<showArr.length;i++){
+			//					if(showArr[i].test(ua)){
+			//						return false;
+			//					}
+			//				}
+			//				return true;
+			//			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<link rel="stylesheet" href="../static/css/common/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/stage_error_order.css" />
+		<title>失败订单</title>
+	</head>
+
+	<body>
+		<div class="body">
+			<div class="div_top">
+				<li>
+					<span>借款金额</span>
+					<span>1500元</span>
+				</li>
+				<li>
+					<span>借款日期</span>
+					<span>2018-10-10</span>
+				</li>
+				<li>
+					<span>资金用途</span>
+					<span>个人消费</span>
+				</li>
+				<li>
+					<span>借款方式</span>
+					<span>等额本息</span>
+				</li>
+				<li>
+					<span>还款计划</span>
+					<span>3期（21天）</span>
+				</li>
+				<li>
+					<span>借款协议</span>
+					<span class="look">查看</span>
+				</li>
+			</div>
+			<div class="title">申请进度</div>
+			<div class="div_bottom">
+				<li>
+					<div class="div_flex">
+						<span></span>
+						<p>申请提交成功</p>
+						<p>2017-04-28 14:28</p>
+					</div>
+					<p>申请借款1500.00元，3期21天，每期应还510.35元</p>
+				</li>
+				<li>
+					<div class="div_flex">
+						<span></span>
+						<p>申请提交成功</p>
+						<p>2017-04-28 14:28</p>
+					</div>
+					<p>申请借款1500.00元，3期21天，每期应还510.35元</p>
+				</li>
+			</div>
+		</div>
+	</body>
+	<script src="../static/js/common.js"></script>
+	<script src="../static/js/bridge.js"></script>
+	<script src="../static/js/common/jquery.min.js"></script>
+	<script src="../static/js/common/vue.min.js"></script>
+	<script>
+		$(function() {
+			var domain = apiDomain();
+			var webUrl = webDomain();
+			new Vue({
+				el: ".body",
+				data: function() {
+					return {
+
+					}
+				},
+				methods: {
+
+				}
+			})
+		})
+	</script>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<link rel="stylesheet" href="../static/css/common/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/stage_order_detail.css" />
+		<title>还款详情</title>
+	</head>
+
+	<body>
+		<div class="body">
+			<div class="header">
+				<div class="title display">
+					<span>仍需还款金额(元)</span>
+					<img src="../static/img/ic_problem.png" @click="issue_show()" />
+				</div>
+				<div class="money">￥<b>1800.24</b></div>
+				<p>本金500+手续费123.00+逾期费 120.00</p>
+			</div>
+			<div class="content">
+				<ul>
+					<li>
+						<span>最近还款日</span>
+						<span>2018-10-10</span>
+					</li>
+					<li>
+						<span>资金用途</span>
+						<span>个人消费</span>
+					</li>
+					<li>
+						<span>还款方式</span>
+						<span>等额本息</span>
+					</li>
+					<li>
+						<span>还款计划</span>
+						<span>3期（21天）</span>
+					</li>
+					<li>
+						<span>借款协议</span>
+						<span class="look" @click="look()">查看</span>
+					</li>
+				</ul>
+				<!--还款详情-->
+				<div class="detail" style="display: none;">
+					<button @click="enter()">确定还款</button>
+					<button>提前结清</button>
+				</div>
+				<!--提前结清、已完成订单-->
+				<div class="success" style="display: none;">
+					<div class="title">还款计划</div>
+					<div class="main">
+						<div class="main_boay">
+							<div class="main_div1">
+								<p>2018-11-06</p>
+								<span>(1/3期)</span>
+							</div>
+							<div class="main_div2">
+								<div class="div_flex">
+									<span></span>
+									<p>510.35</p>
+									<span>本期已还</span>
+								</div>
+								<p>本金10元+手续费10元+逾期费12元</p>
+							</div>
+						</div>
+					</div>
+					<div class="but" style="display: none;">
+						<button>提前全部还款</button>
+					</div>
+				</div>
+			</div>
+			<!--还款详情问题-->
+			<div class="issue" @click="issue_hide()" style="display: none;">
+				<div class="is_div">
+					<div class="mm">
+						<p>1、利息按日计算，日费率为0.098%，逾期费率5%</p>
+						<p>2.每期还款金额=(贷款本金*每期利率*(1+每期利率)^还款期数)/((1+每期利率)^还款期数-1)=506.92元</p>
+						<p>3、逾期费用=506.92*5%*(1+5%)^(逾期天数-1)</p>
+						<p>实际以借款相关协议为准</p>
+						<div>知道了</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../static/js/common.js"></script>
+	<script src="../static/js/bridge.js"></script>
+	<script src="../static/js/common/jquery.min.js"></script>
+	<script src="../static/js/common/vue.min.js"></script>
+	<script>
+		$(function() {
+			var domain = apiDomain();
+			var webUrl = webDomain();
+			new Vue({
+				el: ".body",
+				data: function() {
+					return {
+
+					}
+				},
+				mounted:function(){
+					const that=this;
+					this.ajax(that);
+				},
+				methods: {
+					ajax:function(that){
+						
+					},
+					enter: function() {
+						//						skipPage(0,webUrl+"order/store_select_by.html?orderId="+orderId+"&repayMoney="+repayMoney);
+						window.location.href = "order/store_select_by.html?orderId=" + orderId + "&repayMoney=" + repayMoney;
+					},
+					look:function(){
+						
+					},
+					issue_show: function() {
+						$(".issue").show();
+					},
+					issue_hide: function() {
+						$(".issue").hide();
+					}
+				}
+			})
+		})
+	</script>
+
+</html>

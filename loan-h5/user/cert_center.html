@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>认证中心</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<script src="../static/js/common.js?v=20180421"></script>
+    <link rel="stylesheet" href="../static/css/common/reset.min.css?v=20180421" />
+    <link rel="stylesheet" href="../static/font_style/iconfont.css" />
+    <link rel="stylesheet" href="../static/css/certification_center.css?v=2" />
+    <link rel="stylesheet" href="../static/css/common/mui.min.css?v=1" />
+<body>
+<div class="certification-center">
+    <div class="certification-center-title">*温馨提示：请填写真实信息。</div>
+    <div class="certification-center-list1">
+        <ul class="realName clearfix vest" data="">
+            <li class="certificate-img1"></li>
+            <li>
+                <img src="../static/img/ic_real name.png">
+                <p>实名认证</p>
+            </li>
+            <li>
+                <div class="certification-state">
+                    <span class="status-text"></span>
+                    <svg class="icon1" aria-hidden="true">
+                        <use xlink:href="#icon-you"></use>
+                    </svg>
+                </div>
+            </li>
+        </ul>
+        <ul class="liveness clearfix vest" data="">
+            <li class="certificate-img7"></li>
+            <li>
+                <img src="../static/img/ic_face.png">
+                <p>人脸识别</p>
+            </li>
+            <li>
+                <div class="certification-state">
+                    <span class="status-text"></span>
+                    <svg class="icon1" aria-hidden="true">
+                        <use xlink:href="#icon-you"></use>
+                    </svg>
+                </div>
+            </li>
+        </ul>
+        <ul class="userDetails clearfix vest">
+            <li class="certificate-img2"></li>
+            <li>
+                <img src="../static/img/ic_personal information.png">
+                <p>个人信息</p>
+            </li>
+            <li>
+                <div class="certification-state">
+                    <span class="status-text"></span>
+                    <svg class="icon1" aria-hidden="true">
+                        <use xlink:href="#icon-you"></use>
+                    </svg>
+                </div>
+            </li>
+        </ul>
+        <ul class="mobile clearfix vest">
+            <li class="certificate-img6"></li>
+            <li>
+                <img src="../static/img/ic_phone.png">
+                <p>手机认证</p>
+                <div class="fee_question"  onclick="explain(0,event)">
+                   <img src="../static/img/ic_info.png" >
+                </div>
+            </li>
+            <li>
+                <div class="certification-state mobile_renzheng">
+                    <span class="status-text"></span>
+                    <svg class="icon1" aria-hidden="true">
+                        <use xlink:href="#icon-you"></use>
+                    </svg>
+                </div>
+            </li>
+        </ul>
+        <ul class="alipay clearfix vest" data="true">
+            <li class="certificate-img7"></li>
+            <li>
+                <img src="../static/img/ic_Alipay.png">
+                <p>支付宝</p>
+                <div class="fee_question" onclick="explain(1,event)">
+                   <img src="../static/img/ic_info.png" >
+                </div>
+            </li>
+            <li>
+                <div class="certification-state">
+                    <span class="status-text"></span>
+                    <svg class="icon1" aria-hidden="true">
+                        <use xlink:href="#icon-you"></use>
+                    </svg>
+                </div>
+            </li>
+        </ul>
+        
+    </div>
+    <div class="hint" style="display: none;">
+			<div class="list">
+				<div class="div" style="display: none;">
+					<p>手机认证说明：</p>
+					<ul>
+						<li>1、认证过程中请不要中途退出，根据进度条提示等待，一般认证时间在10秒左右；</li>
+						<li>2、长时间显示认证中，退出<b>认证页面然后重新查看</b>或者提交意见反馈至客服； </li>
+					</ul>
+				</div>
+				<div class="div" style="display: none;">
+					<p>支付宝认证说明：</p>
+					<ul>
+						<li>支付宝认证支持 <b>支付宝账号密码登陆 或者 左下角绑定的淘宝会员账号登陆 </b>和扫二维码登陆验证，一般认证时间在10秒左右，请耐心等待！</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+    <div class="borrow-btn">
+        <input type="button" class="borrow-word" style="border:none;display:block;box-shadow:none" value="完成">
+    </div>
+</div>
+<script src="../static/js/common/jquery.min.js"></script>
+<script src="../static/font_style/iconfont.js"></script>
+<script src="../static/js/common/mui.min.js" ></script>
+<script src="../static/js/bridge.js?v=20180424"></script>
+<script>
+	var domain=apiDomain();
+	var items=['realName','liveness','userDetails','mobile','alipay'];
+	var items_name={'realName':"实名认证",'liveness':"人脸识别",'userDetails':"个人信息认证",'mobile':"手机认证",'alipay':"支付宝认证"};
+	var bindbank;
+	initInfo();
+	try{
+		setInterval(function(){
+			initInfo();
+		},5000);
+	}catch(e){
+		//TODO handle the exception
+	}
+	function initInfo(){
+		var token=getToken();
+		$.ajax({
+			type : "post",
+			url : domain+ "user_ident_info",
+			dataType : "json",
+			data:{
+				token:token
+			},
+			success : function(data) {
+				if(data.status==4002){
+					closeAndOpen(0);
+					closeAndOpen(1);
+//					initInfo();
+					return;
+				}
+				items.forEach(function(item){
+					$("."+item).find(".status-text").html(getStatusText(data.data[item]));
+					$("."+item).attr("data",data.data[item]);
+				})
+				bindbank=data.data.bindbank;
+			}
+		});
+	}
+	
+	function getStatusText(status){
+		if (status==0) {
+			return "<font style='color: red;'>未认证</font>";
+		}
+		if (status==1) {
+			return "认证中";
+		}
+		if (status==2) {
+			return "认证成功";
+		}
+		if (status==3) {
+			return "<font style='color: red;'>认证失败</font>";
+		}
+		if (status==4) {
+			return "<font style='color: red;'>认证过期</font>";
+		}
+		
+	}
+	
+    $(".realName").click(this,function(){
+    	if($(this).attr("data")==2){
+    		 closeAndOpen(5);
+    		 return;
+    	}
+    	closeAndOpen(5);
+    	mui.confirm('认证成功了吗', '提示', ["是","否"], function(e) {
+    		if(e.index == 0){
+    			initInfo();
+    		}else{
+    			initInfo();
+    		}
+		})
+    	
+    })
+    $(".liveness").click(function(){
+    	if($(this).attr("data")==2){
+    		 closeAndOpen(6);
+    		 return;
+    	}
+    	closeAndOpen(6)
+    	mui.confirm('认证成功了吗', '提示', ["是","否"], function(e) {
+    		if(e.index == 0){
+    			initInfo();
+    		}else{
+    			initInfo();
+    		}
+		})
+    })
+    $(".userDetails").click(function(){
+    	if($(this).attr("data")==2){
+    		 closeAndOpen(7)
+    		 return;
+    	}
+    	closeAndOpen(7)
+    	mui.confirm('认证成功了吗', '提示', ["是","否"], function(e) {
+    		if(e.index == 0){
+    			initInfo();
+    		}else{
+    			initInfo();
+    		}
+		})
+    })
+    $(".mobile").click(function(){
+    	if($(this).attr("data")==2){
+    		 mui.alert("手机认证已经通过了")
+    		 return;
+    	}
+    	if($(this).attr("data")==1){
+    		 mui.alert("正在认证中，稍后再试")
+    		 return;
+    	}
+    	if($(".realName").attr("data")!=2){
+    		mui.toast("请先完成实名认证")
+    		return
+    	}
+    	if($(".liveness").attr("data")!=2){
+    		mui.toast("请先完成人脸识别")
+    		return
+    	}
+    	if($(".userDetails").attr("data")!=2){
+    		mui.toast("请先完成个人信息认证")
+    		return
+    	}	
+    	var token=getToken();
+		$.ajax({
+			type : "post",
+			url : domain+ "user_ident_info",
+			dataType : "json",
+			data:{
+				token:token
+			},
+			success : function(data) {
+				if(data.status==4002){
+					closeAndOpen(0);
+					closeAndOpen(1);
+					return;
+				}
+				items.forEach(function(item){
+					$("."+item).find(".status-text").html(getStatusText(data.data[item]));
+					$("."+item).attr("data",data.data[item]);
+				})
+				bindbank=data.data.bindbank;
+				if(data.data.mobile==2){
+		    		 mui.alert("手机认证已通过")
+		    		 return;
+		    	}
+		    	if(data.data.mobile==1){
+		    		 mui.alert("正在认证中，稍后再试")
+		    		 return;
+		    	}
+				closeAndOpen(8)
+		    	mui.confirm('认证成功了吗', '提示', ["是","否"], function(e) {
+		    		if(e.index == 0){
+		    			initInfo();
+		    		}else{
+		    			initInfo();
+		    		}
+				})
+			}
+		});
+    })
+    $(".alipay").click(function(){
+    	if($(this).attr("data")==2){
+    		 mui.alert("支付宝认证已经通过了")
+    		 return;
+    	}
+    	if($(this).attr("data")==1){
+    		 mui.alert("正在认证中，稍后再试")
+    		 return;
+    	}
+    	if($(".realName").attr("data")!=2){
+    		mui.toast("请先完成实名认证")
+    		return
+    	}
+    	if($(".liveness").attr("data")!=2){
+    		mui.toast("请先完成人脸识别")
+    		return
+    	}
+    	if($(".userDetails").attr("data")!=2){
+    		mui.toast("请先完成个人信息认证")
+    		return
+    	}
+    	if($(".mobile").attr("data")!=2){
+    		mui.toast("请先完成手机认证")
+    		return
+    	}
+    	var token=getToken();
+		$.ajax({
+			type : "post",
+			url : domain+ "user_ident_info",
+			dataType : "json",
+			data:{
+				token:token
+			},
+			success : function(data) {
+				if(data.status==4002){
+					closeAndOpen(0);
+					closeAndOpen(1);
+					return;
+				}
+				items.forEach(function(item){
+					$("."+item).find(".status-text").html(getStatusText(data.data[item]));
+					$("."+item).attr("data",data.data[item]);
+				})
+				bindbank=data.data.bindbank;
+				if(data.data.alipay==2){
+		    		 mui.alert("支付宝认证已通过")
+		    		 return;
+		    	}
+		    	if(data.data.alipay==1){
+		    		 mui.alert("正在认证中，稍后再试")
+		    		 return;
+		    	}
+				closeAndOpen(9)
+		    	mui.confirm('认证成功了吗', '提示', ["是","否"], function(e) {
+		    		if(e.index == 0){
+		    			initInfo();
+		    		}else{
+		    			initInfo();
+		    		}
+				})
+			}
+		});
+    })
+    $(".borrow-word").click(function(){   	
+    	for(var i=0;i<items.length;i++){
+    		var status=$("."+items[i]).attr("data");
+    		if(status!=2){
+    			mui.alert("请完成"+items_name[items[i]])
+    			return;
+    		}
+    	}
+    	if (bindbank==2) {
+    		closeAndOpen(0)
+    	} else{
+    		window.location.href="bank_card_bind.html";
+    	}
+    });
+    
+    //手机支付宝说明
+    function explain(x,event){
+          event.stopPropagation();
+          $(".hint").stop().show().find(".div").eq(x).stop().show().siblings().hide();
+    }
+    $(".hint").click(function(){
+    	$(".hint").stop().hide();
+    })
+</script>
+</body>
+</html>

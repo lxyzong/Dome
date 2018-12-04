@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订单记录</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<script src="../static/js/common.js"></script>
+		<link rel="stylesheet" href="../static/css/common/reset.min.css" />
+		<link rel="stylesheet" href="../static/css/common/mui.min.css" />
+		<link rel="stylesheet" href="../static/css/borrow_history.css?v=2221" />
+	</head>
+
+	<body>
+		<ul class="ul-wrap">
+		</ul>
+	</body>
+
+	<script src="../static/js/common/jquery.min.js"></script>
+	<script src="../static/js/common/mobiscroll.jquery.js"></script>
+	<script type="text/javascript" src="../static/js/common/mui.min.js"></script>
+	<script src="../static/js/bridge.js"></script>
+	<script>
+		$(function() {
+			var token = getToken();
+			$.ajax({
+				url: apiDomain() + "order/order_records",
+				type: "post",
+				dataType: "json",
+				data: {
+					token: token
+				},
+				success: function(data) {
+					if(data.status == 4000) {
+						mui.alert('您当前没有任何记录!')
+						return
+					}
+					if(data.status == 2000) {
+						var orderList = data.data;
+						for(var i = 0; i < orderList.length; i++) {
+							$('.ul-wrap').append(
+								'<li data-orderId=' + orderList[i].orderId + '>' +
+								'<div><p>回收' + orderList[i].actualMoney + '元</p><p>' + orderList[i].strCreateTime + '</p></div>' +
+								'<div><p>' + orderList[i].statusDesc + '</p><img src="../static/img/help_center_enter.png"></div>' +
+								'</li>')
+						}
+					}
+				}
+
+			});
+			$('.ul-wrap').on('click', 'li', function() {
+				var orderId = $(this).attr('data-orderId');
+				skipPage(0, webDomain() + 'oreder/order_detail.html?orderId=' + orderId);
+			})
+		})
+	</script>
+
+</html>

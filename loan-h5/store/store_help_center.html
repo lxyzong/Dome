@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>帮助中心</title>
+		<script src="../static/js/common.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../static/css/common/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/help_center.css?v=20181030" />
+	</head>
+
+	<body>
+		<div id="list">
+			<ul class="help-center-ul">
+				<li class="bind-card">
+					<div class="li-left">
+						<div class="li-left-bottom">
+							<span>购物问题</span>
+							<img src="../static/img/help_center_enter.png" class="enter-img" />
+						</div>
+					</div>
+					<div class="li-right">
+						<p>
+							<a onclick="jump(0)">商品是否包邮？</a>
+						</p>
+						<p>
+							<a onclick="jump(1)">商品发货时间？</a>
+						</p>
+						<p>
+							<a onclick="jump(2)">能否指定快递公司送货？</a>
+						</p>
+						<p>
+							<a onclick="jump(3)">收货地址如何新增、修改？</a>
+						</p>
+						<p>
+							<a onclick="jump(4)">如何查询物流信息？</a>
+						</p>
+					</div>
+				</li>
+				<li class="bind-card">
+					<div class="li-left">
+						<div class="li-left-bottom">
+							<span>订单问题</span>
+							<img src="../static/img/help_center_enter.png" class="enter-img" />
+						</div>
+					</div>
+					<div class="li-right">
+						<p>
+							<a onclick="jump(5)">如何修改订单信息？</a>
+						</p>
+						<p>
+							<a onclick="jump(6)">如何取消订单？</a>
+						</p>
+						<p>
+							<a onclick="jump(7)">为何订单被关闭？</a>
+						</p>
+						<p>
+							<a onclick="jump(8)">没收到商品却误点确认收货如何处理？</a>
+						</p>
+					</div>
+				</li>
+				<li class="bind-card">
+					<div class="li-left">
+						<div class="li-left-bottom">
+							<span>支付问题</span>
+							<img src="../static/img/help_center_enter.png" class="enter-img" />
+						</div>
+					</div>
+					<div class="li-right">
+						<p>
+							<a onclick="jump(9)">支付方式有哪些？</a>
+						</p>
+						<p>
+							<a onclick="jump(10)">付款后显示待支付？</a>
+						</p>
+						<p>
+							<a onclick="jump(11)">支付宝查询退款方法？</a>
+						</p>
+						<p>
+							<a onclick="jump(12)">订单重复支付如何处理？</a>
+						</p>
+					</div>
+				</li>
+				<li class="bind-card">
+					<div class="li-left">
+						<div class="li-left-bottom">
+							<span>售后问题</span>
+							<img src="../static/img/help_center_enter.png" class="enter-img" />
+						</div>
+					</div>
+					<div class="li-right">
+						<p>
+							<a onclick="jump(13)">如何申请售后？</a>
+						</p>
+					</div>
+				</li>
+			</ul>
+			<div class="yijian" onclick="opinion()"></div>
+		</div>
+	</body>
+	<script src="../static/js/common/jquery.min.js"></script>
+	<script type="text/javascript" src="../static/js/bridge.js"></script>
+	<script>
+		var web = webDomain();
+
+		function jump(index) {
+			var url = web + "store/help_article.html?index=" + index;
+			skipPage(0, url);
+		}
+
+		function opinion() {
+			var token = getToken();
+			if(!token) {
+				closeAndOpen(1);
+			} else {
+				closeAndOpen(4);
+			}
+		}
+	</script>
+
+</html>

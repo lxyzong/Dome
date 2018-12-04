@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>借款</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<script src="../static/js/common.js"></script>
+		<link rel="stylesheet" href="../static/css/common/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/stage_order_apply.css" />
+		<link rel="stylesheet" href="../static/css/common/mui.min.css" />
+	</head>
+
+	<body>
+		<div class="borrow-details">
+			<div class="borrow-content clearfix">
+				<ul>
+					<li>
+						<span>借款金额</span>
+						<span id="productMoney"></span>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span>资金用途</span>
+						<span id="purpose"><b>个人消费</b><img src="../static/img/right-row.png"/></span>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span>借款方式</span>
+						<span>等额本息</span>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span>还款计划</span>
+						<span onclick="applyPlan()"><b>3期（21天）</b><img src="../static/img/right-row.png"/></span>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span>到账金额</span>
+						<span id="actualMoney"></span>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span>收款银行卡</span>
+						<span id="cardNo"></span>
+					</li>
+				</ul>
+			</div>
+			<div class="borrow-btn" data="1">
+				<div class="borrow-word" onclick="apply()">
+					确定提交
+				</div>
+				<div class="resister">
+					<input id="color-input-red" checked disabled class="chat-button-location-radio-input" type="checkbox" name="color-input-red" value="#f0544d" />
+					<label for="color-input-red"></label >
+					<p>我已阅读并同意 <span>《借款协议》</span></p>
+				</div>
+			</div>
+		</div>
+
+		<!-- 提交的loading -->
+		<div class="modal" id="myModal3" style="display:none;">
+			<div class="popup"><img class="photo" src="../static/img/loading.png" /></div>
+		</div>
+		<!--选择消费用途-->
+		<div class="purpose" style="display: none;">
+			<div class="content" style="display: none;">
+				<p>请选择借款用途</p>
+				<ul>
+					<li>个人消费</li>
+					<li>装修</li>
+					<li>旅游</li>
+					<li>医疗</li>
+				</ul>
+				<div>取消</div>
+			</div>
+		</div>
+		<input type="hidden" id="data_productId" />
+		<input type="hidden" id="data_productMoney" />
+		<input type="hidden" id="data_productDay" />
+		<script type="text/javascript" src="../static/js/common/jquery.min.js"></script>
+		<script type="text/javascript" src="../static/js/common/mui.min.js"></script>
+		<script type="text/javascript" src="../static/js/bridge.js?v=20180607"></script>
+		<script>
+			var domain = apiDomain();
+			var webDomain = webDomain();
+			initFee();
+
+			function initFee() {
+				var token = getToken();
+				$.ajax({
+					type: "post",
+					url: domain + "order/order_confirm",
+					dataType: "json",
+					data: {
+						token: token
+					},
+					success: function(result) {
+						if(result.status == 4002) {
+							closeAndOpen(0);
+							closeAndOpen(1);
+							return;
+						}
+						if(result.status == 2000) {
+							$("#data_productId").val(result.data.productId);
+							$("#data_productMoney").val(result.data.productMoney);
+							$("#data_productDay").val(result.data.productDay);
+							$("#productMoney").text(result.data.productMoney + "元");
+							$("#productDay").text(result.data.productDay + "天");
+							$("#totalFee").text(result.data.totalFee + "元");
+							$("#actualMoney").text(result.data.actualMoney + "元");
+							$("#cardNo").text(result.data.cardName + "(" + result.data.cardNo + ")");
+						} else {
+							mui.alert(result.message);
+						}
+					}
+				});
+			}
+
+			function apply() {
+				var token = getToken();
+				var deviceMes = getDevice();
+				var arr = deviceMes.split('|'); //截取原生字段
+				$.ajax({
+					type: "post",
+					url: domain + "order/order_submit",
+					dataType: "json",
+					data: {
+						token: token,
+						productId: $("#data_productId").val(),
+						productDay: $("#data_productDay").val(),
+						productMoney: $("#data_productMoney").val(),
+						paramValue: "",
+						phoneModel: arr[1],
+						phoneMemory: arr[2],
+						phoneType: getClientType()
+					},
+					beforeSend: function() {
+						$('#myModal3').show();
+					},
+					success: function(result) {
+						if(result.status == 4002) {
+							closeAndOpen(1);
+							return;
+						}
+						if(result.status == 2000) {
+							mui.alert("提单成功", "提示", function() {
+								try {
+									closeAndOpen(0);
+								} catch(e) {
+									//TODO handle the exception
+								}
+							});
+						} else {
+							mui.alert(result.message, "提示", function() {
+								try {
+									closeAndOpen(0); //转到首页
+								} catch(e) {
+									//TODO handle the exception
+								}
+							});
+						}
+					},
+					complete: function() {
+						$('#myModal3').stop().hide();
+					}
+				});
+			};
+
+			function applyPlan() {
+				//			去往还款计划页
+				//				skipPage(0, webDomain + 'order/store_apply_plan.html');
+				window.location.href = "stage_apply_plan.html";
+			}
+
+			//			选择消费用途
+			$("#purpose").click(function() {
+				$(".purpose").stop().show().find(".content").slideDown(150);
+			});
+			$(".purpose>.content li").click(function() {
+				$("#purpose b").html($(this).html());
+				$(".purpose>.content>div").trigger('click');
+			});
+			$(".purpose>.content>div").click(function() {
+				$(".purpose").stop().find(".content").slideUp().parent().hide();
+			});
+		</script>
+	</body>
+
+</html>

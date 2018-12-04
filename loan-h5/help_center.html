@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>帮助中心</title>
+		<script src="static/js/common.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="static/css/common/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/help_center.css?v=666" />
+	</head>
+
+	<body>
+		<div id="list">
+			<ul class="help-center-ul">
+				<template v-for="(val, key) in map">
+					<li class="bind-card">
+						<div class="li-left">
+							<!--<img src="static/img/ic_common problem.png" class="help-img" />-->
+							<div class="li-left-bottom">
+								<span>{{key}}</span>
+								<img src="static/img/help_center_enter.png" class="enter-img" />
+							</div>
+						</div>
+						<div class="li-right">
+							<template v-for="item in val">
+								<p>
+									<a onclick="jump(this)" v-bind:data="item.article_id">{{item.title}}</a>
+								</p>
+							</template>
+
+						</div>
+					</li>
+				</template>
+			</ul>
+			<div class="yijian" onclick="opinion()"></div>
+		</div>
+
+		<script src="static/js/common/vue.min.js"></script>
+		<script type="text/javascript" src="static/js/common/axios.js"></script>
+		<script type="text/javascript" src="static/js/bridge.js"></script>
+		<script>
+			var domain = apiDomain();
+			var web = webDomain();
+			var device = getDevice();
+			axios.get(apiDomain() + 'question_list?merchant=' + device.split("|")[0])
+				.then(function(data) {
+					new Vue({
+						el: '#list',
+						data: function() {
+							return {
+								map: data.data.data
+							}
+						}
+					})
+				});
+
+			function jump(obj) {
+				var url = web + "article.html?id=" + obj.getAttribute("data");
+				skipPage(0, url);
+			}
+
+			function opinion() {
+				var token = getToken();
+				if(!token) {
+					closeAndOpen(1);
+				} else {
+					closeAndOpen(4);
+				}
+			}
+		</script>
+	</body>
+
+</html>

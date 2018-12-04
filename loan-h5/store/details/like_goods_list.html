@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0" />
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<link rel="stylesheet" type="text/css" href="../../static/css/common/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/like_goods_list.css?v=20181022" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/common/mui.min.css" />
+		<title></title>
+	</head>
+
+	<body>
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper" @scroll="scroll_fun()">
+			<div class="mui-scroll">
+				<ul class="display main">
+					<li class="display" v-for="(item,index) in arr" @tap="pageSkip(item.id,item.productUrl)">
+						<img :src="item.productImg" />
+						<p class="explain" v-text="item.productName"></p>
+						<p class="money">
+							<span v-if="!item.discountPrice"> <b v-text="money(item.productPrice)"></b></span>
+							<span v-else><b v-text="money(item.discountPrice)"></b><strike v-text="money(item.productPrice)"></strike></span>
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="scroll" @tap.prevent="scroll()" style="display: none;"></div>
+		</div>
+	</body>
+	<script src="../../static/js/common.js"></script>
+	<script src="../../static/js/bridge.js"></script>
+	<script src="../../static/js/common/jquery.min.js"></script>
+	<script src="../../static/js/common/vue.min.js"></script>
+	<script src="../../static/js/common/mui.min.js"></script>
+	<script>
+		var channelName = queryUrlParam("key");
+		$("title").html(channelName);
+		var domain = apiDomain();
+		var webUrl = webDomain();
+		new Vue({
+			el: "#refreshContainer",
+			data: function() {
+				return {
+					channelName: channelName,
+					arr: [],
+					num: 1
+				}
+			},
+			created: function() {
+				const that = this;
+				this.refresh(that);
+
+			},
+			methods: {
+				refresh: function(that) {
+					mui.init({
+						pullRefresh: {
+							container: "#refreshContainer",
+							up: {
+								height: 100, //可选.默认50.触发上拉加载拖动距离
+								auto: true, //自动执行一次
+								contentdown: "查看更多",
+								contentrefresh: "正在加载...",
+								contentnomore: '没有更多数据了',
+								callback: function() {
+									$.ajax({
+										type: "post",
+										url: domain + "product/product_search",
+										async: true,
+										data: {
+											pageNo: that.num,
+											pageSize: 20,
+											key: that.channelName
+										},
+										success: function(data) {
+											if(data.status == 2000) {
+												if(data.data == "") {
+													//没有数据执行
+													mui('#refreshContainer').pullRefresh().endPullupToRefresh(true); //表示没有数据
+													mui('#refreshContainer').pullRefresh().refresh(false); //禁止上拉控件
+												} else {
+													if(that.num == 1) {
+														that.arr = data.data;
+													} else {
+														for(var i = 0; i < data.data.length; i++) {
+															that.arr.push(data.data[i]);
+														};
+													}
+													that.num += 1;
+													mui('#refreshContainer').pullRefresh().endPullupToRefresh(true); //表示数据没了
+													mui('#refreshContainer').pullRefresh().refresh(true); //重置上拉控件
+												}
+											} else {
+												mui.alert(data.message)
+											}
+										}
+									});
+								}
+							}
+						}
+					});
+					mui('.mui-scroll-wrapper').scroll({
+						deceleration: 0.1,
+						indicators: false //隐藏一条滚动条 
+					});
+				},
+				pageSkip: function(id, url) {
+					// 跳转至商品详情页
+					if(url) {
+						skipPage(0, url);
+					} else {
+						skipPage(0, webUrl + "store/details/product_details.html?Id=" + id);
+						//						skipPage(0, "product_details.html?Id=" + id);
+					}
+				},
+				scroll_fun: function() {
+					var div_top = ($("li").eq(4).offset() || {
+						"top": NaN
+					}).top;
+					if(div_top <= 50) {
+						$(".scroll").show();
+					} else {
+						$(".scroll").hide();
+					}
+				},
+				scroll: function() {
+					mui('#refreshContainer').pullRefresh().scrollTo(1, 1, 500);
+				},
+				money: function(num) {
+					var result = parseFloat(num);
+					if(isNaN(result)) {
+						return false;
+					}
+					result = Math.round(num * 100) / 100;
+					var s_x = result.toString();
+					var pos_decimal = s_x.indexOf('.');
+					if(pos_decimal < 0) {
+						pos_decimal = s_x.length;
+						s_x += '.';
+					}
+					while(s_x.length <= pos_decimal + 2) {
+						s_x += '0';
+					}
+					return '￥' + s_x;
+				}
+			}
+		})
+	</script>
+
+</html>

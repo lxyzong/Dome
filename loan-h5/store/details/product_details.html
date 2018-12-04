@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0" />
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<link rel="stylesheet" type="text/css" href="../../static/css/common/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/product_details.css?v=201810223" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/swiper.min.css" />
+		<title>商品详情</title>
+	</head>
+
+	<body>
+		<div class="body">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img :src="productImg" /></div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+			<div class="main">
+				<p class="explain" v-text="productName"></p>
+				<p class="money" v-if="!discountPrice">
+					<b v-text="money(productPrice)"></b>
+				</p>
+				<p class="money" v-else>
+					<b v-text="money(discountPrice)"></b>
+					<strike v-text="money(productPrice)"></strike>
+				</p>
+			</div>
+			<div class="freight">
+				<span>运费</span>
+				<span>全场顺丰邮寄24元</span>
+			</div>
+			<div class="accountfor">
+				<span><img src="../static/img/ic_confirm.png"/>正品保障</span>
+				<span><img src="../static/img/ic_confirm.png"/>官方授权</span>
+				<span><img src="../static/img/ic_confirm.png"/>假一赔十</span>
+				<span><img src="../static/img/ic_confirm.png"/>快递保价</span>
+			</div>
+			<div class="shapping display">
+				<span></span>
+				<lable>商品详情</lable>
+				<span></span>
+			</div>
+			<div class="details" v-html="detail"></div>
+			<div class="buy display">
+				<li> 
+					<span><b v-text="money(productPrice)"></b></span>
+					
+				</li>
+				<li>
+					<button @click="purchase()">立即购买</button>
+				</li>
+			</div>
+		</div>
+	</body>
+	<script src="../../static/js/common.js"></script>
+	<script src="../../static/js/bridge.js"></script>
+	<script src="../../static/js/common/swiper.min.js"></script>
+	<script src="../../static/js/common/jquery.min.js"></script>
+	<script src="../../static/js/common/vue.min.js"></script>
+	<script>
+		$(function() {
+			var domain = apiDomain();
+			var webUrl = webDomain();
+			var Id = queryUrlParam("Id");
+			$.ajax({
+				type: "post",
+				url: domain + "/product/product_detail",
+				async: true,
+				dataType: 'JSON',
+				data: {
+					id: Id
+				},
+				success: function(data) {
+					if(data.status == 2000) {
+						new Vue({
+							el: ".body",
+							data: function() {
+								return {
+									id: data.data.id,
+									detail: data.data.detail,
+									productImg: data.data.productImg,
+									productName: data.data.productName,
+									productPrice: data.data.productPrice,
+									discountPrice:data.data.discountPrice
+								}
+							},
+							methods: {
+								purchase: function() {
+									var token = getToken();
+									if(!token) {
+										closeAndOpen(1);
+										return;
+									};
+									skipPage(0, webUrl + "store/details/affirm_order.html?product_id=" + this.id);
+								},
+								money: function(num) {
+									var result = parseFloat(num);
+									if(isNaN(result)) {
+										return false;
+									}
+									result = Math.round(num * 100) / 100;
+									var s_x = result.toString();
+									var pos_decimal = s_x.indexOf('.');
+									if(pos_decimal < 0) {
+										pos_decimal = s_x.length;
+										s_x += '.';
+									}
+									while(s_x.length <= pos_decimal + 2) {
+										s_x += '0';
+									}
+									return '￥'+s_x;
+								}
+							},
+							mounted: function() {
+								var mySwiper = new Swiper('.swiper-container', {
+									autoplay: 5000,
+									//									loop: true,
+									pagination: '.swiper-pagination',
+									paginationType: 'fraction'
+								})
+							}
+						})
+					}
+				}
+			});
+
+		})
+	</script>
+
+</html>

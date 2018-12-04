@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订单记录</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<script src="../static/js/common.js"></script>
+		<link rel="stylesheet" href="../static/css/common/reset.min.css" />
+		<link rel="stylesheet" href="../static/css/common/mui.min.css" />
+		<link rel="stylesheet" href="../static/css/borrow_history.css?v=22" />
+	</head>
+
+	<body>
+		<ul class="ul-wrap">
+		</ul>
+		<div class="wujilu" style="display: none;">
+			<div>
+				<img src="../static/img/pic_norecording@2x.png" />
+				<p class="p1">暂无借款记录</p>
+				<button class="but">去借钱</button>
+				<p class="p2">目前已有50000+人在这里成功借款</p>
+			</div>
+		</div>
+	</body>
+
+	<script src="../static/js/common/jquery.min.js"></script>
+	<script src="../static/js/common/mobiscroll.jquery.js"></script>
+	<script type="text/javascript" src="../static/js/common/mui.min.js"></script>
+	<script src="../static/js/bridge.js"></script>
+	<script src="../static/js/common.js"></script>
+	<script>
+		$(function() {
+			var token = getToken();
+			var device = getDevice();
+			var Device = device.split("|")[0];
+			order_history();
+
+			function order_history() {
+				$.ajax({
+					url: apiDomain() + "order/loan_order_records",
+					type: "post",
+					dataType: "json",
+					data: {
+						token: token
+					},
+					success: function(data) {
+						if(data.status == 4000) {
+							$('.ul-wrap').stop().hide();
+							$('.wujilu').stop().show();
+						}
+						if(data.status == 2000) {
+							$('.wujilu').stop().hide();
+							$('.ul-wrap').stop().show();
+							var orderList = data.data;
+							var borrow = '';
+							for(var i = 0; i < orderList.length; i++) {
+								borrow += '<li data-orderId=' + orderList[i].orderId + '>' +
+									'<div><p>' + orderList[i].borrowMoney + '元</p><p>' + orderList[i].strCreateTime + '</p></div>' +
+									'<div><p>' + orderList[i].statusDesc + '</p><img src="../static/img/help_center_enter.png"></div>' +
+									'</li>';
+							};
+							$('.ul-wrap').html(borrow);
+						}
+					}
+				});
+			};
+
+			$('.ul-wrap').on('click', 'li', function() {
+				var orderId = $(this).attr('data-orderId');
+				skipPage(0, webDomain() + 'order/store_order_detail.html?orderId=' + orderId);
+				order_history();
+			});
+
+			$('.but').on('click', function() {
+				if(Device == 'keleguan') {
+					closeAndOpen(0);
+					window.location.href = '../store_borrowing.html';
+				} else {
+					closeAndOpen(2); //去首页
+				}
+			});
+		})
+	</script>
+
+</html>

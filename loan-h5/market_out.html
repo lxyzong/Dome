@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>贷款超市</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<link rel="stylesheet" href="static/css/common/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/loan_mark.css?v=111111" />
+		<link rel="stylesheet" href="static/css/common/reset.min.css" />
+	</head>
+
+	<body>
+		<div id="dk_body">
+			<div class="dk_header">
+				<li v-for="(item,index) in tex" @click="getTab(index)">
+					<sapn v-text="item.moduleName" :class="{bgColor:iNum==index}">
+						</span>
+				</li>
+			</div>
+			<div>
+				<div class="dk_body">
+					<ul>
+						<li v-for="(item,i) in arr">
+							<section v-bind:id="item.id" v-bind:data="item.productUrl">
+								<a href="javascript:void(0)">
+									<div>
+										<img :src="item.productImg" alt="" />
+									</div>
+									<div>
+										<b v-text="item.productName"></b>
+										<p v-text="item.productSlogan"></p>
+									</div>
+									<div>
+										<span v-text="item.num"></span>
+										<p>今日放款人数</p>
+									</div>
+								</a>
+							</section>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="static/js/common/jquery.min.js"></script>
+		<script src="static/js/common/mui.min.js"></script>
+		<script src="static/js/common/vue.min.js"></script>
+		<script type="text/javascript" src="static/js/common.js"></script>
+		<script type="text/javascript" src="static/js/bridge.js?v=1" ></script>
+		<script type="text/javascript">
+			var domainUrl = apiDomain();
+			var webDomain = webDomain();
+			// 获取页面数据
+			$(function() {
+				$.ajax({
+					type: "post",
+					url: domainUrl + "/market/product_list_out",
+					success: function(res) {
+						new Vue({
+							el: '#dk_body',
+							data: function() {
+								return {
+									iNum: 0,
+									tex: res.data,
+									arr: res.data[0].list,
+								}
+							},
+							methods: {
+								getTab: function(tab) {
+									if(this.tex.length == 1) {} else {
+										this.iNum = tab;
+										if(tab == 0) {
+											this.arr = res.data[0].list;
+										} else {
+											this.arr = res.data[tab].list
+										}
+									}
+
+								}
+							},
+							created: function() {
+								if(this.tex.length == 1) {
+									this.iNum = 1;
+									$(".dk_header li ").css({"width":"100%"})
+								}else{
+									var width=100/this.tex.length+"%";
+									$(".dk_header li").css({"width":width})
+								}
+							}
+						});
+
+					}
+
+				});
+			});
+			$('body').on('click', 'section', function() {
+				//app内必须要求用户登录
+				var token=getToken();
+				var flag=true;
+				if(token==""||token==undefined){
+					try{
+						closeAndOpen(1);
+						flag=false;
+					}catch(e){
+						//TODO handle the exception
+						flag=true;
+					}
+				}
+				if(!flag){
+					return;
+				}
+				var id = $(this).attr('id');
+				var href = $(this).attr('data');
+				if(getCookie("product" + id)) {
+					skipPage(0,href);
+//					window.location.href = href;
+					return;
+				}
+				$.ajax({
+					type: "post",
+					url: domainUrl + "/market/flow",
+					dataType: "json",
+					data: {
+						id: id
+					},
+					success: function(msg) {
+						try {
+//							console.log(msg)
+							var curDate = new Date();
+							//当前时间戳  
+							var curTamp = curDate.getTime();
+							//当日凌晨的时间戳,减去一毫秒是为了防止后续得到的时间不会达到00:00:00的状态  
+							var curWeeHours = new Date(curDate.toLocaleDateString()).getTime() - 1;
+							//当日已经过去的时间（毫秒）  
+							var passedTamp = curTamp - curWeeHours;
+							//当日剩余时间  
+							var leftTamp = 24 * 60 * 60 * 1000 - passedTamp;
+							setCookie("product" + id, id, leftTamp);
+							skipPage(0,href);
+//							window.location.href = href;
+						} catch(e) {
+							console.log(e)
+						}
+					}
+				})
+
+			})
+
+			function add() {
+				var html = document.documentElement;
+				var hei = html.clientWidth;
+				var fz = hei / 375 * 100 + "px";
+				html.style.fontSize = fz;
+			};
+			add();
+			window.addEventListener("resize", add, false);
+
+			function setCookie(c_name, value, expire) {
+				if(!expire) {
+					expire = 0;
+				}
+				var exdate = new Date();
+				exdate.setTime(exdate.getTime() + expire);
+				document.cookie = c_name + "=" + value + ";path=/;expires =" + exdate.toString();
+			}
+
+			function getCookie(c_name) {
+				if(document.cookie.length > 0) {
+					c_start = document.cookie.indexOf(c_name + "=");
+					if(c_start != -1) {
+						c_start = c_start + c_name.length + 1;
+						c_end = document.cookie.indexOf(";", c_start);
+						if(c_end == -1) {
+							c_end = document.cookie.length
+						}
+						return unescape(document.cookie.substring(c_start, c_end));
+					}
+				}
+				return ""
+			}
+		</script>
+	</body>
+
+</html>

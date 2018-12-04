@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>承诺函</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<link rel="stylesheet" href="../static/css/common/reset.min.css?v=20171118" />
+		<link rel="stylesheet" href="../static/css/common/mui.min.css?v=20180111" />
+		<script src="../static/js/common.js?v=20171128"></script>
+		<style>
+			p:first-of-type {
+				line-height: 0.3rem;
+			}
+			
+			p {
+				padding: 0 0.1rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<p style="text-align: center">《承诺函》</p>
+		<p>本人拟向“<span class="app-name"></span>平台”(以下简称“平台”)出售手机，现特就平台商户回收本人手机相关事宜承诺如下：</p>
+		<p>1、本人对手机享有完整的、无瑕疵的所有权、处分权，且出售手机为正规渠道物品，而非山寨机、高仿机、恶意评估等非法渠道物品（如失、窃物品等）。</p>
+		<p>2、本人出售手机中的所有个人信息、资料、图片、通讯录、视频、音频、应用软件等（统称“用户信息”）均已采取备份、删除等手段处理。</p>
+		<p>3、本人在平台“设备评估”页面填写的手机型号、购买渠道、机身外壳、机身颜色、屏幕外观等信息均真实有效，与现实手机状况无差异。</p>
+		<p>4、本人将详细阅读平台“承诺函”、“手机回收合同”等相关交易文本内容，对文本内容（特别是相关授权及违约条款）均已完全知悉并同意，承诺按照文本约定履行且自愿承担文本中可能发生的风险或责任。
+			<p>5、本人将根据平台评估价格自行决定是否将手机出卖给平台。</p>
+			<p>本人已详细阅读上述内容，对以上承诺无异议，自愿按照平台交易规则及评估价格完成手机回收交易，因违反本承诺函的一切法律后果由本人自行承担。（重要提示：若您对上述承诺函存在异议，请立即停止手机出售操作，若通过点击平台“免费估价”按钮继续操作即视为同意本承诺函）</p>
+			<p></p>
+	</body>
+	<script src="../static/js/common/jquery.min.js"></script>
+	<script type="text/javascript" src="../static/js/bridge.js"></script>
+	<script>
+		$(function() {
+			var domain = apiDomain();
+			var device = getDevice();
+			var alias = device.split('|')[0];
+			$.ajax({
+				type: "post",
+				url: domain + "/mechant_info",
+				dataType: "json",
+				data: {
+					alias: alias,
+					type: getClientType(),
+					version: "1.0.0"
+				},
+				success: function(result) {
+					if(result.status == 2000) {
+						$('.app-name').text(result.data.app);
+						$('.company').text(result.data.company);
+					}
+				}
+			});
+		})
+	</script>
+
+</html>

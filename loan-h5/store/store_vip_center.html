@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<link rel="stylesheet" type="text/css" href="../static/css/common/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/store_vip_center.css" />
+		<title>会员服务</title>
+	</head>
+
+	<body>
+		<div onclick="list()">
+			<img src="static/img/VIP_1.png" alt="" />
+			<img src="static/img/VIP_2.png" alt="" />
+			<img src="static/img/VIP_3.png" alt="" />
+			<img src="static/img/VIP_4.png" alt="" />
+			<img src="static/img/VIP_5.png" alt="" />
+		</div>
+	</body>
+	<script src="../static/js/bridge.js"></script>
+	<script src="../static/js/common.js"></script>
+	<script>
+		var webUrl = webDomain();
+
+		function list() {
+			skipPage(0, webUrl + "store/details/like_goods_list.html?key=苹果");
+		}
+	</script>
+
+</html>

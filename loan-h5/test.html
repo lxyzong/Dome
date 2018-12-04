@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<title>jsbridge测试</title>
+		<script type="text/javascript" src="static/js/bridge.js"></script>
+		<script type="text/javascript" src="static/js/common/jquery.min.js"></script>
+
+	</head>
+
+	<body>
+		<a href="itms-services://?action=download-manifest&url=https://mod-test.oss-cn-hangzhou.aliyuncs.com/mali.plist">下载ios</a>
+		<div>
+			<div class="m-downloadbanner">
+				安卓隐藏设置<br><br><br>
+			</div>
+		</div>
+
+		getToken()和closeAndOpen(1)测试<br>
+		<button onclick="testToken()">获取token</button>
+		<div id="token"></div><br> skipPage测试
+		<br>
+		<button onclick="skipPage(0,'https://www.baidu.com/')">新开webveiw</button><br>
+		<button onclick="skipPage(1,'https://www.baidu.com/')">新开webveiw并关闭当前页面</button><br> closeAndOpen测试
+		<br>
+		<button onclick="closeAndOpen(0)">关闭 closeAndOpen(0)</button><br>
+		<button onclick="closeAndOpen(1)">登录closeAndOpen(1)</button><br>
+		<button onclick="closeAndOpen(2)">首页closeAndOpen(2)</button><br>
+		<button onclick="closeAndOpen(3)">我的closeAndOpen(3)</button><br>
+		<button onclick="closeAndOpen(4)">意见反馈closeAndOpen(4)</button><br>
+		<button onclick="closeAndOpen(5)">实名认证closeAndOpen(5)</button><br>
+		<button onclick="closeAndOpen(6)">活体检测 closeAndOpen(6)</button><br>
+		<button onclick="closeAndOpen(7)">个人信息closeAndOpen(7)</button><br>
+		<button onclick="closeAndOpen(8)">手机认证closeAndOpen(8)</button><br>
+		<button onclick="closeAndOpen(9)">支付宝closeAndOpen(9)</button><br> viewSetup测试
+		<br>
+		<button onclick="viewSetup(0,0,' ',0)">viewSetup(0,0,' ',0)</button><br>
+		<button onclick="viewSetup(0,0,'111',0)">viewSetup(0,0,' ',0)</button><br>
+		<button onclick="viewSetup(1,1,'标题',1)">viewSetup(1,1,'标题',1)</button><br>
+		<button onclick="viewSetup(1,0,' ',0)">viewSetup(1,0,' ',0)</button><br>
+		<button onclick="goAppStore()">跳转本地应用商店</button><br>
+		<button onclick="getAllCookie()">获取cookie</button>
+		<div id="allCookie">
+			<button onclick="test()">测试</button>
+			<div id="allCookie">
+			</div><br>
+			<br><br>
+			<a href="https://static-ym.oss-cn-hangzhou.aliyuncs.com/apk/1528353997722.apk">下载安卓</a>
+
+			<img onclick="change()" id="graph_code" />
+
+			<br>
+			<button onclick="testdevice()">getDevice</button><br>
+			<input id="device" /><br>
+			<a href="test.html">跳转页面</a>
+			<br>当前ua
+			<div id="ua"></div>
+			<script>
+				var domain = domain();
+				var webUrl = webDomain();
+
+				function test() {
+					window.location.href="https://www.baidu.com/"
+				}
+				//获取接口域名信息
+				function domain() {
+					var hostname = window.location.hostname;
+					var port = window.location.port;
+					if(hostname == "api.yimenghd.com") {
+						return "https://api.yimenghd.com";
+					} else {
+						return "https://test-api.yimenghd.com/";
+					}
+				}
+
+				function webDomain() {
+					var hostname = window.location.hostname;
+					var port = window.location.port;
+					if(hostname == "h5.yimenghd.com") {
+						return "https://h5.yimenghd.com/";
+					} else {
+						return "https://test-h5.yimenghd.com/";
+					}
+				}
+
+				function testToken() {
+					var token = getToken();
+					//				if(!token){
+					//					closeAndOpen(0);
+					//					closeAndOpen(1);
+					//					return;
+					//				}
+					$("#token").text(token);
+				}
+				change();
+
+				function change() {
+					$("#graph_code").attr("src", domain + "/web/graph_code");
+				}
+
+				function testdevice() {
+					$("#device").val(getDevice())
+				}
+				document.cookie = "modtest=5555"
+
+				function getAllCookie() {
+					$("#allCookie").text(document.cookie)
+				}
+				$("#ua").text(navigator.userAgent.toLowerCase());
+			</script>
+	</body>
+
+</html>

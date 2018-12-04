@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="x5-orientation" content="portrait">
+		<meta name="screen-orientation" content="portrait">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta name="format-detection" content="telephone=no">
+		<title>雪碧贷</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/common/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/register/xuebidai.css?v=20181122" />
+	</head>
+
+	<body>
+		<div class="mask" style="display: none;"></div>
+		<div class="main">
+			<div class="content">
+				<img src="../static/img/xuebi_banner.png" class="bgpic">
+				<div class="lunbo">
+					<img src="../static/img/xuebi_icon.png" />
+					<div class="txtMarquee-top">
+						<div class="bd">
+							<div class="tempWrap" style="overflow:hidden; position:relative; height:20px;margin-top:0px ;">
+								<ul class="infoList" style="height: 200px; position: relative; padding: 0px; margin: 0px; top:-108px;">
+									<li class="clone">恭喜<span class="telephone">182****3641</span>成功借款<span class="fontorangge">5000</span>元</li>
+									<li>恭喜<span class="telephone">177****7512</span>成功借款<span class="fontorangge">3000</span>元</li>
+									<li>恭喜<span class="telephone">180****9634</span>成功借款<span class="fontorangge">1500</span>元</li>
+									<li>恭喜<span class="telephone">151****8895</span>成功借款<span class="fontorangge">4000</span>元</li>
+									<li>恭喜<span class="telephone">152****8512</span>成功借款<span class="fontorangge">5000</span>元</li>
+									<li>恭喜<span class="telephone">155****9512</span>成功借款<span class="fontorangge">2500</span>元</li>
+									<li>恭喜<span class="telephone">131****7865</span>成功借款<span class="fontorangge">5000</span>元</li>
+									<li>恭喜<span class="telephone">188****7536</span>成功借款<span class="fontorangge">5000</span>元</li>
+									<li class="clone">恭喜<span class="telephone">177****9521</span>成功借款<span class="fontorangge">4000</span>元</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="enteraera">
+					<input type="tel" name="" id="" value="" placeholder="请输入您的手机号码" class="text1" maxlength="11">
+					<div class="hint1" style="visibility: hidden;color: white;"></div>
+					<input type="button" name="" id="" value="点击借款" class="enter1">
+					<div class="div">
+						<span>点击按钮视为同意 <b onclick="register()">《服务协议》</b></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="newpop" style="display: none;">
+			<div class="pop2" style="display: none;">
+				<p class="phone">手机号码：<span class="phonenumber"></span></p>
+				<div class="figure">
+					<input type="text" name="" id="txtimgcode" value="" placeholder="请输入图形验证码" class="text2" onkeyup="this.value=this.value.replace(/[^\w\.\/]/ig,&#39;&#39;)" onblur="this.value=this.value.replace(/[^\w\.\/]/ig,&#39;&#39;)">
+					<span class="enter2"><img id="imgcode" src="" onclick="changeGraphCode()"></span>
+				</div>
+				<div class="message">
+					<input type="text" name="" id="Code" value="" placeholder="请输入短信验证码" class="text3" maxlength="6" onkeyup="this.value=this.value.replace(/[^\d]/g,&#39;&#39;)" onblur="this.value=this.value.replace(/[^\d]/g,&#39;&#39;)">
+					<span class="enter3">获取验证码</span>
+					<input type="password" placeholder="请设置登录密码" class="password" />
+				</div>
+				<div class="hint2" style="visibility: hidden;"></div>
+				<input type="button" class="ensure2" value="确认">
+				<div class="close">
+					<img src="../static/img/close.png?v=2" class="closebtn">
+				</div>
+			</div>
+			<div class="pop3" style="display: none;">
+				<p class="knows"></p>
+				<input type="button" class="ensure3" value="下载登录">
+				<div class="close">
+					<img src="../static/img/close.png?v=2" class="closebtn">
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../static/js/common/jquery-2.1.4.min.js"></script>
+	<script src="../static/js/common/jquery.SuperSlide.2.1.1.js"></script>
+	<script src="../static/js/common/Zdownload.js"></script>
+	<script src="https://s19.cnzz.com/z_stat.php?id=1275249799&web_id=1275249799" language="JavaScript"></script>
+	<script>
+		var _czc = _czc || [];
+		_czc.push(["_setAccount", "1275249799"]);
+
+		function push(alias, action, clientType, origin) {
+			try {
+				_czc.push(﻿["_trackEvent", clientType + "-" + origin, action]);
+			} catch(e) {
+				//TODO handle the exception
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		var path = window.location.pathname;
+		var start = path.lastIndexOf("\/");
+		var end = path.lastIndexOf(".");
+		var alias = path.substring(start + 1, end);
+		var domain = apiDomain();
+		var uuid = "";
+		var old_phone = "";
+		var clientType = getClientType();
+		var origin_id = parseInt(GetQueryString("origin"));
+		origin_id = isNaN(origin_id) ? clientType : origin_id;
+		push(alias, "打开", clientType, origin_id)
+		$(".mask,.newpop").hide();
+		//轮播
+		var timer = setTimeout(function() {
+			$(".txtMarquee-top").slide({
+				mainCell: ".bd ul",
+				autoPlay: true,
+				effect: "topLoop",
+				vis: 1,
+				interTime: 2000,
+				mouseOverStop: false
+			});
+		}, 500)
+
+		//点击借款
+		$(".enter1").click(function() {
+			var telephone = $(".text1").val();
+			var reg1 = /^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0-3,5-8])|(18[0-9])|166|198|199|(147))\d{8}$/;
+			if(telephone == "") {
+				$(".hint1").css("visibility", "visible");
+				$(".hint1").html("手机号不能为空");
+				return false;
+			} else if(!reg1.test(telephone)) {
+				$(".hint1").css("visibility", "visible");
+				$(".hint1").html("手机号错误");
+				return false;
+			} else {
+				$(".mask,.newpop,.pop2").show();
+				$(".pop3").hide();
+				$(".phonenumber").text($(".text1").val());
+
+				if($(".text1").val() != old_phone) {
+					changeGraphCode();
+					window.clearInterval(InterValObj); //停止计时器
+					$(".enter3").removeAttr("disabled"); //启用按钮
+					$(".enter3").text("获取验证码");
+					$(".enter3").css({
+						"background": "#F1521A"
+					});
+				}
+			}
+		})
+		//图形验证码
+		function changeGraphCode() {
+			$.ajax({
+				type: "post",
+				url: domain + "web/graph_code",
+				dataType: "json",
+				data: {},
+				success: function(data) {
+					if(data.status == 2000) {
+						uuid = data.data.uuid;
+						$("#imgcode").attr("src", data.data.graph_code);
+					}
+				}
+			});
+		}
+
+		//关闭弹窗
+		$(".close").click(function() {
+			old_phone = $(".phonenumber").html();
+			$(".mask,.newpop").css({
+				"display": "none"
+			});
+		})
+		//焦点事件
+		$("input").focus(function() {
+			$(".hint1,.hint2").css("visibility", "hidden");
+		})
+		//验证码倒计时
+		var InterValObj;
+
+		function countdown() {
+			$(".enter3").attr("disabled", "true");
+			$(".enter3").css({
+				"background": "#DDDDDD"
+			});
+			//timer变量，控制时间
+			var count = 59; //间隔函数，1秒执行
+			var curCount; //当前剩余秒数
+			sendMessage();
+
+			function sendMessage() {
+				curCount = count;
+				//设置效果，开始计时
+				$(".enter3").text(curCount + "s");
+				InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+			}
+			//timer处理函数
+			function SetRemainTime() {
+				if(curCount == 0) {
+					window.clearInterval(InterValObj); //停止计时器
+					$(".enter3").removeAttr("disabled"); //启用按钮
+					$(".enter3").text("获取验证码");
+					$(".enter3").css({
+						"background": "#F1521A"
+					});
+				} else {
+					$(".enter3").attr({
+						"disabled": "disabled"
+					});
+					curCount--;
+					$(".enter3").text(curCount + "s");
+				}
+			}
+		}
+		//点击获取验证码
+		$(".enter3").click(function() {
+			push(alias, "验证码", clientType, origin_id)
+			if($(".enter3").text() == "获取验证码") {
+				$.ajax({
+					type: "post",
+					url: domain + "web/mobile_code",
+					dataType: "json",
+					data: {
+						alias: alias,
+						phone: $(".phonenumber").text(),
+						graph_code: $(".text2").val(),
+						uuid: uuid
+					},
+					success: function(data) {
+						if(data.status == 2000) {
+							window.clearInterval(InterValObj);
+							countdown();
+						} else if(data.status == 2001) {
+							$(".knows").text("您的手机已注册过，请前往APP登录")
+							$(".mask,.newpop").hide();
+							$(".mask,.newpop,.pop3").show();
+							$(".pop2").hide();
+						} else {
+							$(".hint2").css("visibility", "visible");
+							$(".hint2").html(data.message);
+							changeGraphCode();
+						}
+					}
+				});
+			}
+		})
+
+		//短信验证码提交
+		$(".ensure2").click(function() {
+			var messagecode = $(".text3").val();
+			var password = $(".password").val();
+			if(messagecode == "") {
+				$(".hint2").css("visibility", "visible");
+				$(".hint2").html("短信验证码不能为空");
+				return false;
+			} else if(password == "") {
+				$(".hint2").css("visibility", "visible");
+				$(".hint2").html("密码不能为空");
+			} else {
+				$.ajax({
+					type: "POST",
+					url: domain + "web/register",
+					data: {
+						alias: alias,
+						phone: $(".phonenumber").text(),
+						password: password,
+						phone_code: messagecode,
+						origin_id: origin_id
+					},
+					dataType: "json",
+					beforeSend: function() {
+						$(".ensure2").attr("disabled", true);
+						$(".ensure2").css("background-color", "#8d9594");
+					},
+					success: function(result) {
+						$(".ensure2").attr("disabled", false);
+						$(".ensure2").css("background-color", "#ff8f2b");
+						if(result.status == 2000) {
+							push(alias, "注册", clientType, origin_id);
+							$(".knows").text("恭喜您注册成功，请前往APP登录")
+							$(".mask,.newpop").hide();
+							$(".mask,.newpop,.pop3").show();
+							$(".pop2").hide();
+						} else {
+							$(".hint2").css("visibility", "visible");
+							$(".hint2").html(result.message);
+							changeGraphCode();
+						}
+					},
+					error: function() {
+						$(".ensure2").attr("disabled", false);
+						$(".ensure2").css("background-color", "#ff8f2b");
+					}
+				});
+			}
+		});
+		//下载app
+		$('.ensure3').click(function() {
+			window.location.href = "guide_" + alias + ".html?origin=" + origin_id;
+		});
+		$(".text1").focus(function() {
+			push(alias, "手机号", clientType, origin_id);
+		});
+		
+		function register(){
+			window.location.href="../agreement/protocol/xuebidai_register.html";
+		}
+		//接口域名信息
+		function apiDomain() {
+			var hostname = window.location.hostname;
+			var port = window.location.port;
+			if(hostname == "h5.yimenghd.com") {
+				return "https://api.yimenghd.com/";
+			} else {
+				return "https://test-api.yimenghd.com/";
+			}
+		};
+
+		function getClientType() {
+			var ua = navigator.userAgent.toLowerCase();
+			if(/iphone|ipad|ipod/.test(ua)) {
+				return "ios";
+			}
+			if(/android/.test(ua)) {
+				return "android";
+			}
+			return "android";
+		}
+
+		function GetQueryString(name) { // 截取url的字段
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if(r) return unescape(r[2]);
+			return '';
+		}
+	</script>
+
+</html>

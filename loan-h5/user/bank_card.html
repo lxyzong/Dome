@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的银行卡</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<script src="../static/js/common.js?20171128"></script>
+		<link rel="stylesheet" href="../static/css/common/reset.min.css?v=20181011" />
+		<link rel="stylesheet" href="../static/css/bank_card.css?v=20181011" />
+	</head>
+
+	<body>
+		<div class="my-bankcard">
+			<div class="my-bankcard-confirm">添加您的银行卡用于收款、还款</div>
+			<div class="my-bankcard-list">
+				<ul class="clearfix">
+					<li class="clearfix">
+						<label>所属银行</label>
+						<div class="bank-select1"></div>
+					</li>
+					<li class="clearfix">
+						<label>银行卡号</label>
+						<div class="my-bankcard-input input3"></div>
+					</li>
+					<li class="clearfix">
+						<label>手机号</label>
+						<div class="my-bankcard-input input4"></div>
+					</li>
+				</ul>
+			</div>
+			<div class="my-bankcard-next" style="display: none;">
+				<input type="button" value="重新绑卡" class="my-bankcard-next-btn bankcard_success" style="background:#ffb700;" onclick="bindCard()">
+			</div>
+		</div>
+		<script src="../static/js/common/jquery.min.js"></script>
+		<script src="../static/js/common/mobiscroll.jquery.js"></script>
+		<script src="../static/js/bridge.js"></script>
+		<script>
+			$(document).ready(function() {
+				var token = getToken();
+				$.ajax({
+					url: apiDomain() + "bank_info",
+					type: "post",
+					dataType: "json",
+					data: {
+						token: token
+					},
+					success: function(data) {
+						if(data.status == 4002) {
+							closeAndOpen(0);
+							closeAndOpen(1);						
+							return
+						}
+						if(data.status == 2000) {
+							$(".bank-select1").text(data.data.cardName);
+							$(".input3").text("尾号" + data.data.cardNo);
+							$(".input4").text(data.data.cardPhone);
+							if(data.data.status == 1) {
+								$('.my-bankcard-next').show();
+								$(".bankcard_success").click(function() {
+									window.location.replace("bank_card_bind.html?token="+token);
+								});
+							}
+						} else if(data.status == 3001) {
+							window.location.replace("cert_center.html");
+						} else if(data.status == 3003) {
+							window.location.replace("bank_card_bind.html");
+						} else {
+
+						}
+					}
+
+				});
+				
+				function bindCard(){
+					window.location.href="bank_card_bind.html?token="+token;
+				}
+
+			})
+		</script>
+	</body>
+
+</html>

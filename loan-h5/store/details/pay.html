@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<link rel="stylesheet" type="text/css" href="../../static/css/common/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/pay.css?v=115266" />
+		<title>付款详情</title>
+	</head>
+
+	<body>
+		<div class="body">
+			<div class="money">
+				<span>订单总额</span>
+				<span class="moneys"></span>
+			</div>
+			<ul>
+				<li>
+					<span>选择付款方式</span>
+					<span></span>
+				</li>
+				<li>
+					<span><img src="../static/img/logo_alipay.png"/>支付宝</span>
+					<span class="redio pitch"></span>
+				</li>
+				<!--<li>
+					<span><img src="../static/img/logo_wechatpay.png"/>微信支付</span>
+					<span class="redio"></span>
+				</li>
+				<li>
+					<span><img src="../static/img/logo_unionpay.png"/>银行卡支付</span>
+					<span class="redio"></span>
+				</li>-->
+			</ul>
+			<div class="goto">
+				<button class="furan">去付款</button>
+			</div>
+			<div id="myModal" style="display:none">
+				<img src="../static/img/loading.png">
+			</div>
+		</div>
+	</body>
+	<script src="../../static/js/common.js"></script>
+	<script src="../../static/js/bridge.js"></script>
+	<script src="../../static/js/common/jquery.min.js"></script>
+	<script>
+		$(function() {
+			var domain = apiDomain();
+			var orderNo = queryUrlParam("orderNo");
+			var orderAmount = queryUrlParam("orderAmount");
+			$(".moneys").html("￥" + orderAmount);
+			$(".redio").click(function() {
+				$(this).addClass("pitch").parent().siblings().find(".redio").removeClass("pitch");
+			});
+			$(".furan").click(function() {
+				closeAndOpen(0);
+				skipPage(1,domain + "/product_pay/order_pay_alipay?orderNo=" + orderNo + "&orderAmount=" + orderAmount);
+			});
+		})
+	</script>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<script type="text/javascript" src="../static/js/common/jquery.min.js" ></script>
+		<script type="text/javascript" src="../static/js/common.js" ></script>
+		<link rel="stylesheet" href="../static/css/common/reset.min.css" />
+		<link rel="stylesheet" href="../static/css/bank_card.css" />
+	</head>
+	<body>
+		<div class="modal" id="myModal2" style="display:block;">
+		  <div class="popup"></div>
+		  <div class="details-dialog">
+		    <div class="modal-content">
+		      <div class="details-modal-header">
+		      </div>
+		      <div class="details-modal-body">
+		      </div>
+		      <div class="modal-footer">
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<script>
+			$(function(){
+				var bind_status = request['bind_status'];
+				if(bind_status==2000){
+					$('.details-modal-body').html('绑卡成功');
+					setTimeout(function(){
+						window.location.replace('bank_card.html');
+					},1000)
+				}else{
+					$('.details-modal-body').html('绑卡失败');
+				}
+			})
+		</script>
+	</body>
+</html>

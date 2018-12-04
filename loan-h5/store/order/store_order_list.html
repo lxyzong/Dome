@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<link rel="stylesheet" type="text/css" href="../../static/css/common/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/common/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/store_order_list.css?v=201810224" />
+		<title>我的订单</title>
+	</head>
+
+	<body>
+		<div class="body">
+			<ul class="detail display">
+				<li @click="look($event,'')" class="fukuabn">全部<span></span></li>
+				<li @click="look($event,11)">待付款<span></span></li>
+				<li @click="look($event,21)">待发货<span></span></li>
+				<li @click="look($event,31)">待收货<span></span></li>
+				<li @click="look($event,41)">已完成<span></span></li>
+			</ul>
+			<div class="main">
+				<div class="order" v-for="val in arr" @click.prevent.stop="skip(val.orderId,val.orderStatus)">
+					<div class="display num">
+						<p>订单编号：<span v-text="val.orderNo"></span></p>
+						<p v-text="val.orderStatus" :class="fontColor(val.orderStatus)"></p>
+					</div>
+					<div class="details" v-for="item in val.productList">
+						<li class="display">
+							<div class="div">
+								<img :src="item.productImg" />
+							</div>
+							<div>
+								<div class="numA display">
+									<p class="shuo" v-text="item.productName"></p>
+									<span class="shu">x1</span>
+								</div>
+								<p class="session"><span> </span><span class="money"><b v-text="money(item.productPrice)"></b></span></p>
+							</div>
+						</li>
+					</div>
+					<div class="but" v-if="val.orderStatus=='待收货'">
+						<p><button class="but1" @click.prevent.stop="skip(val.orderId,val.orderStatus)">查看</button><button class="but2" @click.prevent.stop="confirm(val.orderId)">确认收货</button></p>
+					</div>
+					<div class="but" v-else>
+						<p><button class="but2 chakan" @click.prevent.stop="skip(val.orderId,val.orderStatus)">查看</button></p>
+					</div>
+				</div>
+				<div class="lnvite" style="display: none;">
+					<div class="lnvite_main">
+						<div>
+							<img src="../static/img/emptypage_noorder.png" alt="" />
+							<p>您还没有相关的订单</p>
+							<button class="stroll" @click="stroll">去逛逛</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../static/js/common.js"></script>
+	<script src="../../static/js/bridge.js"></script>
+	<script src="../../static/js/common/mui.min.js"></script>
+	<script src="../../static/js/common/jquery.min.js"></script>
+	<script src="../../static/js/common/vue.min.js"></script>
+	<script>
+		$(function() {
+			var aUrl = apiDomain();
+			var webUrl = webDomain();
+			var token = getToken();
+			if(!token) {
+				closeAndOpen(1);
+				return;
+			};
+			new Vue({
+				el: ".body",
+				data: function() {
+					return {
+						arr: [],
+						num: 0
+					}
+				},
+				created: function() {
+					const that = this;
+					this.ajax(that)
+				},
+				methods: {
+					ajax: function(that, status) {
+						$.ajax({
+							type: "post",
+							url: aUrl + "/product_order/order_records",
+							async: true,
+							dataType: 'json',
+							data: {
+								token: token,
+								status: status
+							},
+							success: function(data) {
+								if(data.status == 2000) {
+									that.arr = data.data;
+									$(".order").show();
+									$(".lnvite").hide();
+								} else if(data.status == 4000) {
+									$(".order").hide();
+									$(".lnvite").show();
+								}
+							}
+						});
+					},
+					skip: function(id, orderStatus) {
+						//查看详情
+						skipPage(0, webUrl + "store/order/order_details.html?orderId=" + id);
+					},
+					look: function(event, status) {
+						//查看单独类型的
+						const that = this;
+						that.num =
+							$(event.target).addClass("fukuabn").siblings().removeClass("fukuabn");
+						this.$options.methods.ajax(that, status);
+					},
+					confirm: function(orderId) {
+						//确认收货
+						const that = this;
+						var btnArray = ['否', '是'];
+						mui.confirm('是否确认收货？', '提示', btnArray, function(e) {
+							if(e.index == 1) {
+								$.ajax({
+									type: "post",
+									url: aUrl + "/product_order/order_change",
+									async: true,
+									dataType: 'json',
+									data: {
+										token: token,
+										orderId: orderId,
+										status: 41
+									},
+									success: function(data) {
+										if(data.status == 2000) {
+											mui.alert("确认收货完成！", "提示", function() {
+												that.$options.methods.ajax(that, '31');
+											})
+										} else {
+											mui.alert(data.message)
+										}
+									}
+								});
+							}
+						})
+					},
+					money: function(num) {
+						var result = parseFloat(num);
+						if(isNaN(result)) {
+							return false;
+						}
+						result = Math.round(num * 100) / 100;
+						var s_x = result.toString();
+						var pos_decimal = s_x.indexOf('.');
+						if(pos_decimal < 0) {
+							pos_decimal = s_x.length;
+							s_x += '.';
+						}
+						while(s_x.length <= pos_decimal + 2) {
+							s_x += '0';
+						}
+						return '￥' + s_x;
+					},
+					fontColor: function(text) {
+						//设置交易成功、交易取消字体为红色
+						if(text == "交易成功" || text == "交易取消") {
+							return 'fontColor'
+						}
+					},
+					stroll: function() {
+						//去首页
+						closeAndOpen(2);
+					}
+				}
+			})
+		})
+	</script>
+
+</html>

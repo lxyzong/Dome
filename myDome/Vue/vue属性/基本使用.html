@@ -9,7 +9,10 @@
 
 	<body>
 		<div id="box">
-			{{aa}}
+			<span v-show="aa">{{aa}}</span>
+			<button @click="a()">button</button>
+			<button @click="b()">button</button>
+			
 		</div>
 	</body>
 	<script>
@@ -21,16 +24,19 @@
 		//		})
 		var xm = new Vue({
 			data: {
-				aa: "aaaaa"
+				aa: "11"
 			},
 			methods: {
-				a: function() {
-					return '1'
+				a: function(that) {
+					console.log(that.aa);
+				},
+				b: function() {
+					this.aa++
 				}
 			}
 		}).$mount("#box")
 //		console.log(xm.aa)
-		console.log(xm.$options.methods.a())
+		console.log(xm.$options.methods.a(xm))
 	</script>
 
 </html>

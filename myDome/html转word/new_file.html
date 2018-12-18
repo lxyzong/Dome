@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			p{
+				color: red;
+				font-weight: bold;
+				font-size: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="pagecontent">
+			<p>举头望明月</p>
+			<p>低头思故乡</p>
+			<p>谁知盘中餐</p>
+			<p>粒粒皆辛苦</p>
+			<p>白日依山尽</p>
+			<p>黄河入海流</p>
+			<table border="1" cellspacing="0" cellpadding="0">
+				<tr><th>Header</th><th>Header</th></tr>
+				<tr><td>Data</td><td>Data</td></tr>
+			</table>
+		</div>
+		<button>but</button>
+	</body>
+	<script src="jquery-2.1.4.min.js"></script>
+	<script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.js"></script>
+	<script src="wordexport.js"></script>
+	<script>
+		$(document).ready(function($) {
+			$("button").click(function(event) {
+				$("#pagecontent").wordExport("word",$("style").html());
+			});
+		});
+	</script>
+
+</html>

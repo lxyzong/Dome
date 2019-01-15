@@ -1,0 +1,8 @@
+<!--pages/find/find.wxml-->
+<view class='find'>
+   <image src='img/VIP_1.png'></image>
+   <image src='img/VIP_2.png'></image>
+   <image src='img/VIP_3.png'></image>
+   <image src='img/VIP_4.png'></image>
+   <image src='img/VIP_5.png'></image>
+</view>

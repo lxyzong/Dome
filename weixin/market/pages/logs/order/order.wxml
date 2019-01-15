@@ -1,0 +1,38 @@
+<!--pages/logs/order/order.wxml-->
+<view class='body'>
+  <view class='header'>
+    <view wx:for="{{navBar}}" wx:key data-idx="{{index}}" data-show="{{item.isTrue}}" class="{{index==iNum?'active':''}}" bindtap='nav'>{{item.text}}</view>
+  </view>
+  <view class='content' wx:if="{{show}}">
+    <view class='list'>
+      <view class='top display'>
+        <text>订单编号：1725478161534269027153</text>
+        <text>待收货</text>
+      </view>
+      <view class='center display'>
+        <view class='left'>
+          <image src='../img/huawei_honor.png'></image>
+        </view>
+        <view class='right'>
+          <view>
+            <text>一加手机6  全面屏双摄游戏手机 全网通4G双卡双待通4G全网通4G双卡双待通4G...</text>
+            <text>x1</text> </view>
+          <view>
+            <text>颜色分类：炫彩黑，尺码：XXL</text>
+            <text>￥6999.00</text> </view>
+        </view>
+      </view>
+      <view class='footer display'>
+        <view>查看</view>
+      </view>
+    </view>
+  </view>
+  <view class='main' wx:else>
+    <view>
+      <image src='../../blank/img/emptypage_building.png'></image>
+      <view>您还没有相关的订单</view>
+      <button bindtap='index'>去逛逛</button>
+    </view>
+  </view>
+
+</view>

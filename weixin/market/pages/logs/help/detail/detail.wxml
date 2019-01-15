@@ -1,0 +1,6 @@
+<!--pages/logs/help/detail/detail.wxml-->
+<view class='detail'>
+  <text class='title'>{{arr[obj.id].content[obj.index]}}</text>
+  <view class='solid'></view>
+  <text class='text'>{{arr[obj.id].detail[obj.index]}}</text>
+</view>

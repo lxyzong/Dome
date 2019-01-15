@@ -1,0 +1,86 @@
+page {
+  width: 100%;
+  height: 100%;
+  background: #f7f7f7;
+}
+
+.userinfo {
+  width: 100%;
+  height: 240rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.userinfo-avatar {
+  width: 140rpx;
+  height: 140rpx;
+  margin: 0rpx 32rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: white;
+  font-size: 40rpx;
+}
+
+.userinfo button {
+  border: none;
+  background: none;
+  color: white;
+  font-size: 40rpx;
+  margin: 0;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.main {
+  width: 100%;
+}
+
+.list {
+  width: 100%;
+  height: 100rpx;
+  padding: 0 32rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-bottom: 2rpx solid #ededed;
+}
+
+.list view image {
+  width: 48rpx;
+  height: 48rpx;
+  vertical-align: middle;
+  margin-right: 32rpx;
+}
+
+.list .back_right {
+  width: 16rpx;
+  height: 26rpx;
+}
+
+.list:nth-of-type(1) {
+  margin: 20rpx 0;
+  border: none;
+}
+
+.list:last-child {
+  margin: 20rpx 0 40rpx 0;
+  border: none;
+}

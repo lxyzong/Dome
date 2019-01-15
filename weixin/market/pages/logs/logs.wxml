@@ -1,0 +1,59 @@
+<!--logs.wxml-->
+<view class="container log-list">
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo && canIUse}}">
+      <image src='img/avatar.png' class="userinfo-avatar"></image>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+    <image src='img/pic_bg.png' class='background'></image>
+  </view>
+  <view class='main'>
+    <view class='list' bindtap='order'>
+      <view>
+        <image src='img/ic_orders.png'></image>
+        <text>我的订单</text>
+      </view>
+      <image src='img/back.png' class='back_right'></image>
+    </view>
+
+    <view class='list' bindtap='address'>
+      <view>
+        <image src='img/ic_address.png'></image>
+        <text>收货地址管理</text>
+      </view>
+      <image src='img/back.png' class='back_right'></image>
+    </view>
+    <view class='list' bindtap='invite'>
+      <view>
+        <image src='img/ic_invite.png'></image>
+        <text>邀请好友</text>
+      </view>
+      <image src='img/back.png' class='back_right'></image>
+    </view>
+    <view class='list' bindtap='help'>
+      <view>
+        <image src='img/ic_help.png'></image>
+        <text>帮助中心</text>
+      </view>
+      <image src='img/back.png' class='back_right'></image>
+    </view>
+    <view class='list' bindtap='crown'>
+      <view>
+        <image src='img/ic_crown.png'></image>
+        <text>会员服务中心</text>
+      </view>
+      <image src='img/back.png' class='back_right'></image>
+    </view>
+    <view class='list' bindtap='about'>
+      <view>
+        <image src='img/ic_aboutus.png'></image>
+        <text>关于奇异街</text>
+      </view>
+      <image src='img/back.png' class='back_right'></image>
+    </view>
+  </view>
+</view>

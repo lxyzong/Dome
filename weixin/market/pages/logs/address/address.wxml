@@ -1,0 +1,22 @@
+<!--pages/logs/address/address.wxml-->
+<view class='body'>
+  <view class='address' wx:if="{{address}}">
+    <view class='header'>
+      <text class='name'>{{address.userName}}</text>
+      <text class='tel'>{{address.telNumber}}</text>
+      <text class='tag'>{{address.countyName}}</text>
+    </view>
+    <view class='center'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}</view>
+    <view class='footer'>
+      <label class="radio">
+        <image src='../img/red_selected.png'></image>默认地址</label>
+      <view class='edit'>
+        <view bindtap='add'>
+          <image src='../img/ic_edit.png'></image>编辑</view>
+      </view>
+    </view>
+  </view>
+  <view class='add'>
+    <button bindtap='add'>选择收货地址</button>
+  </view>
+</view>

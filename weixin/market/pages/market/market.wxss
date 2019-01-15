@@ -1,0 +1,103 @@
+/* pages/market/market.wxss */
+page,
+.market {
+  width: 100%;
+  height: 100%;
+}
+
+.left {
+  width: 200rpx;
+  height: 100%;
+  float: left;
+  overflow: auto;
+  background: #f5f5f5;
+}
+
+.left view {
+  width: 100%;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 28rpx;
+  color: #333;
+  position: relative;
+}
+
+.active {
+  background: #fff;
+  font-weight: bold;
+}
+
+.active::before {
+  content: "";
+  width: 12rpx;
+  height: 100%;
+  background: #f2c461;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.right {
+  margin-left: 200rpx;
+  padding: 0 32rpx;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: auto;
+}
+
+.banner {
+  width: 100%;
+  height: 160rpx;
+  margin-top: 40rpx;
+  border: 1rpx solid #ccc;
+}
+
+.main {
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content view {
+  width: 33.33333%;
+  margin-top: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.content view image {
+  width: 140rpx;
+  height: 140rpx;
+  margin-bottom: 16rpx;
+  border: 1rpx solid #ccc;
+}
+
+.content view text {
+  font-size: 24rpx;
+  color: #333;
+}
+.footer{
+  width: 100%;
+  text-align: center;
+  margin: 40rpx 0;
+  font-size: 28rpx;
+  color: #ccc;
+}
+
+.left::-webkit-scrollbar,
+.right::-webkit-scrollbar{
+  display: none
+}

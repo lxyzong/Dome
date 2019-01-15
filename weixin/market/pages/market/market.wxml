@@ -1,0 +1,19 @@
+<!--pages/market/market.wxml-->
+<view class='market'>
+  <view class='left'>
+    <view class="{{index==iNum ? 'active':''}}" data-id="{{item.id}}" data-iNum="{{index}}" wx:for="{{list}}" wx:key bindtap="listTap">{{item.channelName}}</view>
+  </view>
+  <view class='right'>
+    <image src='{{list[iNum].channelImg}}' class='banner' mode="aspectFill"></image>
+    <view class='main' wx:for="{{Listdetails}}" wx:key>
+      <text class='title'>{{item.name}}</text>
+      <view class='content'>
+        <view wx:for="{{item.channelList}}" wx:key>
+          <image src='{{item.channelImg}}'></image>
+          <text>{{item.channelName}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='footer'>亲，我已到底线</view>
+  </view>
+</view>

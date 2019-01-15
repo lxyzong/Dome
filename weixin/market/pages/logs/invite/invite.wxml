@@ -1,0 +1,10 @@
+<!--pages/market/invite/invite.wxml-->
+<view class='invite'>
+  <image src='../img/bg_invited.png' class='bg_invited'></image>
+  <view class='share'>
+    <button open-type="share" title="天天购物" hover-class='none'>
+      <image src='../img/btn_share.png'></image>
+    </button>
+    <text>点击按钮同朋友一起分享吧！</text>
+  </view>
+</view>

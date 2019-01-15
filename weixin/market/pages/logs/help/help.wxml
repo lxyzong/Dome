@@ -1,0 +1,12 @@
+<!--pages/logs/help/help.wxml-->
+<view class='body'>
+  <view class='help' wx:for="{{arr}}" wx:key="x">
+    <view class='left'>
+      <text>{{item.title}}</text>
+      <image src='../img/back.png'></image>
+    </view>
+    <view class='right'>
+      <view class='text' data-id="{{item.id}}" data-index="{{index}}" wx:for="{{item.content}}" wx:for-item="x" wx:key bindtap='detail'>{{x}}</view>
+    </view>
+  </view>
+</view>

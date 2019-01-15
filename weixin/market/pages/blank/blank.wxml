@@ -1,0 +1,7 @@
+<!--pages/blank/blank.wxml-->
+<view class="lnvite">
+  <view class="lnvite_main">
+    <image src="./img/emptypage_building.png"></image>
+    <view>客官，技术小哥哥还探索中 尽请期待...</view>
+    </view>
+  </view>

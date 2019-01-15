@@ -1,0 +1,29 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- <swiper indicator-dots="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#FFFFFF" autoplay="true" interval="3000" duration="500" class='banner'>
+    <block wx:for="{{banner}}" wx:key>
+      <swiper-item>
+        <image src="img/{{item.img}}" class="slide-image"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='entry'>
+    <view wx:for="{{entry}}" wx:key>
+      <image src="img/{{item.entryImgurl}}"></image>
+      <text>{{item.entryRemark}}</text>
+    </view>
+  </view>
+  <view class='notice'>
+    <view class='left'>
+      <image src='img/title.png'></image>
+    </view>
+    <swiper autoplay='true' interval="2500" duration="500" vertical="true" display-multiple-items="2" class='right'>
+      <view class='content' wx:for="{{notice}}" wx:key>
+        <swiper-item>
+          <view>{{item.noticeTag}}</view>
+          <text>{{item.noticeTitle}}</text>
+        </swiper-item>
+      </view>
+    </swiper>
+  </view> -->
+</view>

@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/find/find",
+    "pages/market/market",
+    "pages/logs/invite/invite",
+    "pages/logs/about/about",
+    "pages/logs/help/help",
+    "pages/logs/help/detail/detail",
+    "pages/blank/blank",
+    "pages/logs/order/order",
+    "pages/logs/address/address"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#FFFFFF",
+    "selectedColor": "#FFDC63",
+    "backgroundColor": "#121212",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "image/ic_home_normal.png",
+        "selectedIconPath": "image/ic_home_selected.png"
+      },
+      {
+        "pagePath": "pages/market/market",
+        "text": "商城",
+        "iconPath": "image/ic_mall_normal.png",
+        "selectedIconPath": "image/ic_mall_selected.png"
+      },
+      {
+        "pagePath": "pages/find/find",
+        "text": "发现",
+        "iconPath": "image/ic_find_normal.png",
+        "selectedIconPath": "image/ic_find_selected.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "我的",
+        "iconPath": "image/ic_personal_normal.png",
+        "selectedIconPath": "image/ic_personal_selected.png"
+      }
+    ]
+  }
+}

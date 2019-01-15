@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.box {
+				position: relative;
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				overflow: hidden;
+				margin: 100px auto;
+			}
+			
+			.box .s1 {
+				width: 90px;
+				height: 90px;
+				background: green;
+				display: block;
+				position: absolute;
+				top: -39px;
+				left: -12px;
+				transform: rotate(0deg) skew(-30deg);
+			}
+			
+			.box .s2 {
+				width: 90px;
+				height: 90px;
+				background: red;
+				display: block;
+				position: absolute;
+				top: -1px;
+				left: 55px;
+				transform: rotate(-120deg) skew(30deg);
+			}
+			
+			.box .s3 {
+				width: 90px;
+				height: 90px;
+				background: blue;
+				display: block;
+				position: absolute;
+				top: 51px;
+				left: -12px;
+				transform: rotate(180deg) skew(30deg);
+			}
+			
+			.box i {
+				position: absolute;
+				left: 268px;
+				top: 268px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<a href="http://www.baidu.com" class="s1"></a>
+			<a href="http://www.imooc.com" class="s2"></a>
+			<a href="http://www.runoob.com" class="s3"></a>
+			<i>.</i>
+		</div>
+	</body>
+
+</html>

@@ -9,7 +9,7 @@
 
 	<body>
 		<div id="box">
-			<span v-show="aa">{{aa}}</span>
+			<span v-show="aa" v-bind:title="aa">{{aa}}</span>
 			<button @click="a()">button</button>
 			<button @click="b()">button</button>
 			

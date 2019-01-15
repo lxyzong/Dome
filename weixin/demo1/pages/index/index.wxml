@@ -1,4 +1,0 @@
-<!--index.wxml-->
-<view class='bgImg'>
-  <view bindtap='game' class='game'>开始游戏</view>
-</view>

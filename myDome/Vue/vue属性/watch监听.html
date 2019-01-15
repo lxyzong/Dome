@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-	    <script src="Vue.js"></script>
+		<script src="Vue.js"></script>
 	</head>
+
 	<body>
 		<div id="box">
-			<input type="button" value="按钮" @click="json.a=5"/>
-			{{json|json}}
+			<input type="button" value="按钮" @click="json.a=5" /> {{json|json}}
 		</div>
 	</body>
 	<script>
-		
-	window.onload=function(){
-	var aVue=new Vue({
-			el:"#box",
-			data:{
-//				arr:[1,2,3,4]
-                json:{"a":1,"b":2,"c":3}
-			}
-	  });
-	  aVue.$watch("json",function(){
-	  	
-	  	  alert("改变")
-	  	  
-	  },{deep:true})
-		
-	}
-		
+		window.onload = function() {
+			var aVue = new Vue({
+				el: "#box",
+				data: {
+					//				arr:[1,2,3,4]
+					json: {
+						"a": 1,
+						"b": 2,
+						"c": 3
+					}
+				},
+				watch: {
+					json: {
+						handler(newJson, old) {
+							alert(newJson.a);
+						},
+						deep: true
+					}
+				}
+			});
+			//	  aVue.$watch("json",function(){
+			//	  	
+			//	  	  alert("改变")
+			//	  	  
+			//	  },{deep:true})
+
+		}
 	</script>
+
 </html>
